@@ -9,17 +9,9 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     //Wenn es funktioniert
-    console.log("1.21 GIGAWATT!!!!!")
+    console.log("Datenbank verbunden");
 });
 
-/*
-app.get("/mr", function(req, res){
-    db.findById(JSON.stringify(req.body.id), function (err, SelectedInfos) {
-        res.send(SelectedInfos);
-    });
-
-});
-*/
 let postSchema= new mongoose.Schema({
     title: String,
     link: String,
@@ -56,4 +48,18 @@ app.post("/mr", (req, res)=> {
     console.log("Es funzt");
     res.send("OK");
 });
+
+app.get("/mr", function(req, res){
+    post.findById(req.body.id,function (err, SelectedInfos) {
+             if(err!=null) {
+                 console.log(err);
+                 res.send(err);
+             }
+             else
+                 res.send(SelectedInfos);
+    });
+
+});
+
 app.listen(port,()=> console.log("Server hört Port auf Port: "+port+" zu"));
+

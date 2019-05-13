@@ -4,6 +4,7 @@
   "dependencies": {
     "express": "latest",
     "mongoose": "latest",
-    "node": "^12.2.0"
+    "node": "^12.2.0",
+    "require": "^2.4.20"
   }
 }
