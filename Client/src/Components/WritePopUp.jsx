@@ -9,7 +9,8 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    marginRight: "-50%",
+    width: "50%",
+
     "background-color": "rgba(39,57,61,1)",
     transform: "translate(-50%, -50%)"
   }
@@ -32,15 +33,15 @@ export class WritePopUp extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div id="Write">
         <NormalButton text="Write" onClick={this.handleOpenModal} />
         <ReactModal
           isOpen={this.main.state.showWriteModal}
           contentLabel="Minimal Modal Example"
           style={customStyles}
         >
-          <ExitButton onClick={this.handleCloseModal} />
-          <FormControl>
+          <ExitButton onClick={this.handleCloseModal} /> <br />
+          <FormControl className="Posting">
             <br />
             <b id="formText">Titel</b>
             <br />
@@ -87,8 +88,8 @@ export class WritePopUp extends React.Component {
               onChange={this.updateInput}
             />
             <br />
-            <NormalButton text="Posten" onClick={this.post} />
           </FormControl>
+          <NormalButton text="Posten" onClick={this.post} className="Poster" />
         </ReactModal>
       </div>
     );

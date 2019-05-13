@@ -9,6 +9,7 @@ import Header from "./Components/Header";
 import { Search } from "./Components/Search";
 import { Thread } from "./Thread";
 import { WritePopUp } from "./Components/WritePopUp";
+import { FeedThread } from "./Components/FeedThread";
 
 ReactModal.setAppElement("#root");
 class App extends React.Component {
@@ -18,7 +19,8 @@ class App extends React.Component {
       page: "start",
       id: null,
       showWriteModal: false,
-      showPostModal: false
+      showPostModal: false,
+      search: ""
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -30,22 +32,48 @@ class App extends React.Component {
     this.returnToStartPage = this.returnToStartPage.bind(this);
     this.postPopUp = null;
   }
+  searchStarted = searchValue => {
+    console.log(searchValue);
+    this.setState({ search: searchValue, page: "thread" });
+    this.render();
+  };
   render() {
-    return (
-      <div className="App">
-        <Header />
-        <div id="main">
-          <WritePopUp
-            showModal={this}
-            handleCloseModal={this.handleCloseModal}
-            handleOpenModal={this.handleOpenModal}
-          />
-          {this.state.showPostModal ? this.postPopUp : ""}
-          <Search />
-          <Feed onclick={this.proceedClick} />
+    if (this.state.page === "start")
+      return (
+        <div className="App">
+          <Header />
+          <div id="main">
+            <WritePopUp
+              showModal={this}
+              handleCloseModal={this.handleCloseModal}
+              handleOpenModal={this.handleOpenModal}
+            />
+            {this.state.showPostModal ? this.postPopUp : ""}
+            <Search action={this.searchStarted} />
+            <Feed onclick={this.proceedClick} />
+          </div>
         </div>
-      </div>
-    );
+      );
+    if (this.state.page === "thread")
+      return (
+        <div className="App">
+          <Header />
+          <Search action={this.searchStarted} />
+          <div id="main">
+            <WritePopUp
+              showModal={this}
+              handleCloseModal={this.handleCloseModal}
+              handleOpenModal={this.handleOpenModal}
+            />
+            {this.state.showPostModal ? this.postPopUp : ""}
+            <FeedThread
+              key="Search"
+              search={this.state.search}
+              onclick={this.proceedClick}
+            />
+          </div>
+        </div>
+      );
   }
   proceedClick(id) {
     console.log(id);

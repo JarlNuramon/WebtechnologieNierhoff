@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "@material-ui/core/Input";
 import FormControl from "@material-ui/core/FormControl";
-
+import { StartButton } from "./StyledButton";
 const styles = {
   root: {
     flexGrow: 1
@@ -23,20 +23,40 @@ export class Search extends React.Component {
   state = {
     search: ""
   };
+  constructor(props) {
+    super(props);
+    this.action = props.action;
+  }
 
-  updateSearch = search => {
-    this.setState({ search });
+  updateSearch = e => {
+    this.setState({ search: e.target.value });
+    
   };
 
   render() {
     return (
       <div id="search">
         <FormControl fullWidth="true" margin="none">
-          <Input
-            placeholder="  Search..."
-            onChange={this.updateSearch}
-            fullWidth="true"
-          />
+          <div id="searchDiv">
+            <Input
+              placeholder="  Search..."
+              onChange={this.updateSearch}
+              fullWidth="true"
+            />
+          </div>
+          <div class="startButtons">
+            <div class="twoColumn">
+              <StartButton text="Filter" onClick={this.post} />
+            </div>
+            <div class="twoColumn">
+              <StartButton
+                text="Search"
+                onClick={() => {
+                  this.action(this.state.search);
+                }}
+              />
+            </div>
+          </div>
         </FormControl>
       </div>
     );

@@ -7,11 +7,22 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import CheeseburgerMenu from "cheeseburger-menu";
+import { Menue } from "./Menue.jsx";
+
+/*
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
+<div className="my-menu-content">
+    <ul>
+      <li><Link to="/thing1" onClick={this.closeMenu}>Menu item 1</Link></li>
+      <li><Link to="/thing2" onClick={this.closeMenu}>Menu item 2</Link></li>
+    </ul>
+  </div>
+  */
 
 const styles = {
   root: {
@@ -34,7 +45,8 @@ const styles = {
 export class Header extends React.Component {
   state = {
     auth: true,
-    anchorEl: null
+    anchorEl: null,
+    menuIsOpen: false
   };
 
   handleChange = event => {
@@ -44,19 +56,18 @@ export class Header extends React.Component {
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
+  closeMenu = () => {
+    this.setState({ menuIsOpen: false });
+  };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-
-  render() {
-    const { classes } = this.props;
-    const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
-
-    return (
-      <div className={classes.root}>
-        <FormGroup>
+  handleCheeseburger = () => {
+    this.setState({ menuIsOpen: true });
+  };
+  /*
+   <FormGroup>
           <FormControlLabel
             control={
               <Switch
@@ -68,13 +79,29 @@ export class Header extends React.Component {
             label={auth ? "Logout" : "Login"}
           />
         </FormGroup>
+  */
+  render() {
+    const { classes } = this.props;
+    const { auth, anchorEl } = this.state;
+    const open = Boolean(anchorEl);
+
+    return (
+      <div className={classes.root}>
+        <CheeseburgerMenu
+          isOpen={this.state.menuIsOpen}
+          closeCallback={this.closeMenu}
+          backgroundColor="rgba(39, 57, 61, 1)"
+        >
+          <Menue />
+        </CheeseburgerMenu>
+
         <AppBar className={classes.MuiAppBar} position="static">
           <Toolbar>
             <IconButton
               className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
-              onClick={this.handleMenu}
+              onClick={this.handleCheeseburger}
             >
               <MenuIcon />
             </IconButton>

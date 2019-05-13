@@ -1,11 +1,46 @@
 {
   "Section": [
     {
-      "id": 2019289309482934,
-      "name": "INFORMATIK",
-      "revelant_tags": ["Mathematik", "Regression", "Modelle", "Stochastik"],
+      "id": 11,
+      "name": "Informatik",
+      "revelant_tags": [],
       "professors_ID": [201928923339482934, 2019289309234534],
-      "parent_id": 22030309403823923
+      "parent_id": 1
+    },
+    {
+      "id": 111,
+      "name": "Java",
+      "revelant_tags": [],
+      "professors_ID": [201928923339482934, 2019289309234534],
+      "parent_id": 11
+    },
+    {
+      "id": 112,
+      "name": "Englisch für Informatiker",
+      "revelant_tags": [],
+      "professors_ID": [201928923339482934, 2019289309234534],
+      "parent_id": 11
+    },
+    {
+      "id": 1,
+      "name": "Fachbereich Elektronik",
+      "revelant_tags": [],
+      "professors_ID": [201928923339482934, 2019289309234534],
+      "parent_id": null
+    },
+    {
+      "id": 21,
+      "name": "BWL",
+      "revelant_tags": [],
+      "professors_ID": [201928923339482934, 2019289309234534],
+      "parent_id": 2
+    },
+    {
+      "id": 2,
+      "name": "Fachbereich Wirtschaft",
+      "revelant_tags": [],
+      "professors_ID": [201928923339482934, 2019289309234534],
+      "parent_id": null
     }
   ]
 }

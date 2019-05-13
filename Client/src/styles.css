@@ -8,14 +8,17 @@
   display: flex;
   border: 1px solid rgba(39, 57, 61, 1);
   box-sizing: border-box;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  width: 75%;
+  margin: auto;
 }
 .FeedThread {
   flex: 25%;
   padding: 0px;
   background-color: rgba(39, 57, 61, 1);
 }
-.FeedThread.FeedVideo {
-}
+
 .FeedThread img {
   max-width: 100%;
   height: auto;
@@ -23,21 +26,85 @@
 .title {
   font-weight: bold;
 }
-form input {
-  text-align: center;
-}
+
 #formText {
   color: rgba(25, 157, 116, 1);
 }
-#formText inpu {
-  border-bottom-color: rgba(25, 157, 116, 1);
-}
+
 #main {
   background-color: rgba(39, 57, 61, 1);
 }
 #search {
   width: 100%;
-  padding-left: -5;
-  padding-right: -5;
+  padding-top: 5;
+  padding-left: 5;
+  background-color: rgba(39, 57, 61, 1);
+}
+#searchDiv {
+  width: 75%;
+  margin: auto;
+}
+.Posting {
+  width: 100%;
+}
+
+.startButtons {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  padding-top: 6px;
+}
+.twoColumn {
+  flex: 50%;
+}
+.SearchResult .twoColumn {
+  height: 30%;
+  width: 50%;
+  padding: 0px;
+  background-color: #131c1e;
+  box-sizing: border-box;
+  border: 1px solid #131c1e;
+  max-height: 30%;
+  float: left;
+  overflow: hidden;
+}
+#desc {
+  box-sizing: border-box;
+  white-space: pre-line;
+  word-wrap: break-word;
+  color: white;
+}
+.twoColumnSearch {
+  display: flex;
+  width: 100%;
+  max-height: auto;
+}
+.twoColumn img {
+  max-width: 100%;
+  height: auto;
+}
+.SearchResult {
+  float: left;
+  padding: 10px;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  width: 75%;
+}
+.MenueItem ul {
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  font-style: italic;
+}
+.Sections ul {
+  padding: 0;
+  list-style-type: none;
+  text-decoration: underline;
+  text-decoration-color: rgba(25, 157, 116, 1);
+}
+.Cheeseburger {
   background-color: rgba(39, 57, 61, 1);
 }
