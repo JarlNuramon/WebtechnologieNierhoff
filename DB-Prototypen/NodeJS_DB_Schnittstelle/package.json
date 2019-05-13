@@ -1,0 +1,9 @@
+{
+  "name": "untitled",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "latest",
+    "mongoose": "latest",
+    "node": "^12.2.0"
+  }
+}
