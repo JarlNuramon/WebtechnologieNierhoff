@@ -1,10 +1,14 @@
 {
-  "name": "untitled",
+  "name": "nodejs_db_schnittstelle",
   "version": "1.0.0",
+  "description": "",
+  "main": "DB.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "latest",
-    "mongoose": "latest",
-    "node": "^12.2.0",
-    "require": "^2.4.20"
+    "mongoose": "^5.5.8"
   }
 }
