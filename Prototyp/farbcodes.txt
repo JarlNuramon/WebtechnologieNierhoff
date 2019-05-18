@@ -1,0 +1,5 @@
+Schwarz-Grau: #212121 rgb(33, 33, 33)
+Schwarz-Blau: #131C1E rgb(19, 28, 30)
+Schwarz-Grün: #27393D rgb(39, 57, 61)
+Grün: #199D74 rgb(25, 157, 116)
+Weiß: #FFFFFF rgb(255, 255, 255)
