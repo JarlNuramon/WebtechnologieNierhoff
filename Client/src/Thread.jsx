@@ -10,7 +10,8 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     "background-color": "rgba(39,57,61,1)",
-    transform: "translate(-50%, -50%)"
+    transform: "translate(-50%, -50%)",
+    color: "white"
   }
 };
 export class Thread extends React.Component {
