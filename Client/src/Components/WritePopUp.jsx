@@ -1,6 +1,6 @@
 import React from "react";
 import ReactModal from "react-modal";
-import { NormalButton, ExitButton } from "./StyledButton";
+import { NormalButton, ExitButton, ShareButton } from "./StyledButton";
 import Input from "@material-ui/core/Input";
 import FormControl from "@material-ui/core/FormControl";
 const customStyles = {
@@ -34,7 +34,7 @@ export class WritePopUp extends React.Component {
   render() {
     return (
       <div id="Write">
-        <NormalButton text="Write" onClick={this.handleOpenModal} />
+        <ShareButton onClick={this.handleOpenModal} />
         <ReactModal
           isOpen={this.main.state.showWriteModal}
           contentLabel="Minimal Modal Example"

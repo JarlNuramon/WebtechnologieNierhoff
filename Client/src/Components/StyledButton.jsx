@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
+import ShareIcon from "/public/Pictures/share.png";
+
 const StyledButton = withStyles({
   root: {
     background: "rgba(25,157,116,1)",
@@ -68,5 +70,18 @@ export function ExitButton(props) {
     <X variant="outlined" onClick={props.onClick}>
       x
     </X>
+  );
+}
+
+export function ShareButton(props) {
+  return (
+    <div>
+      <img
+        src={ShareIcon}
+        alt="ShareButton"
+        onClick={props.onClick}
+        className="ShareButton"
+      />
+    </div>
   );
 }
