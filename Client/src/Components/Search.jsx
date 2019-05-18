@@ -30,7 +30,6 @@ export class Search extends React.Component {
 
   updateSearch = e => {
     this.setState({ search: e.target.value });
-    
   };
 
   render() {
@@ -41,14 +40,14 @@ export class Search extends React.Component {
             <Input
               placeholder="  Search..."
               onChange={this.updateSearch}
-              fullWidth="true"
+              fullWidth={true}
             />
           </div>
-          <div class="startButtons">
-            <div class="twoColumn">
+          <div className="startButtons">
+            <div className="twoColumn">
               <StartButton text="Filter" onClick={this.post} />
             </div>
-            <div class="twoColumn">
+            <div className="twoColumn">
               <StartButton
                 text="Search"
                 onClick={() => {

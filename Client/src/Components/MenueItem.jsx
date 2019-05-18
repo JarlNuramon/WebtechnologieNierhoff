@@ -27,8 +27,8 @@ export class MenueItem extends React.Component {
       <li>
         <div className="MenueItem" onClick={() => this.click(this.id)}>
           {this.name}
-          <ul>{this.child}</ul>
         </div>
+        <ul>{this.child}</ul>
       </li>
     );
   }

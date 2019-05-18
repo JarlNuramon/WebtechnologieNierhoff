@@ -23,11 +23,6 @@ class App extends React.Component {
       search: ""
     };
 
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.handleClosePostModal = this.handleClosePostModal.bind(this);
-    this.handleOpenPostModal = this.handleOpenPostModal.bind(this);
-    this.returnOpenModal = this.returnOpenModal.bind(this);
     this.proceedClick = this.proceedClick.bind(this);
     this.returnToStartPage = this.returnToStartPage.bind(this);
     this.postPopUp = null;
@@ -37,18 +32,13 @@ class App extends React.Component {
     this.setState({ search: searchValue, page: "thread" });
     this.render();
   };
+
   render() {
     if (this.state.page === "start")
       return (
         <div className="App">
-          <Header />
+          <Header showModal={this} />
           <div id="main">
-            <WritePopUp
-              showModal={this}
-              handleCloseModal={this.handleCloseModal}
-              handleOpenModal={this.handleOpenModal}
-            />
-            {this.state.showPostModal ? this.postPopUp : ""}
             <Search action={this.searchStarted} />
             <Feed onclick={this.proceedClick} />
           </div>
@@ -60,11 +50,6 @@ class App extends React.Component {
           <Header />
           <Search action={this.searchStarted} />
           <div id="main">
-            <WritePopUp
-              showModal={this}
-              handleCloseModal={this.handleCloseModal}
-              handleOpenModal={this.handleOpenModal}
-            />
             {this.state.showPostModal ? this.postPopUp : ""}
             <FeedThread
               key="Search"
@@ -91,23 +76,6 @@ class App extends React.Component {
       page: "start",
       id: null
     });
-  }
-  returnOpenModal() {
-    return this.state.showModal;
-  }
-  handleOpenModal() {
-    this.setState({ showWriteModal: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ showWriteModal: false });
-  }
-  handleOpenPostModal() {
-    this.setState({ showPostModal: true });
-  }
-
-  handleClosePostModal() {
-    this.setState({ showPostModal: false });
   }
 }
 

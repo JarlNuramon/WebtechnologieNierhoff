@@ -11,7 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import CheeseburgerMenu from "cheeseburger-menu";
 import { Menue } from "./Menue.jsx";
-
+import { WritePopUp } from "./WritePopUp";
 /*
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -38,17 +38,42 @@ const styles = {
   menuButton: {
     marginLeft: -12,
     "background-color": "#131C1E",
-    marginRight: 20
-  }
+    marginRight: 300
+  },
+  SharePopUp: {}
 };
 
 export class Header extends React.Component {
-  state = {
-    auth: true,
-    anchorEl: null,
-    menuIsOpen: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth: true,
+      anchorEl: null,
+      menuIsOpen: false
+    };
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleClosePostModal = this.handleClosePostModal.bind(this);
+    this.handleOpenPostModal = this.handleOpenPostModal.bind(this);
+    this.returnOpenModal = this.returnOpenModal.bind(this);
+  }
+  returnOpenModal() {
+    return this.state.showModal;
+  }
+  handleOpenModal() {
+    this.setState({ showWriteModal: true });
+  }
 
+  handleCloseModal() {
+    this.setState({ showWriteModal: false });
+  }
+  handleOpenPostModal() {
+    this.setState({ showPostModal: true });
+  }
+
+  handleClosePostModal() {
+    this.setState({ showPostModal: false });
+  }
   handleChange = event => {
     this.setState({ auth: event.target.checked });
   };
@@ -108,6 +133,12 @@ export class Header extends React.Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               PidVid
             </Typography>
+            <WritePopUp
+              className={classes.SharePopUp}
+              showModal={this}
+              handleCloseModal={this.handleCloseModal}
+              handleOpenModal={this.handleOpenModal}
+            />
             {auth && (
               <div>
                 <IconButton
