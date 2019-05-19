@@ -8,7 +8,6 @@ import { Feed } from "./Components/Feed";
 import Header from "./Components/Header";
 import { Search } from "./Components/Search";
 import { Thread } from "./Thread";
-import { WritePopUp } from "./Components/WritePopUp";
 import { FeedThread } from "./Components/FeedThread";
 
 ReactModal.setAppElement("#root");
@@ -23,9 +22,27 @@ class App extends React.Component {
       search: ""
     };
 
+    this.handleClosePostModal = this.handleClosePostModal.bind(this);
     this.proceedClick = this.proceedClick.bind(this);
     this.returnToStartPage = this.returnToStartPage.bind(this);
     this.postPopUp = null;
+  }
+  returnOpenModal() {
+    return this.state.showModal;
+  }
+  handleOpenModal() {
+    this.setState({ showWriteModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ showWriteModal: false });
+  }
+  handleOpenPostModal() {
+    this.setState({ showPostModal: true });
+  }
+
+  handleClosePostModal() {
+    this.setState({ showPostModal: false });
   }
   searchStarted = searchValue => {
     console.log(searchValue);
@@ -38,6 +55,7 @@ class App extends React.Component {
       return (
         <div className="App">
           <Header showModal={this} />
+          {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
             <Search action={this.searchStarted} />
             <Feed onclick={this.proceedClick} />

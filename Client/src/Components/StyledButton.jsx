@@ -86,7 +86,7 @@ const StyleShareButton = withStyles({
 
 export function ShareButton(props) {
   return (
-    <StyleShareButton>
+    <StyleShareButton onClick={props.onClick}>
       <img src={ShareIcon} alt="ShareButton" width="80%" />
     </StyleShareButton>
   );
