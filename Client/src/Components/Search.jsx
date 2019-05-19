@@ -1,7 +1,7 @@
 import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import { StartButton } from "./StyledButton";
-import SearchBar from "./SearchBar"
+import SearchBar from "./SearchBar";
 const styles = {
   root: {
     flexGrow: 1
