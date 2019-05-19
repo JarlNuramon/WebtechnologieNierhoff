@@ -79,21 +79,22 @@ export function ExitButton(props) {
 }
 const StyleShareButton = withStyles({
   root: {
-    width: 5
-    //padding: "center"
+    width: 10,
+    padding: "center",
   }
 })(Button);
 
 export function ShareButton(props) {
   return (
     <StyleShareButton>
-      <img src={ShareIcon} alt="ShareButton" />
+      <img src={ShareIcon} alt="ShareButton" width="80%" />
     </StyleShareButton>
   );
 }
+
 const StyleLogoButton = withStyles({
   root: {
-    width: 200,
+    width: 140,
     padding: "center"
   }
 })(Button);
