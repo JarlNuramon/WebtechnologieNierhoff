@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -12,6 +11,7 @@ import Menu from "@material-ui/core/Menu";
 import CheeseburgerMenu from "cheeseburger-menu";
 import { Menue } from "./Menue.jsx";
 import { WritePopUp } from "./WritePopUp";
+import { LogoButton } from "./StyledButton";
 /*
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -36,11 +36,10 @@ const styles = {
     "background-color": "#131C1E"
   },
   menuButton: {
-    marginLeft: -12,
+    marginLeft: -15,
     "background-color": "#131C1E",
-    marginRight: 300
-  },
-  SharePopUp: {}
+    marginRight: 900
+  }
 };
 
 export class Header extends React.Component {
@@ -130,9 +129,7 @@ export class Header extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              PidVid
-            </Typography>
+            <LogoButton />
             <WritePopUp
               className={classes.SharePopUp}
               showModal={this}
