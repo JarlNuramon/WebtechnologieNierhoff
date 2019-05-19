@@ -2,6 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import { NormalButton, ExitButton, ShareButton } from "./StyledButton";
 import Input from "@material-ui/core/Input";
+import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 const customStyles = {
   content: {
@@ -15,6 +16,24 @@ const customStyles = {
     transform: "translate(-50%, -50%)"
   }
 };
+const StyledInput = withStyles({
+  root: {
+    background: "rgba(255,255,255,1)",
+    borderRadius: 3,
+    border: 0,
+    color: "black",
+    height: 40,
+    padding: "0 10px 0 10px",
+
+    margin: "left"
+  },
+  underline: {
+    "&:after": {
+      borderBottomColor: "rgba(25,157,116,1)"
+    }
+  }
+})(Input);
+
 export class WritePopUp extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +50,7 @@ export class WritePopUp extends React.Component {
       ort: ""
     };
   }
+
   render() {
     return (
       <div id="Write">
@@ -45,7 +65,7 @@ export class WritePopUp extends React.Component {
             <br />
             <b id="formText">Titel</b>
             <br />
-            <Input
+            <StyledInput
               type="text"
               placeholder="title"
               name="title"
@@ -54,7 +74,7 @@ export class WritePopUp extends React.Component {
             <br />
             <b id="formText">Beschreibung</b>
             <br />
-            <Input
+            <StyledInput
               type="text"
               placeholder="text"
               name="text"
@@ -63,7 +83,7 @@ export class WritePopUp extends React.Component {
             <br />
             <b id="formText">Link</b>
             <br />
-            <Input
+            <StyledInput
               type="text"
               placeholder="https://www.youtube.com/watch?v=example"
               name="link"
@@ -72,7 +92,7 @@ export class WritePopUp extends React.Component {
             <br />
             <b id="formText">Ort</b>
             <br />
-            <Input
+            <StyledInput
               type="text"
               placeholder="Ort"
               name="ort"
@@ -81,7 +101,7 @@ export class WritePopUp extends React.Component {
             <br />
             <b id="formText">Tags</b>
             <br />
-            <Input
+            <StyledInput
               type="text"
               name="tags"
               placeholder="Tag1, Tag2 ..."
@@ -89,6 +109,7 @@ export class WritePopUp extends React.Component {
             />
             <br />
           </FormControl>
+          <br />
           <NormalButton text="Posten" onClick={this.post} className="Poster" />
         </ReactModal>
       </div>

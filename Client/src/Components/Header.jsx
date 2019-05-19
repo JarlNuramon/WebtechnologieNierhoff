@@ -11,7 +11,8 @@ import Menu from "@material-ui/core/Menu";
 import CheeseburgerMenu from "cheeseburger-menu";
 import { Menue } from "./Menue.jsx";
 import { WritePopUp } from "./WritePopUp";
-import { LogoButton } from "./StyledButton";
+import { ToStartPage } from "./ToStartPage";
+//import { LogoButton } from "./StyledButton";
 /*
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -48,8 +49,10 @@ export class Header extends React.Component {
     this.state = {
       auth: true,
       anchorEl: null,
-      menuIsOpen: false
+      menuIsOpen: false,
+      returnToStartPage: false
     };
+    this.action = props.action;
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
@@ -129,7 +132,7 @@ export class Header extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <LogoButton />
+            <ToStartPage action={this.action} />
             <WritePopUp
               className={classes.SharePopUp}
               showModal={this}
