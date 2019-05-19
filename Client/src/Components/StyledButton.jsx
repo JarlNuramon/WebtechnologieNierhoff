@@ -80,7 +80,7 @@ export function ExitButton(props) {
 const StyleShareButton = withStyles({
   root: {
     width: 10,
-    padding: "center"
+    padding: "center",
   }
 })(Button);
 

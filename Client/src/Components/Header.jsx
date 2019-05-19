@@ -4,14 +4,12 @@ import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import CheeseburgerMenu from "cheeseburger-menu";
-import { Menue } from "./Menue.jsx";
 import { WritePopUp } from "./WritePopUp";
 import { LogoButton } from "./StyledButton";
+import CheeseburgerMenu from "./CheeseburgerMenue";
 /*
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -34,11 +32,6 @@ const styles = {
   grow: {
     flexGrow: 1,
     "background-color": "#131C1E"
-  },
-  menuButton: {
-    marginLeft: -15,
-    "background-color": "#131C1E"
-    //marginRight: 100
   }
 };
 
@@ -47,8 +40,7 @@ export class Header extends React.Component {
     super(props);
     this.state = {
       auth: true,
-      anchorEl: null,
-      menuIsOpen: false
+      anchorEl: null
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -80,16 +72,11 @@ export class Header extends React.Component {
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
-  closeMenu = () => {
-    this.setState({ menuIsOpen: false });
-  };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-  handleCheeseburger = () => {
-    this.setState({ menuIsOpen: true });
-  };
+
   /*
    <FormGroup>
           <FormControlLabel
@@ -111,24 +98,10 @@ export class Header extends React.Component {
 
     return (
       <div className={classes.root}>
-        <CheeseburgerMenu
-          isOpen={this.state.menuIsOpen}
-          closeCallback={this.closeMenu}
-          backgroundColor="rgba(39, 57, 61, 1)"
-        >
-          <Menue />
-        </CheeseburgerMenu>
-
         <AppBar className={classes.MuiAppBar} position="static">
           <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-              onClick={this.handleCheeseburger}
-            >
-              <MenuIcon />
-            </IconButton>
+            <CheeseburgerMenu />
+
             <LogoButton />
             <WritePopUp
               className={classes.SharePopUp}
