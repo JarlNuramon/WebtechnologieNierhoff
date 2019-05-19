@@ -37,8 +37,8 @@ const styles = {
   },
   menuButton: {
     marginLeft: -15,
-    "background-color": "#131C1E",
-    marginRight: 900
+    "background-color": "#131C1E"
+    //marginRight: 100
   }
 };
 
