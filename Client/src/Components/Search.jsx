@@ -2,23 +2,7 @@ import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import { StartButton } from "./StyledButton";
 import SearchBar from "./SearchBar";
-const styles = {
-  root: {
-    flexGrow: 1
-  },
-  MuiAppBar: {
-    "background-color": "rgba(25,157,116,1)"
-  },
-  grow: {
-    flexGrow: 1,
-    background: "rgba(25,157,116,1)"
-  },
-  menuButton: {
-    marginLeft: -12,
-    background: "rgba(25,157,116,1)",
-    marginRight: 20
-  }
-};
+
 export class Search extends React.Component {
   state = {
     search: ""

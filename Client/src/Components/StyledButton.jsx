@@ -11,8 +11,9 @@ const StyledButton = withStyles({
     border: 0,
     color: "black",
     height: 40,
+
     padding: "0 30px",
-    margin: "auto"
+    margin: "center"
   },
   label: {
     textTransform: "capitalize"
@@ -77,13 +78,17 @@ export function ExitButton(props) {
     </X>
   );
 }
+
 const StyleShareButton = withStyles({
   root: {
     width: 10,
     padding: "center",
   }
 })(Button);
-
+/**
+ * Gives you a ShareButton in PidVid Green
+ * @param onClick Has onClick for the onClick to function
+ */
 export function ShareButton(props) {
   return (
     <StyleShareButton onClick={props.onClick}>
@@ -98,10 +103,13 @@ const StyleLogoButton = withStyles({
     padding: "center"
   }
 })(Button);
-
+/**
+ * Gives you the PidVid Logo as a Button
+ * @param onClick Has onClick for the onClick ToStartPage Class
+ */
 export function LogoButton(props) {
   return (
-    <StyleLogoButton>
+    <StyleLogoButton onClick={props.onClick}>
       <img src={LogoIcon} alt="logo" />
     </StyleLogoButton>
   );
