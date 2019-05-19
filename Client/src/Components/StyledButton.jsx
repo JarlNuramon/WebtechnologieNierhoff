@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import ShareIcon from "/public/Pictures/share.png";
+import LogoIcon from "/public/Pictures/Logo.png";
 
 const StyledButton = withStyles({
   root: {
@@ -40,6 +41,10 @@ const X = withStyles({
   },
   label: {
     textTransform: "capitalize"
+  },
+  LogoButton: {
+    size: "small"
+    //height: 8
   }
 })(Button);
 
@@ -72,16 +77,31 @@ export function ExitButton(props) {
     </X>
   );
 }
+const StyleShareButton = withStyles({
+  root: {
+    width: 5
+    //padding: "center"
+  }
+})(Button);
 
 export function ShareButton(props) {
   return (
-    <div>
-      <img
-        src={ShareIcon}
-        alt="ShareButton"
-        onClick={props.onClick}
-        className="ShareButton"
-      />
-    </div>
+    <StyleShareButton>
+      <img src={ShareIcon} alt="ShareButton" />
+    </StyleShareButton>
+  );
+}
+const StyleLogoButton = withStyles({
+  root: {
+    width: 200,
+    padding: "center"
+  }
+})(Button);
+
+export function LogoButton(props) {
+  return (
+    <StyleLogoButton>
+      <img src={LogoIcon} alt="logo" />
+    </StyleLogoButton>
   );
 }
