@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
 import ReactModal from "react-modal";
 import "./Post.json";
 import "./styles.css";
@@ -49,12 +48,18 @@ class App extends React.Component {
     this.setState({ search: searchValue, page: "thread" });
     this.render();
   };
+  returnToStartPage() {
+    this.setState({
+      page: "start",
+      id: null
+    });
+  }
 
   render() {
     if (this.state.page === "start")
       return (
         <div className="App">
-          <Header showModal={this} />
+          <Header showModal={this} action={this.returnToStartPage} />
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
             <Search action={this.searchStarted} />
@@ -65,7 +70,8 @@ class App extends React.Component {
     if (this.state.page === "thread")
       return (
         <div className="App">
-          <Header />
+          <Header action={this.returnOpenModal} />
+          {/*<ToStartPage action={this.returnToStartPage} />*/}
           <Search action={this.searchStarted} />
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
@@ -88,12 +94,6 @@ class App extends React.Component {
       />
     );
     this.setState({ showPostModal: true });
-  }
-  returnToStartPage() {
-    this.setState({
-      page: "start",
-      id: null
-    });
   }
 }
 

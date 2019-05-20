@@ -8,8 +8,9 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { WritePopUp } from "./WritePopUp";
-import { LogoButton } from "./StyledButton";
+import { ToStartPage } from "./ToStartPage";
 import CheeseburgerMenu from "./CheeseburgerMenue";
+
 /*
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -40,8 +41,10 @@ export class Header extends React.Component {
     super(props);
     this.state = {
       auth: true,
-      anchorEl: null
+      anchorEl: null,
+      returnToStartPage: false
     };
+    this.action = props.action;
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
@@ -101,8 +104,7 @@ export class Header extends React.Component {
         <AppBar className={classes.MuiAppBar} position="static">
           <Toolbar>
             <CheeseburgerMenu />
-
-            <LogoButton />
+            <ToStartPage action={this.action} />
             <WritePopUp
               className={classes.SharePopUp}
               showModal={this}
