@@ -77,24 +77,6 @@ export function ExitButton(props) {
     </X>
   );
 }
-
-const StyleShareButton = withStyles({
-  root: {
-    width: 0
-  }
-})(Button);
-/**
- * Gives you a ShareButton in PidVid Green
- * @param onClick Has onClick for the onClick to function
- */
-export function ShareButton(props) {
-  return (
-    <StyleShareButton onClick={props.onClick}>
-      <img src={ShareIcon} alt="ShareButton" width="30px" />
-    </StyleShareButton>
-  );
-}
-
 const StyleLogoButton = withStyles({
   root: {
     width: 140,
@@ -107,8 +89,24 @@ const StyleLogoButton = withStyles({
  */
 export function LogoButton(props) {
   return (
-    <StyleLogoButton onClick={props.onClick}>
+<StyleLogoButton onClick={props.onClick}>
       <img src={LogoIcon} alt="logo" />
     </StyleLogoButton>
+  );
+}
+const StyleShareButton = withStyles({
+  root: {
+    width: 0,
+  }
+})(Button);
+/**
+ * Gives you a ShareButton in PidVid Green
+ * @param onClick Has onClick for the onClick to function
+ */
+export function ShareButton(props) {
+  return (
+    <StyleShareButton onClick={props.onClick}>
+      <img src={ShareIcon} alt="ShareButton" width="30px" />
+    </StyleShareButton>
   );
 }

@@ -46,6 +46,7 @@ export class Header extends React.Component {
       returnToStartPage: false,
       onStartPage: props.onStartPage
     };
+
     this.action = props.action;
     this.searchAction = props.searchAction;
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -53,7 +54,13 @@ export class Header extends React.Component {
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
     this.handleOpenPostModal = this.handleOpenPostModal.bind(this);
     this.returnOpenModal = this.returnOpenModal.bind(this);
+    this.handleClick = props.handleClick;
   }
+  searchStarted = searchValue => {
+    console.log(searchValue);
+    this.setState({ search: searchValue, page: "thread" });
+    this.render();
+  };
   returnOpenModal() {
     return this.state.showModal;
   }
@@ -122,7 +129,7 @@ export class Header extends React.Component {
           <Toolbar>
             <tr>
               <td>
-                <CheeseburgerMenu className={classes.menuButton} />
+                <CheeseburgerMenu handleClick={this.handleClick} />
               </td>
               <td>{logo}</td>
             </tr>

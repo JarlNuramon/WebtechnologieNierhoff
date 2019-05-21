@@ -90,21 +90,7 @@
   white-space: pre-line;
   word-wrap: break-word;
 }
-.MenueItem ul {
-  padding: 0;
-  list-style-type: none;
-  text-decoration: none;
-  font-style: italic;
-}
-.MenueItem {
-  color: white;
-}
-.Sections ul {
-  padding: 0;
-  list-style-type: none;
-  text-decoration: underline;
-  text-decoration-color: rgba(25, 157, 116, 1);
-}
+
 .Cheeseburger {
   background-color: rgba(39, 57, 61, 1);
 }

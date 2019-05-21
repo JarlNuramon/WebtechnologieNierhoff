@@ -55,7 +55,6 @@ class App extends React.Component {
       id: null
     });
   }
-
   render() {
     if (this.state.page === "start")
       return (
@@ -65,6 +64,7 @@ class App extends React.Component {
             action={this.returnToStartPage}
             searchAction={this.searchStarted}
             onStartPage="true"
+            handleClick={this.searchStarted}
           />
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
@@ -78,7 +78,6 @@ class App extends React.Component {
       return (
         <div className="App">
           <Header onStartPage="false" />
-          {/*<ToStartPage action={this.returnToStartPage} />*/}
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
             <FeedThread
