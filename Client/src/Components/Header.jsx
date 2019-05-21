@@ -44,13 +44,20 @@ export class Header extends React.Component {
       anchorEl: null,
       returnToStartPage: false
     };
+
     this.action = props.action;
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
     this.handleOpenPostModal = this.handleOpenPostModal.bind(this);
     this.returnOpenModal = this.returnOpenModal.bind(this);
+    this.handleClick = props.handleClick;
   }
+  searchStarted = searchValue => {
+    console.log(searchValue);
+    this.setState({ search: searchValue, page: "thread" });
+    this.render();
+  };
   returnOpenModal() {
     return this.state.showModal;
   }
@@ -79,7 +86,6 @@ export class Header extends React.Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-
   /*
    <FormGroup>
           <FormControlLabel
@@ -103,7 +109,7 @@ export class Header extends React.Component {
       <div className={classes.root}>
         <AppBar className={classes.MuiAppBar} position="static">
           <Toolbar>
-            <CheeseburgerMenu />
+            <CheeseburgerMenu handleClick={this.handleClick} />
             <ToStartPage action={this.action} />
             <WritePopUp
               className={classes.SharePopUp}

@@ -54,12 +54,16 @@ class App extends React.Component {
       id: null
     });
   }
-
   render() {
     if (this.state.page === "start")
       return (
         <div className="App">
-          <Header showModal={this} action={this.returnToStartPage} />
+          <Header
+            showModal={this}
+            action={this.returnToStartPage}
+            page={this.state.page}
+            handleClick={this.searchStarted}
+          />
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
             <Search action={this.searchStarted} />
@@ -70,7 +74,11 @@ class App extends React.Component {
     if (this.state.page === "thread")
       return (
         <div className="App">
-          <Header action={this.returnOpenModal} />
+          <Header
+            action={this.returnOpenModal}
+            page={this.state.page}
+            handleClick={this.searchStarted}
+          />
           {/*<ToStartPage action={this.returnToStartPage} />*/}
           <Search action={this.searchStarted} />
           <div id="main">
