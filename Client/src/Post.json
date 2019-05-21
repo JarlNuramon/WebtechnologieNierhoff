@@ -18,7 +18,13 @@
       "link": "https://www.youtube.com/watch?v=fBNz5xF-Kx4",
       "text": "Node ist eine Server Umgebung in der man JS nutzen kann. Ab Minute 58 sieht man wie ein Server in Node.js geschrieben wird. Das sind die Grundlagen auf denen das Express Framework (s.u.) aufbaut (und einem das Leben einfacher macht). Aber auch der Anfang des Vids lohnt sich, z.B. fÃ¼r Node-Installation, Node Package Manager (npm), package.json und Demos zu einigen der grundlegenden Node Module (z.B. File System oder http Verbindungen)",
       "post_date": "24-04-2019",
-      "tags": ["Webtechnologie", "Node.js", "Learning Stack", "Javascript"],
+      "tags": [
+        "Webtechnologie",
+        "Node.js",
+        "Learning Stack",
+        "Javascript",
+        "Java"
+      ],
       "author": "Jan Nierhoff",
       "author_id": 201928930924564,
       "section_id": 4,

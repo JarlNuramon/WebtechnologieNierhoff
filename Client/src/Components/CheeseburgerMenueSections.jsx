@@ -1,15 +1,13 @@
 import React from "react";
 import { MenueItem } from "./MenueItem.jsx";
 export class Menue extends React.Component {
-  handleClick = id => {
-    this.search = ["Section", id];
-  };
   constructor(props) {
     super(props);
     let json = require("../Section.json");
     this.root = this.getRootSections(json);
     this.menue = [];
     this.search = props.search;
+    this.handleClick = props.handleClick.bind(this);
     for (var i = 0; i < this.root.length; i++) {
       var x = this.root[i];
       this.menue.push(

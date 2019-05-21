@@ -19,6 +19,7 @@ const styles = {
 class CheeseburgerMenue extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = props.handleClick.bind(this);
     this.state = {
       menuIsOpen: false
     };
@@ -42,7 +43,7 @@ class CheeseburgerMenue extends React.Component {
           closeCallback={this.closeMenu}
           backgroundColor="rgba(39, 57, 61, 1)"
         >
-          <Menue />
+          <Menue handleClick={this.handleClick} />
         </Menu>
 
         <IconButton
