@@ -7,11 +7,10 @@ import LogoIcon from "/public/Pictures/Logo.png";
 const StyledButton = withStyles({
   root: {
     background: "rgba(25,157,116,1)",
-    borderRadius: 3,
+    borderRadius: 1,
     border: 0,
     color: "black",
     height: 40,
-
     padding: "0 30px",
     margin: "center"
   },
@@ -34,7 +33,7 @@ export function NormalButton(props) {
 const X = withStyles({
   root: {
     background: "rgba(25,157,116,0)",
-    borderRadius: 3,
+    borderRadius: 1,
     border: 0,
     color: "rgba(25,157,116,1)",
     height: 40,
@@ -81,8 +80,7 @@ export function ExitButton(props) {
 
 const StyleShareButton = withStyles({
   root: {
-    width: 10,
-    padding: "center",
+    width: 0
   }
 })(Button);
 /**
@@ -92,7 +90,7 @@ const StyleShareButton = withStyles({
 export function ShareButton(props) {
   return (
     <StyleShareButton onClick={props.onClick}>
-      <img src={ShareIcon} alt="ShareButton" width="80%" />
+      <img src={ShareIcon} alt="ShareButton" width="30px" />
     </StyleShareButton>
   );
 }

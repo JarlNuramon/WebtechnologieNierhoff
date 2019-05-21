@@ -10,6 +10,7 @@ import Menu from "@material-ui/core/Menu";
 import { WritePopUp } from "./WritePopUp";
 import { ToStartPage } from "./ToStartPage";
 import CheeseburgerMenu from "./CheeseburgerMenue";
+import { SearchHeader } from "./Search";
 
 /*
 import Switch from "@material-ui/core/Switch";
@@ -42,9 +43,11 @@ export class Header extends React.Component {
     this.state = {
       auth: true,
       anchorEl: null,
-      returnToStartPage: false
+      returnToStartPage: false,
+      onStartPage: props.onStartPage
     };
     this.action = props.action;
+    this.searchAction = props.searchAction;
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
@@ -80,6 +83,10 @@ export class Header extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  static getDerivedStateFromProps(props) {
+    return { onStartPage: props.onStartPage };
+  }
+
   /*
    <FormGroup>
           <FormControlLabel
@@ -99,51 +106,75 @@ export class Header extends React.Component {
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
+    let logo = "";
+    let search = "";
+    if (this.state.onStartPage === "false") {
+      logo = <ToStartPage action={this.action} />;
+      search = <SearchHeader action={this.searchAction} />;
+    } else {
+      logo = "";
+      search = "";
+    }
+
     return (
       <div className={classes.root}>
-        <AppBar className={classes.MuiAppBar} position="static">
+        <AppBar position="static" className={classes.MuiAppBar}>
           <Toolbar>
-            <CheeseburgerMenu />
-            <ToStartPage action={this.action} />
-            <WritePopUp
-              className={classes.SharePopUp}
-              showModal={this}
-              handleCloseModal={this.handleCloseModal}
-              handleOpenModal={this.handleOpenModal}
-            />
-            {auth && (
-              <div>
-                <IconButton
-                  aria-owns={open ? "menu-appbar" : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right"
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right"
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem color="inherit" onClick={this.handleClose}>
-                    Profile
-                  </MenuItem>
-                  <MenuItem color="inherit" onClick={this.handleClose}>
-                    My account
-                  </MenuItem>
-                </Menu>
-              </div>
-            )}
+            <tr>
+              <td>
+                <CheeseburgerMenu className={classes.menuButton} />
+              </td>
+              <td>{logo}</td>
+            </tr>
+            <tr className={classes.grow} align="center">
+              <td>{search}</td>
+            </tr>
+            <tr>
+              <td>
+                <WritePopUp
+                  className={classes.SharePopUp}
+                  showModal={this}
+                  handleCloseModal={this.handleCloseModal}
+                  handleOpenModal={this.handleOpenModal}
+                />
+              </td>
+              <td>
+                {auth && (
+                  <div>
+                    <IconButton
+                      aria-owns={open ? "menu-appbar" : undefined}
+                      aria-haspopup="true"
+                      onClick={this.handleMenu}
+                      color="inherit"
+                    >
+                      <AccountCircle />
+                    </IconButton>
+
+                    <Menu
+                      id="menu-appbar"
+                      anchorEl={anchorEl}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right"
+                      }}
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right"
+                      }}
+                      open={open}
+                      onClose={this.handleClose}
+                    >
+                      <MenuItem color="inherit" onClick={this.handleClose}>
+                        Profile
+                      </MenuItem>
+                      <MenuItem color="inherit" onClick={this.handleClose}>
+                        My account
+                      </MenuItem>
+                    </Menu>
+                  </div>
+                )}
+              </td>
+            </tr>
           </Toolbar>
         </AppBar>
       </div>

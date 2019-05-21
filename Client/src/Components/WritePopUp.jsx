@@ -24,7 +24,6 @@ const StyledInput = withStyles({
     color: "black",
     height: 40,
     padding: "0 10px 0 10px",
-
     margin: "left"
   },
   underline: {
