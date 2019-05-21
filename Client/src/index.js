@@ -8,6 +8,7 @@ import Header from "./Components/Header";
 import { Search } from "./Components/Search";
 import { Thread } from "./Thread";
 import { FeedThread } from "./Components/FeedThread";
+import LogoIcon from "/public/Pictures/Logo.png";
 
 ReactModal.setAppElement("#root");
 class App extends React.Component {
@@ -25,6 +26,7 @@ class App extends React.Component {
     this.proceedClick = this.proceedClick.bind(this);
     this.returnToStartPage = this.returnToStartPage.bind(this);
     this.postPopUp = null;
+    this.searchStarted = this.searchStarted.bind(this);
   }
   returnOpenModal() {
     return this.state.showModal;
@@ -44,7 +46,6 @@ class App extends React.Component {
     this.setState({ showPostModal: false });
   }
   searchStarted = searchValue => {
-    console.log(searchValue);
     this.setState({ search: searchValue, page: "thread" });
     this.render();
   };
@@ -61,11 +62,13 @@ class App extends React.Component {
           <Header
             showModal={this}
             action={this.returnToStartPage}
-            page={this.state.page}
+            searchAction={this.searchStarted}
+            onStartPage="true"
             handleClick={this.searchStarted}
           />
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
+            <img src={LogoIcon} alt="logo" width="40%" />
             <Search action={this.searchStarted} />
             <Feed onclick={this.proceedClick} />
           </div>
@@ -74,13 +77,7 @@ class App extends React.Component {
     if (this.state.page === "thread")
       return (
         <div className="App">
-          <Header
-            action={this.returnOpenModal}
-            page={this.state.page}
-            handleClick={this.searchStarted}
-          />
-          {/*<ToStartPage action={this.returnToStartPage} />*/}
-          <Search action={this.searchStarted} />
+          <Header onStartPage="false" />
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
             <FeedThread

@@ -1,6 +1,6 @@
 import React from "react";
 import FormControl from "@material-ui/core/FormControl";
-import { StartButton } from "./StyledButton";
+import { StartButton, NormalButton } from "./StyledButton";
 import SearchBar from "./SearchBar";
 
 export class Search extends React.Component {
@@ -22,7 +22,13 @@ export class Search extends React.Component {
       <div id="search">
         <FormControl fullWidth="true" margin="none">
           <div id="searchDiv">
-            <SearchBar onChange={this.updateSearch} />
+            <SearchBar
+              type="text"
+              onChange={this.updateSearch}
+              onKeyDown={e => {
+                e.key === "Enter" ? this.action(this.state.search) : null;
+              }}
+            />
           </div>
           <div class="startButtons">
             <div class="twoColumn">
@@ -38,6 +44,48 @@ export class Search extends React.Component {
             </div>
           </div>
         </FormControl>
+      </div>
+    );
+  }
+}
+
+export class SearchHeader extends React.Component {
+  state = {
+    search: ""
+  };
+  constructor(props) {
+    super(props);
+    this.action = props.action;
+    console.log(props.action);
+  }
+
+  updateSearch = e => {
+    this.setState({ search: e.target.value });
+    this.forceUpdate();
+  };
+
+  render() {
+    return (
+      <div id="searchHeader">
+        <tr>
+          <td>
+            <SearchBar
+              type="text"
+              onChange={this.updateSearch}
+              onKeyDown={e => {
+                e.key === "Enter" ? this.action(this.state.search) : null;
+              }}
+            />
+          </td>
+          <td>
+            <NormalButton
+              text="Filter"
+              onClick={this.post}
+              background="red"
+              color="red"
+            />
+          </td>
+        </tr>
       </div>
     );
   }

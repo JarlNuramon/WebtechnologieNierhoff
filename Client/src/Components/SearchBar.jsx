@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 const StyledSearchBar = withStyles({
   root: {
     background: "rgba(255,255,255,1)",
-    borderRadius: 3,
+    borderRadius: 1,
     border: 0,
     color: "black",
     height: 40,
@@ -29,6 +29,7 @@ export default function Searchbar(props) {
       placeholder="Search..."
       onChange={props.onChange}
       fullWidth="true"
+      onKeyDown={props.onKeyDown}
     />
   );
 }
