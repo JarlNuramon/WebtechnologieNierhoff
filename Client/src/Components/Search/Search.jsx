@@ -1,6 +1,6 @@
 import React from "react";
 import FormControl from "@material-ui/core/FormControl";
-import { StartButton, NormalButton } from "./StyledButton";
+import { StartButton, NormalButton } from "/src/Components/StyledButton";
 import SearchBar from "./SearchBar";
 
 export class Search extends React.Component {

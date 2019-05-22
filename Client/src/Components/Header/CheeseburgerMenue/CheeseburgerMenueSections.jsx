@@ -3,7 +3,7 @@ import { MenueItem } from "./MenueItem.jsx";
 export class Menue extends React.Component {
   constructor(props) {
     super(props);
-    let json = require("../Section.json");
+    let json = require("/src/Section.json");
     this.root = this.getRootSections(json);
     this.menue = [];
     this.search = props.search;

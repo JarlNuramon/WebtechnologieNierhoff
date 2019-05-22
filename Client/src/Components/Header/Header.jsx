@@ -9,8 +9,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { WritePopUp } from "./WritePopUp";
 import { ToStartPage } from "./ToStartPage";
-import CheeseburgerMenu from "./CheeseburgerMenue";
-import { SearchHeader } from "./Search";
+import CheeseburgerMenu from "./CheeseburgerMenue/CheeseburgerMenue";
+import { SearchHeader } from "src/Component/Search";
 
 /*
 import Switch from "@material-ui/core/Switch";

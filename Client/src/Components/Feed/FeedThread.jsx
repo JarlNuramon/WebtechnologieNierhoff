@@ -57,7 +57,7 @@ export class FeedThread extends React.Component {
   }
 }
 function searchForTag(search) {
-  let json = require("../Post.json");
+  let json = require("/src/Post.json");
   console.log(search);
   var x = [];
   for (var i = 0; i < json.Posts.length; i++) {
