@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import ReactModal from "react-modal";
 import "./Post.json";
 import "./styles.css";
-import { Feed } from "./Components/Feed";
-import Header from "./Components/Header";
-import { Search } from "./Components/Search";
+import { Feed } from "./Components/Feed/Feed";
+import Header from "./Components/Header/Header";
+import { Search } from "./Components/Search/Search";
 import { Thread } from "./Thread";
-import { FeedThread } from "./Components/FeedThread";
+import { FeedThread } from "./Components/Feed/FeedThread";
 import LogoIcon from "/public/Pictures/Logo.png";
 
 ReactModal.setAppElement("#root");

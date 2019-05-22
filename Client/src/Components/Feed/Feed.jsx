@@ -4,7 +4,7 @@ import { FeedPicture } from "./FeedPicture.jsx";
 export class Feed extends React.Component {
   constructor(props) {
     super(props);
-    let json = require("../Post.json");
+    let json = require("/src/Post.json");
     this.feedPictures = [];
     for (var i = 0; i < 4; i++) {
       var x = json.Posts[i];
