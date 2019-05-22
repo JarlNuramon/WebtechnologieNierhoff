@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ec87c73d-cae7-4c74-b77f-5ccf274ba283" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/Datenmodell.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/Datenmodell.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/GetPost.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/GetPost.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/Post.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/Post.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/Section.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/Section.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Author.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Author.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/Feed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/Feed.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/FeedPicture.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/FeedPicture.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/FeedThread.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/FeedThread.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/Menue.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/Menue.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/MenueItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/MenueItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/StyledButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/StyledButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/WritePopUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/WritePopUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Components/css/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Components/css/Login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Post.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Post.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Section.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Section.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Thread.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Thread.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/Thread_Post.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/Thread_Post.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Client/src/webtech.juliaXML" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Client/src/webtech.juliaXML" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NodeJS_DB_Schnittstelle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NodeJS_DB_Schnittstelle.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/semver.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/semver.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../User_Model.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../User_Model.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../server/modules/UserManagementSystem.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../server/modules/UserManagementSystem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___4.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___Vorlage_Popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../lé Prototype/CRAPY_HTML_PIDVID/Web_1920___Vorlage_Popup.html" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DB.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>mongoos</find>
+      <find>console.log</find>
+      <find>mongoo</find>
+      <find>uglify</find>
+      <find>uglif</find>
+      <find>ugl</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/mist.js" />
+        <option value="$PROJECT_DIR$/data.txt" />
+        <option value="$PROJECT_DIR$/zwischenspeicher.js" />
+        <option value="$PROJECT_DIR$/package-lock.json" />
+        <option value="$PROJECT_DIR$/user.js" />
+        <option value="$PROJECT_DIR$/DB.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="NodeJS_DB_Schnittstelle" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NodeJS_DB_Schnittstelle" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jack Pearce\WebstormProjects\untitled" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec87c73d-cae7-4c74-b77f-5ccf274ba283" name="Default Changelist" comment="" />
+      <created>1557266179040</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557266179040</updated>
+      <workItem from="1557266180530" duration="4915000" />
+      <workItem from="1557351880889" duration="1642000" />
+      <workItem from="1557360375446" duration="1337000" />
+      <workItem from="1557385683324" duration="654000" />
+      <workItem from="1557684419758" duration="2549000" />
+      <workItem from="1557687336348" duration="11227000" />
+      <workItem from="1557708022536" duration="1458000" />
+      <workItem from="1557709703304" duration="3170000" />
+      <workItem from="1557777936138" duration="3497000" />
+      <workItem from="1557793150290" duration="4604000" />
+      <workItem from="1557830830866" duration="934000" />
+      <workItem from="1557836680768" duration="15781000" />
+      <workItem from="1557855690011" duration="1254000" />
+      <workItem from="1557858487296" duration="895000" />
+      <workItem from="1557859827840" duration="1375000" />
+      <workItem from="1557866082447" duration="4414000" />
+      <workItem from="1557871029093" duration="2516000" />
+      <workItem from="1557873584828" duration="7544000" />
+      <workItem from="1557881879941" duration="936000" />
+      <workItem from="1557882877352" duration="1515000" />
+      <workItem from="1558351898101" duration="3335000" />
+      <workItem from="1558359649415" duration="3657000" />
+      <workItem from="1558381611707" duration="37000" />
+      <workItem from="1558393975430" duration="120000" />
+      <workItem from="1558400302836" duration="95000" />
+      <workItem from="1558400986202" duration="301000" />
+      <workItem from="1558458251686" duration="599000" />
+      <workItem from="1558524887749" duration="440000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="80801000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1299" height="743" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12617555" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="npm" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32991454" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32991454" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" x="11" y="291" width="1344" height="145" id="Terminal" maximized="true" order="9" visible="true" weight="0.415" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="GraphQL" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12648809" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32991454" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" x="11" y="291" width="1344" height="145" id="Terminal" maximized="true" order="9" visible="true" weight="0.2871795" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="NodeJSConfigurationType">
+        <watch expression="        this.post.find(jsonField, this.y=function(err, SelectedInfos) {&#10;" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app.js" />
+    <entry file="file://$PROJECT_DIR$/routes/users.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/mongodb/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/History.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/plugins/idGetter.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mist.js" />
+    <entry file="file://$PROJECT_DIR$/routes/index.js" />
+    <entry file="file://$PROJECT_DIR$/data.txt" />
+    <entry file="file://$PROJECT_DIR$/zwischenspeicher.js" />
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="136" column="12" selection-start-line="136" selection-start-column="12" selection-end-line="136" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="1867" column="3" lean-forward="true" selection-start-line="1867" selection-end-line="1868" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

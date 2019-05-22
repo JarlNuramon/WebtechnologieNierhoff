@@ -89,14 +89,14 @@ const StyleLogoButton = withStyles({
  */
 export function LogoButton(props) {
   return (
-<StyleLogoButton onClick={props.onClick}>
+    <StyleLogoButton onClick={props.onClick}>
       <img src={LogoIcon} alt="logo" />
     </StyleLogoButton>
   );
 }
 const StyleShareButton = withStyles({
   root: {
-    width: 0,
+    width: 0
   }
 })(Button);
 /**
