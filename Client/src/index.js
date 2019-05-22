@@ -9,6 +9,8 @@ import { Search } from "./Components/Search";
 import { Thread } from "./Thread";
 import { FeedThread } from "./Components/FeedThread";
 import LogoIcon from "/public/Pictures/Logo.png";
+import { FullPageLogin } from "./Components/Login.jsx";
+import { NormalButton } from "./Components/StyledButton.jsx";
 
 ReactModal.setAppElement("#root");
 class App extends React.Component {
@@ -21,7 +23,7 @@ class App extends React.Component {
       showPostModal: false,
       search: ""
     };
-
+    this.setLogin = this.setLogin.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
     this.proceedClick = this.proceedClick.bind(this);
     this.returnToStartPage = this.returnToStartPage.bind(this);
@@ -44,6 +46,10 @@ class App extends React.Component {
 
   handleClosePostModal() {
     this.setState({ showPostModal: false });
+  }
+  setLogin() {
+    this.setState({ page: "login" });
+    this.render();
   }
   searchStarted = searchValue => {
     this.setState({ search: searchValue, page: "thread" });
@@ -72,6 +78,11 @@ class App extends React.Component {
             <Search action={this.searchStarted} />
             <Feed onclick={this.proceedClick} />
           </div>
+          <NormalButton
+            text="Login"
+            className="Login"
+            onClick={e => this.setLogin()}
+          />
         </div>
       );
     if (this.state.page === "thread")
@@ -88,6 +99,9 @@ class App extends React.Component {
           </div>
         </div>
       );
+    if (this.state.page === "login") {
+      return <FullPageLogin />;
+    }
   }
   proceedClick(id) {
     console.log(id);
