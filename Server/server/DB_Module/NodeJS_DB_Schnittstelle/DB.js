@@ -14,6 +14,7 @@ class DB {
 
         });
     }
+
     /*
     Muss gemacht werden ohne das geht gar nix
     Bsp.:
@@ -25,6 +26,7 @@ class DB {
         this.post = this.mongoose.model('posts', currentSchema);
         console.log("Ich sehe klar und deutlich ein Schema vor mir.")
     }
+
     /*
     zum Hochladen einzelner Json Objekte
     Wenn mehrere zum hochladen bitte schleife verwenden
@@ -45,6 +47,27 @@ class DB {
             this.post.find(JsonObjekt, methode);
 
 
+
+    }
+
+    /*Datensätze werden hier aus der Datenbank gelöscht
+    * Bitte eindeutige Übergabeparameter ansonsten werden alle Datenensätze mit dem Inhalt von Data gelöscht*/
+    delData(data) {
+        this.post.find(data, function (err,selected) {
+            if (err) console.log(err);
+        }).deleteOne().exec();
+    }
+
+    /*
+    * Bitte übergabeparameter als JSON übergeben
+    * Datenbank elemente werde hier aktualisiert/verändert
+    * Bitte eindeutige Übergabeparameter ansonsten werden alle Datensätze die "alt" enthalten verändert
+    */
+    updateData(alt, neu){
+    this.post.find(alt, function (err,selected) {
+        if(err)
+            console.log(err);
+    }).updateOne(neu).exec();
 
     }
 }
