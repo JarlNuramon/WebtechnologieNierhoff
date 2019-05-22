@@ -1,5 +1,5 @@
 import React from "react";
-import { LogoButton } from "/src/Component/StyledButton";
+import { LogoButton } from "/src/Components/StyledButton";
 
 export class ToStartPage extends React.Component {
   constructor(props) {
