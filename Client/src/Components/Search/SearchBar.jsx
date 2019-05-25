@@ -28,7 +28,7 @@ export default function Searchbar(props) {
     <StyledSearchBar
       placeholder="Search..."
       onChange={props.onChange}
-      fullWidth="true"
+      fullWidth={true}
       onKeyDown={props.onKeyDown}
     />
   );
