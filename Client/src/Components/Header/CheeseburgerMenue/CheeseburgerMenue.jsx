@@ -20,6 +20,7 @@ class CheeseburgerMenue extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = props.handleClick.bind(this);
+    this.searchFav = props.searchFav;
     this.state = {
       menuIsOpen: false
     };
@@ -34,16 +35,14 @@ class CheeseburgerMenue extends React.Component {
   };
 
   render() {
-    //const { classes } = this.props;
-
     return (
-      <div /*className={classes.root}*/>
+      <div>
         <Menu
           isOpen={this.state.menuIsOpen}
           closeCallback={this.closeMenu}
           backgroundColor="rgba(39, 57, 61, 1)"
         >
-          <Menue handleClick={this.handleClick} />
+          <Menue handleClick={this.handleClick} searchFav={this.searchFav} />
         </Menu>
 
         <IconButton

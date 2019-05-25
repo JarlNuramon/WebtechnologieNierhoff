@@ -55,12 +55,9 @@ export class Header extends React.Component {
     this.handleOpenPostModal = this.handleOpenPostModal.bind(this);
     this.returnOpenModal = this.returnOpenModal.bind(this);
     this.handleClick = props.handleClick;
+    this.searchFav = props.searchFav;
   }
-  searchStarted = searchValue => {
-    console.log(searchValue);
-    this.setState({ search: searchValue, page: "thread" });
-    this.render();
-  };
+
   returnOpenModal() {
     return this.state.showModal;
   }
@@ -94,20 +91,6 @@ export class Header extends React.Component {
     return { onStartPage: props.onStartPage };
   }
 
-  /*
-   <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={auth}
-                onChange={this.handleChange}
-                aria-label="LoginSwitch"
-              />
-            }
-            label={auth ? "Logout" : "Login"}
-          />
-        </FormGroup>
-  */
   render() {
     const { classes } = this.props;
     const { auth, anchorEl } = this.state;
@@ -129,7 +112,10 @@ export class Header extends React.Component {
           <Toolbar>
             <tr>
               <td>
-                <CheeseburgerMenu handleClick={this.handleClick} />
+                <CheeseburgerMenu
+                  handleClick={this.handleClick}
+                  searchFav={this.searchFav}
+                />
               </td>
               <td>{logo}</td>
             </tr>

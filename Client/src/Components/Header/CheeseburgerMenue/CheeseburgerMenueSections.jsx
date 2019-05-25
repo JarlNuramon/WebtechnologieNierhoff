@@ -13,6 +13,7 @@ export class Menue extends React.Component {
     this.root = this.getRootSections(json);
     this.menue = [];
     this.search = props.search;
+    this.searchFav = props.searchFav;
     this.handleClick = props.handleClick.bind(this);
     for (var i = 0; i < this.root.length; i++) {
       var x = this.root[i];
@@ -31,11 +32,7 @@ export class Menue extends React.Component {
     return (
       <div className="Sections">
         <List>
-          <ListItem
-            onClick={() => this.handleClick("Favorit")}
-            button
-            className="nested"
-          >
+          <ListItem onClick={() => this.searchFav()} button className="nested">
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
