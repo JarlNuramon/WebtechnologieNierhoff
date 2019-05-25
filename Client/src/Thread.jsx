@@ -1,7 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 import ReactModal from "react-modal";
-import { ExitButton } from "./Components/StyledButton";
+import { ExitButton, AddButton } from "./Components/StyledButton";
 const customStyles = {
   content: {
     top: "50%",
@@ -20,6 +20,7 @@ export class Thread extends React.Component {
     this.main = props.showModal;
     this.post = this.getPost(props.id);
     console.log(this.post);
+    this.onclickAddButton;
     this.onclick = props.handleCloseModal;
     this.handleCloseModal = props.handleCloseModal;
     this.handleOpenModal = props.handleOpenModal;
@@ -32,6 +33,25 @@ export class Thread extends React.Component {
       }
     };
   }
+  fav = () => {
+    console.log(this.post);
+    //let json = require("./Favoriten.json");
+
+    var asdasdd = {
+      id: this.post.id,
+      date: new Date()
+      /*title: this.post.title,
+      link: this.post.link,
+      text: this.post.text,
+      tags: this.post.tags.split(","),
+      author: "Jan Nierhoff",
+      author_id: this.lookForAuthorId("Jan Nierhoff"),
+      section_id: this.lookForSectionId(this.post.ort),
+      section: this.post.ort*/
+    };
+    console.log("War hier2");
+  };
+
   render() {
     return (
       <div class="Post">
@@ -41,7 +61,7 @@ export class Thread extends React.Component {
           style={customStyles}
         >
           <ExitButton onClick={this.onclick} />
-
+          <AddButton onClick={this.fav} />
           {this.post["title"]}
           <YouTube
             videoId={this.post["link"].replace(

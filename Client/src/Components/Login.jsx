@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/Login.css";
-import Button from "@material-ui/core/Button";
+import { NormalButton } from "./StyledButton";
 import TextField from "@material-ui/core/TextField";
 
 //Settings
@@ -109,14 +109,11 @@ class Login extends React.Component {
           />
           <br />
           {statusObject}
-          <Button
+          <NormalButton
+            text="login"
             className={"FormItem"}
-            variant="contained"
-            color="primary"
             onClick={this.submit}
-          >
-            Submit
-          </Button>
+          />
         </div>
       </div>
     );

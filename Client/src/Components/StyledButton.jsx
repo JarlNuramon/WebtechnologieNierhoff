@@ -30,7 +30,7 @@ export function NormalButton(props) {
     </StyledButton>
   );
 }
-const X = withStyles({
+const CharButton = withStyles({
   root: {
     background: "rgba(25,157,116,0)",
     borderRadius: 1,
@@ -48,6 +48,28 @@ const X = withStyles({
   }
 })(Button);
 
+/**
+ * Gives you the standardlayout of PidVid exit buttons
+ * @param onClick Has onClick for the onClick exit function
+ */
+export function ExitButton(props) {
+  return (
+    <CharButton variant="outlined" onClick={props.onClick}>
+      x
+    </CharButton>
+  );
+}
+/**
+ * Gives you the standardlayout of PidVid exit buttons
+ * @param onClick Has onClick for the onClick exit function
+ */
+export function AddButton(props) {
+  return (
+    <CharButton variant="outlined" onClick={props.onClick}>
+      +
+    </CharButton>
+  );
+}
 export function StartButton(props) {
   return <Start onClick={props.onClick}>{props.text}</Start>;
 }
@@ -66,17 +88,6 @@ const Start = withStyles({
   }
 })(Button);
 
-/**
- * Gives you the standardlayout of PidVid exit buttons
- * @param onClick Has onClick for the onClick exit function
- */
-export function ExitButton(props) {
-  return (
-    <X variant="outlined" onClick={props.onClick}>
-      x
-    </X>
-  );
-}
 const StyleLogoButton = withStyles({
   root: {
     width: 140,

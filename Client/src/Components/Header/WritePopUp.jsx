@@ -1,6 +1,10 @@
 import React from "react";
 import ReactModal from "react-modal";
-import { NormalButton, ExitButton, ShareButton } from "/src/Components/StyledButton";
+import {
+  NormalButton,
+  ExitButton,
+  ShareButton
+} from "/src/Components/StyledButton";
 import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
