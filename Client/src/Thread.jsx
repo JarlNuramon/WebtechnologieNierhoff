@@ -33,23 +33,18 @@ export class Thread extends React.Component {
       }
     };
   }
+  /**
+   * Bei klick auf den Button AddButton wird ein Objekt erstellt.
+   * Dieses besitzt die ID des Posts aus der Post.json
+   * und das Datum beim erstellen.
+   */
   fav = () => {
-    console.log(this.post);
-    //let json = require("./Favoriten.json");
-
-    var asdasdd = {
+    var favObj = {
       id: this.post.id,
       date: new Date()
-      /*title: this.post.title,
-      link: this.post.link,
-      text: this.post.text,
-      tags: this.post.tags.split(","),
-      author: "Jan Nierhoff",
-      author_id: this.lookForAuthorId("Jan Nierhoff"),
-      section_id: this.lookForSectionId(this.post.ort),
-      section: this.post.ort*/
     };
-    console.log("War hier2");
+    //TODO: Integration
+    console.log(favObj);
   };
 
   render() {
