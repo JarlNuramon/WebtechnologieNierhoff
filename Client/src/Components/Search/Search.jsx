@@ -21,7 +21,7 @@ export class Search extends React.Component {
   render() {
     return (
       <div id="search">
-        <FormControl fullWidth="true" margin="none">
+        <FormControl fullWidth={true} margin="none">
           <div id="searchDiv">
             <SearchBar
               type="text"
@@ -31,11 +31,11 @@ export class Search extends React.Component {
               }}
             />
           </div>
-          <div class="startButtons">
-            <div class="twoColumn">
+          <div className="startButtons">
+            <div className="twoColumn">
               <StartButton text="Filter" onClick={this.switchFilter} />
             </div>
-            <div class="twoColumn">
+            <div className="twoColumn">
               <StartButton
                 text="Search"
                 onClick={() => {

@@ -1,6 +1,4 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
@@ -26,37 +24,30 @@ export class MenueItem extends React.Component {
   ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
   }
-  WhatItem() {
-    return (
-      <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-        <ListItem button>
-          <ListItemText>
-            <div>{this.child}</div>
-          </ListItemText>
-        </ListItem>
-      </Collapse>
-    );
-  }
   render() {
     if (this.child.length < 1)
       return (
-        <div className="MenueItem" onClick={() => this.click(this.name)}>
+        <ListItem className="MenueItem" onClick={() => this.click(this.name)}>
           {this.name}
-        </div>
+        </ListItem>
       );
     return (
       <div>
-        <List>
-          <ListItem button onClick={this.handleClick}>
+        <ListItem button onClick={this.handleClick}>
+          <ListItemText>
+            <div className="MenueItem" onClick={() => this.click(this.name)}>
+              {this.name}
+            </div>
+          </ListItemText>
+          {this.state.open ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+          <ListItem button>
             <ListItemText>
-              <div className="MenueItem" onClick={() => this.click(this.name)}>
-                {this.name}
-              </div>
+              <div>{this.child}</div>
             </ListItemText>
-            {this.state.open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          {this.WhatItem()}
-        </List>
+        </Collapse>
       </div>
     );
   }

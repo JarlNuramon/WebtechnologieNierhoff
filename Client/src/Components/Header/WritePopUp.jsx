@@ -17,7 +17,7 @@ const customStyles = {
     bottom: "auto",
     width: "50%",
 
-    "background-color": "rgba(39,57,61,1)",
+    backgroundColor: "rgba(39,57,61,1)",
     transform: "translate(-50%, -50%)"
   }
 };
@@ -114,7 +114,13 @@ export class WritePopUp extends React.Component {
             <br />
           </FormControl>
           <br />
-          <NormalButton text="Posten" onClick={this.post} className="Poster" />
+          <div>
+            <NormalButton
+              text="Posten"
+              onClick={this.post}
+              className="Poster"
+            />
+          </div>
         </ReactModal>
       </div>
     );

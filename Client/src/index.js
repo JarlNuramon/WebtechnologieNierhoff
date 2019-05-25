@@ -32,6 +32,7 @@ class App extends React.Component {
     this.postPopUp = null;
     this.searchStarted = this.searchStarted.bind(this);
     this.switchFilter = this.switchFilter.bind(this);
+    this.returnFavorite = this.returnFavorite.bind(this);
   }
   returnOpenModal() {
     return this.state.showModal;
@@ -69,6 +70,9 @@ class App extends React.Component {
       showFilter: !this.state.showFilter
     });
   }
+  returnFavorite() {
+    //TODO: Server soll hier alle fav. Videos zurück geben.
+  }
 
   render() {
     let filter = "";
@@ -85,6 +89,7 @@ class App extends React.Component {
             onStartPage="true"
             handleClick={this.searchStarted}
             filter={this.switchFilter}
+            searchFav={this.returnFavorite}
           />
           {filter}
           {this.state.showPostModal ? this.postPopUp : ""}
@@ -103,7 +108,7 @@ class App extends React.Component {
     if (this.state.page === "thread")
       return (
         <div className="App">
-          <Header onStartPage="false" />
+          <Header onStartPage="false" handleFav={this.returnFavorite} />
           {filter}
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
