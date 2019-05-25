@@ -47,7 +47,6 @@ class CheeseburgerMenue extends React.Component {
         </Menu>
 
         <IconButton
-          //className={this.classes.menuButton}
           color="inherit"
           aria-label="Menu"
           onClick={this.handleCheeseburger}

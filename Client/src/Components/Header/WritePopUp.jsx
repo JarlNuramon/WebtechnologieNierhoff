@@ -119,7 +119,7 @@ export class WritePopUp extends React.Component {
     );
   }
   post() {
-    let json = require("../Post.json");
+    let json = require("./Post.json");
     var post = {
       id: Math.random()
         .toString(16)

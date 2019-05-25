@@ -14,13 +14,7 @@
       "professors_ID": [201928923339482934, 2019289309234534],
       "parent_id": 11
     },
-    {
-      "id": 1111,
-      "name": "Java SS2019",
-      "revelant_tags": [],
-      "professors_ID": [201928923339482934, 2019289309234534],
-      "parent_id": 111
-    },
+
     {
       "id": 112,
       "name": "Englisch für Informatiker",
@@ -45,13 +39,6 @@
     {
       "id": 2,
       "name": "Fachbereich Wirtschaft",
-      "revelant_tags": [],
-      "professors_ID": [201928923339482934, 2019289309234534],
-      "parent_id": null
-    },
-    {
-      "id": 3,
-      "name": "Fachbereich Architektur",
       "revelant_tags": [],
       "professors_ID": [201928923339482934, 2019289309234534],
       "parent_id": null

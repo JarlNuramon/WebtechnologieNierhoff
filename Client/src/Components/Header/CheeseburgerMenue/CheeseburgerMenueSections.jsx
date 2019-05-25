@@ -1,5 +1,11 @@
 import React from "react";
 import { MenueItem } from "./MenueItem.jsx";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import StarBorder from "@material-ui/icons/StarBorder";
+
 export class Menue extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +30,19 @@ export class Menue extends React.Component {
   render() {
     return (
       <div className="Sections">
-        <ul>{this.menue}</ul>
+        <List>
+          <ListItem
+            onClick={() => this.handleClick("Favorit")}
+            button
+            className="nested"
+          >
+            <ListItemIcon>
+              <StarBorder />
+            </ListItemIcon>
+            <ListItemText primary="Favoriten" />
+          </ListItem>
+          <ul>{this.menue}</ul>
+        </List>
       </div>
     );
   }

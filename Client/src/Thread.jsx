@@ -20,7 +20,6 @@ export class Thread extends React.Component {
     this.main = props.showModal;
     this.post = this.getPost(props.id);
     console.log(this.post);
-    this.onclickAddButton;
     this.onclick = props.handleCloseModal;
     this.handleCloseModal = props.handleCloseModal;
     this.handleOpenModal = props.handleOpenModal;
