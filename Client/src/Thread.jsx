@@ -1,7 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 import ReactModal from "react-modal";
-import { ExitButton } from "./Components/StyledButton";
+import { ExitButton, AddButton } from "./Components/StyledButton";
 const customStyles = {
   content: {
     top: "50%",
@@ -19,19 +19,24 @@ export class Thread extends React.Component {
     super(props);
     this.main = props.showModal;
     this.post = this.getPost(props.id);
-    console.log(this.post);
     this.onclick = props.handleCloseModal;
     this.handleCloseModal = props.handleCloseModal;
     this.handleOpenModal = props.handleOpenModal;
-    const opts = {
-      height: "390",
-      width: "640",
-      playerVars: {
-        // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
-      }
-    };
   }
+  /**
+   * Bei klick auf den Button AddButton wird ein Objekt erstellt.
+   * Dieses besitzt die ID des Posts aus der Post.json
+   * und das Datum beim erstellen.
+   */
+  fav = () => {
+    var favObj = {
+      id: this.post.id,
+      date: new Date()
+    };
+    //TODO: Integration
+    console.log(favObj);
+  };
+
   render() {
     return (
       <div class="Post">
@@ -41,7 +46,7 @@ export class Thread extends React.Component {
           style={customStyles}
         >
           <ExitButton onClick={this.onclick} />
-
+          <AddButton onClick={this.fav} />
           {this.post["title"]}
           <YouTube
             videoId={this.post["link"].replace(

@@ -29,6 +29,7 @@ class App extends React.Component {
     this.returnToStartPage = this.returnToStartPage.bind(this);
     this.postPopUp = null;
     this.searchStarted = this.searchStarted.bind(this);
+    this.returnFavorite = this.returnFavorite.bind(this);
   }
   returnOpenModal() {
     return this.state.showModal;
@@ -61,6 +62,10 @@ class App extends React.Component {
       id: null
     });
   }
+  returnFavorite() {
+    console.log("bin in returnFavorite in der Index.js");
+    //TODO: Server soll hier alle fav. Videos zurück geben.
+  }
   render() {
     if (this.state.page === "start")
       return (
@@ -71,6 +76,7 @@ class App extends React.Component {
             searchAction={this.searchStarted}
             onStartPage="true"
             handleClick={this.searchStarted}
+            searchFav={this.returnFavorite}
           />
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
@@ -88,7 +94,7 @@ class App extends React.Component {
     if (this.state.page === "thread")
       return (
         <div className="App">
-          <Header onStartPage="false" />
+          <Header onStartPage="false" handleFav={this.returnFavorite} />
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
             <FeedThread

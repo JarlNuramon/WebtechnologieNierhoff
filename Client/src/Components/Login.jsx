@@ -1,7 +1,24 @@
 import React from "react";
 import "./css/Login.css";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import { NormalButton } from "./StyledButton";
+import Input from "@material-ui/core/TextField";
+import { withStyles } from "@material-ui/core/styles";
+
+const StyledInput = withStyles({
+  root: {
+    borderRadius: 1,
+    border: 0,
+    color: "black",
+    height: 40,
+    padding: "0 10px 0 10px"
+  },
+  //TODO: underline funktioniert nicht
+  underline: {
+    "&:after": {
+      borderBottomColor: "rgba(25, 157, 116, 1)"
+    }
+  }
+})(Input);
 
 //Settings
 const restServer = "http://server1:300"; //die url des rest servers
@@ -95,13 +112,13 @@ class Login extends React.Component {
         className={"Login"}
       >
         <div className={"LoginInner"}>
-          <TextField
+          <StyledInput
             className={"FormItem"}
             onChange={this.onChangeUser}
             placeholder={"User name..."}
           />
           <br />
-          <TextField
+          <StyledInput
             className={"FormItem"}
             onChange={this.onChangePass}
             placeholder={"Password..."}
@@ -109,14 +126,11 @@ class Login extends React.Component {
           />
           <br />
           {statusObject}
-          <Button
+          <NormalButton
+            text="login"
             className={"FormItem"}
-            variant="contained"
-            color="primary"
             onClick={this.submit}
-          >
-            Submit
-          </Button>
+          />
         </div>
       </div>
     );

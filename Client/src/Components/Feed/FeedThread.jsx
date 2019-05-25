@@ -1,6 +1,7 @@
 import { FeedPicture } from "./FeedPicture.jsx";
 import React from "react";
 
+//TODO: Warning beheben: Warning: Each child in a list should have a unique "key" prop.
 export class FeedThread extends React.Component {
   state = {
     search: ""
@@ -20,15 +21,15 @@ export class FeedThread extends React.Component {
 
     for (var i = 0; i < x.length; i++) {
       this.SearchPictures.push(
-        <div class="SearchResult">
-          <div class="twoColumn">
+        <div className="SearchResult">
+          <div className="twoColumn">
             <FeedPicture
               videoId={x[i].link}
               id={x[i].id}
               onclick={this.onclick}
             />
           </div>
-          <div class="twoColumn" id="desc">
+          <div className="twoColumn" id="desc">
             <h4>{x[i].title}</h4> <br />
             {x[i].text}
           </div>
@@ -39,21 +40,21 @@ export class FeedThread extends React.Component {
     for (var j = 0; j < this.SearchPictures.length; j += 2) {
       if (!(j + 1 < this.SearchPictures.length))
         rows.push(
-          <div class="twoColumnSearch">
+          <div className="twoColumnSearch">
             {this.SearchPictures[j]}
-            {<div class="SearchResult" />}
+            {<div className="SearchResult" />}
           </div>
         );
       else
         rows.push(
-          <div class="twoColumnSearch">
+          <div className="twoColumnSearch">
             {this.SearchPictures[j]}
             {this.SearchPictures[j + 1]}
           </div>
         );
     }
     console.log(rows.length);
-    return <div class="result">{rows}</div>;
+    return <div className="result">{rows}</div>;
   }
 }
 function searchForTag(search) {
