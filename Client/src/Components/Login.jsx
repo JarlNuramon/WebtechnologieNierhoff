@@ -104,7 +104,7 @@ class Login extends React.Component {
           <TextField
             className={"FormItem"}
             onChange={this.onChangePass}
-            placeholder={"User name..."}
+            placeholder={"Password..."}
             inputProps={{ type: "password" }}
           />
           <br />
