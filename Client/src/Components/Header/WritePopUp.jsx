@@ -1,6 +1,10 @@
 import React from "react";
 import ReactModal from "react-modal";
-import { NormalButton, ExitButton, ShareButton } from "/src/Components/StyledButton";
+import {
+  NormalButton,
+  ExitButton,
+  ShareButton
+} from "/src/Components/StyledButton";
 import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
@@ -12,7 +16,7 @@ const customStyles = {
     bottom: "auto",
     width: "50%",
 
-    "background-color": "rgba(39,57,61,1)",
+    backgroundColor: "rgba(39,57,61,1)",
     transform: "translate(-50%, -50%)"
   }
 };
@@ -109,7 +113,18 @@ export class WritePopUp extends React.Component {
             <br />
           </FormControl>
           <br />
-          <NormalButton text="Posten" onClick={this.post} className="Poster" />
+          <div>
+            <NormalButton
+              text="Posten"
+              onClick={this.post}
+              className="Poster"
+            />
+            <NormalButton
+              text="Setting"
+              onClick={this.post}
+              className="Setter"
+            />
+          </div>
         </ReactModal>
       </div>
     );
