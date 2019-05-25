@@ -120,11 +120,6 @@ export class WritePopUp extends React.Component {
               onClick={this.post}
               className="Poster"
             />
-            <NormalButton
-              text="Setting"
-              onClick={this.post}
-              className="Setter"
-            />
           </div>
         </ReactModal>
       </div>
