@@ -121,7 +121,7 @@ class Login extends React.Component {
           <StyledInput
             className={"FormItem"}
             onChange={this.onChangePass}
-            placeholder={"User Password..."}
+            placeholder={"Password..."}
             inputProps={{ type: "password" }}
           />
           <br />
