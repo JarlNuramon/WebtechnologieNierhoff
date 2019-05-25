@@ -1,9 +1,14 @@
 import React from "react";
 import ReactModal from "react-modal";
-import { NormalButton, ExitButton, ShareButton } from "/src/Components/StyledButton";
+import {
+  NormalButton,
+  ExitButton,
+  ShareButton
+} from "/src/Components/StyledButton";
 import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
+import "/src/Author.json";
 const customStyles = {
   content: {
     top: "50%",
@@ -12,7 +17,7 @@ const customStyles = {
     bottom: "auto",
     width: "50%",
 
-    "background-color": "rgba(39,57,61,1)",
+    backgroundColor: "rgba(39,57,61,1)",
     transform: "translate(-50%, -50%)"
   }
 };
@@ -109,13 +114,19 @@ export class WritePopUp extends React.Component {
             <br />
           </FormControl>
           <br />
-          <NormalButton text="Posten" onClick={this.post} className="Poster" />
+          <div>
+            <NormalButton
+              text="Posten"
+              onClick={this.post}
+              className="Poster"
+            />
+          </div>
         </ReactModal>
       </div>
     );
   }
   post() {
-    let json = require("../Post.json");
+    let json = require("/src/Post.json");
     var post = {
       id: Math.random()
         .toString(16)
@@ -136,7 +147,7 @@ export class WritePopUp extends React.Component {
     this.handleCloseModal();
   }
   lookForAuthorId(str) {
-    let json = require("../Author.json");
+    let json = require("/src/Author.json");
     for (var i = 0; i < json.Author.length; i++) {
       if (json.Author[i].name === str) {
         return json.Author[i].id;
@@ -144,7 +155,7 @@ export class WritePopUp extends React.Component {
     }
   }
   lookForSectionId(str) {
-    let json = require("../Section.json");
+    let json = require("/src/Section.json");
     for (var i = 0; i < json.Section.length; i++) {
       if (json.Section[i].name === str) {
         return json.Section[i].id;
