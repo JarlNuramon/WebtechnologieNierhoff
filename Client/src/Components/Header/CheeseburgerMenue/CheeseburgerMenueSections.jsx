@@ -15,6 +15,7 @@ export class Menue extends React.Component {
           name={x.name}
           id={x.id}
           child={this.getChildSections(x.id, json)}
+          key={x.id}
           onclick={this.handleClick}
         />
       );
@@ -44,6 +45,7 @@ export class Menue extends React.Component {
           <MenueItem
             name={json.Section[i].name}
             id={json.Section[i].id}
+            key={json.Section[i].id}
             child={this.getChildSections(json.Section[i].id, json)}
             onclick={this.handleClick}
           />
