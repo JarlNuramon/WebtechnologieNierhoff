@@ -11,7 +11,8 @@ import { FeedThread } from "./Components/Feed/FeedThread";
 import LogoIcon from "/public/Pictures/Logo.png";
 import { FullPageLogin } from "./Components/Login.jsx";
 import { NormalButton } from "./Components/StyledButton.jsx";
-//hahhahahahahaha
+import { Filter } from "./Components/Filter/Filter";
+
 ReactModal.setAppElement("#root");
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +22,8 @@ class App extends React.Component {
       id: null,
       showWriteModal: false,
       showPostModal: false,
-      search: ""
+      search: "",
+      showFilter: false
     };
     this.setLogin = this.setLogin.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
@@ -29,6 +31,7 @@ class App extends React.Component {
     this.returnToStartPage = this.returnToStartPage.bind(this);
     this.postPopUp = null;
     this.searchStarted = this.searchStarted.bind(this);
+    this.switchFilter = this.switchFilter.bind(this);
     this.returnFavorite = this.returnFavorite.bind(this);
   }
   returnOpenModal() {
@@ -62,11 +65,20 @@ class App extends React.Component {
       id: null
     });
   }
+  switchFilter() {
+    this.setState({
+      showFilter: !this.state.showFilter
+    });
+  }
   returnFavorite() {
-    console.log("bin in returnFavorite in der Index.js");
     //TODO: Server soll hier alle fav. Videos zurück geben.
   }
+
   render() {
+    let filter = "";
+    if (this.state.showFilter === true)
+      filter = <Filter searchAction={this.searchStarted} />;
+
     if (this.state.page === "start")
       return (
         <div className="App">
@@ -76,12 +88,14 @@ class App extends React.Component {
             searchAction={this.searchStarted}
             onStartPage="true"
             handleClick={this.searchStarted}
+            filter={this.switchFilter}
             searchFav={this.returnFavorite}
           />
+          {filter}
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
             <img src={LogoIcon} alt="logo" width="40%" />
-            <Search action={this.searchStarted} />
+            <Search action={this.searchStarted} filter={this.switchFilter} />
             <Feed onclick={this.proceedClick} />
           </div>
           <NormalButton
@@ -95,6 +109,7 @@ class App extends React.Component {
       return (
         <div className="App">
           <Header onStartPage="false" handleFav={this.returnFavorite} />
+          {filter}
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
             <FeedThread

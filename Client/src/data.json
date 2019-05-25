@@ -1,0 +1,86 @@
+{
+  "Filter": {
+    "Fachbereich": [
+      {
+        "name": "architektur",
+        "id": 22
+      },
+      {
+        "name": "Bau- und Umweltingenieurwesen",
+        "id": 23
+      },
+      {
+        "name": "Wirtschaft",
+        "id": 24
+      },
+      {
+        "name": "GeodÃ¤sie",
+        "id": 25
+      },
+      {
+        "name": "Mechatronik und Maschinenbau",
+        "id": 26
+      },
+      {
+        "name": "Elektrotechnik und Informatik",
+        "id": 27
+      }
+    ],
+    "Fach": [
+      {
+        "name": "Elektrotechnik",
+        "id": 28
+      },
+      {
+        "name": "Informatik",
+        "id": 111
+      },
+      {
+        "name": "Wirtschaftsinformatik",
+        "id": 30
+      },
+      {
+        "name": "Mechatronik",
+        "id": 31
+      },
+      {
+        "name": "Nachhaltige entwicklung",
+        "id": 32
+      }
+    ],
+    "Kurs": [
+      {
+        "name": "Mathematik fÃ¼r Informatiker",
+        "id": 33
+      },
+      {
+        "name": "Elektrotechnik 1",
+        "id": 34
+      },
+      {
+        "name": "SchlÃ¼sselqualifikationen",
+        "id": 35
+      },
+      {
+        "name": "Java",
+        "id": 36
+      },
+      {
+        "name": "Englisch fÃ¼r Informatiker",
+        "id": 37
+      },
+      {
+        "name": "Mathematik fÃ¼r Informatiker 2",
+        "id": 38
+      },
+      {
+        "name": "SchlÃ¼sselqualifikationen 2",
+        "id": 39
+      },
+      {
+        "name": "Programmieren in Java 2",
+        "id": 40
+      }
+    ]
+  }
+}

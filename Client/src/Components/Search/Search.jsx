@@ -10,6 +10,7 @@ export class Search extends React.Component {
   constructor(props) {
     super(props);
     this.action = props.action;
+    this.switchFilter = props.filter;
   }
 
   updateSearch = e => {
@@ -32,7 +33,7 @@ export class Search extends React.Component {
           </div>
           <div className="startButtons">
             <div className="twoColumn">
-              <StartButton text="Filter" onClick={this.post} />
+              <StartButton text="Filter" onClick={this.switchFilter} />
             </div>
             <div className="twoColumn">
               <StartButton
@@ -57,6 +58,7 @@ export class SearchHeader extends React.Component {
     super(props);
     this.action = props.action;
     console.log(props.action);
+    this.switchFilter = props.filter;
   }
 
   updateSearch = e => {
@@ -80,7 +82,7 @@ export class SearchHeader extends React.Component {
           <td>
             <NormalButton
               text="Filter"
-              onClick={this.post}
+              onClick={this.switchFilter}
               background="red"
               color="red"
             />

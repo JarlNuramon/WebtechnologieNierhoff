@@ -29,11 +29,11 @@ const styles = {
     flexGrow: 1
   },
   MuiAppBar: {
-    "background-color": "#131C1E"
+    "background-color": "#212121"
   },
   grow: {
     flexGrow: 1,
-    "background-color": "#131C1E"
+    "background-color": "#212121"
   }
 };
 
@@ -55,7 +55,10 @@ export class Header extends React.Component {
     this.handleOpenPostModal = this.handleOpenPostModal.bind(this);
     this.returnOpenModal = this.returnOpenModal.bind(this);
     this.handleClick = props.handleClick;
+
+    this.switchFilter = props.filter;
     this.searchFav = props.searchFav;
+
   }
 
   returnOpenModal() {
@@ -100,7 +103,9 @@ export class Header extends React.Component {
     let search = "";
     if (this.state.onStartPage === "false") {
       logo = <ToStartPage action={this.action} />;
-      search = <SearchHeader action={this.searchAction} />;
+      search = (
+        <SearchHeader action={this.searchAction} filter={this.switchFilter} />
+      );
     } else {
       logo = "";
       search = "";
