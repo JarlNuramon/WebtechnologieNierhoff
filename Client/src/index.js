@@ -94,7 +94,7 @@ class App extends React.Component {
           {filter}
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
-            <img src={LogoIcon} alt="logo" width="40%" />
+            <img src={LogoIcon} className="logoInMain" alt="logo" width="40%" />
             <Search action={this.searchStarted} filter={this.switchFilter} />
             <Feed onclick={this.proceedClick} />
           </div>

@@ -2,7 +2,7 @@ import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import { StartButton, NormalButton } from "/src/Components/StyledButton";
 import SearchBar from "./SearchBar";
-
+import "/src/Components/Search/Search.css";
 export class Search extends React.Component {
   state = {
     search: ""
@@ -25,6 +25,7 @@ export class Search extends React.Component {
           <div id="searchDiv">
             <SearchBar
               type="text"
+              className="SearchBarInSearch"
               onChange={this.updateSearch}
               onKeyDown={e => {
                 e.key === "Enter" ? this.action(this.state.search) : null;
