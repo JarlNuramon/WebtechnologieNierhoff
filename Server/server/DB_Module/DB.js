@@ -22,9 +22,6 @@ class DB {
     * Bsp.:schema={"id": Number, "name": String}
     * collectionName="Name" (existiert die COllection nicht wird sie angelegt)
     * */
-
-
-
     setSchema(schema, collectionName){
         let currentSchema;
         currentSchema = new this.mongoose.Schema(schema);

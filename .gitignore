@@ -1,3 +1,4 @@
 Server/server/node_modules/
-Server/server/DB_Module/NodeJS_DB_Schnittstelle/node_modules
-
+Server/server/DB_Module/node_modules
+Server/server/DB_Module/user.js
+/.idea
