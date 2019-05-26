@@ -28,5 +28,11 @@ class Schemata {
         author: String,
         author_id: ObjectId
     };
+    static User = {
+        name: String,
+        hash: String,
+        salt: String,
+        group: String
+    }
 }
 module.exports=Schemata;
