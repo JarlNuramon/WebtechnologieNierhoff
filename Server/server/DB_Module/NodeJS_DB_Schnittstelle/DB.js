@@ -9,12 +9,11 @@ class DB {
         this.mongoose.connect('mongodb://localhost:27017/'+database, {useNewUrlParser: true});
         this.db = this.mongoose.connection;
         this.db.on('error', console.error.bind(console, 'connection error:'));
-        this.db.once('open', function () {
+        this.db.once('open',()=> {
             //Wenn es funktioniert
             console.log("Datenbank verbunden");
 
         });
-        this.assert = require('assert');
 
     }
 
@@ -38,7 +37,7 @@ class DB {
     * Wenn mehrere zum hochladen bitte schleife verwenden
     * */
     postData(jsonObject) {
-        this.post(jsonObject).save(function (err) {
+        this.post(jsonObject).save((err)=> {
             if (err) console.error(err);
         });
         console.log("Erfolgreich dem Mongo übergeben!")
@@ -46,22 +45,11 @@ class DB {
 
     /*
     * Ohne setSchema(schema) geht das nicht!!!
-    *
     * */
     selectData(JsonObjekt){
 
         let query=this.post.find(JsonObjekt, null);
-        let promise=query.exec();
-
-        return promise.then(function (err, selected) {
-                if(err)
-                    console.log(err);
-                else{
-
-                     return resolve(selected);
-                }
-
-            }, null);
+        return query.exec();
 
     }
 
@@ -69,7 +57,7 @@ class DB {
     * Bitte eindeutige Übergabeparameter ansonsten werden alle Datenensätze mit dem Inhalt von Data gelöscht
     * */
     delData(data) {
-        this.post.find(data, function (err,selected) {
+        this.post.find(data,(err,selected)=> {
             if (err) console.log(err);
         }).deleteOne().exec();
     }
@@ -80,7 +68,7 @@ class DB {
     * Bitte eindeutige Übergabeparameter ansonsten werden alle Datensätze die "alt" enthalten verändert
     */
     updateData(alt, neu){
-    this.post.find(alt, function (err,selected) {
+    this.post.find(alt, (err,selected)=> {
         if(err)
             console.log(err);
     }).updateOne(neu).exec();
