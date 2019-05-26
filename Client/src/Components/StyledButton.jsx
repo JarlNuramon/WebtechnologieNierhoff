@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import ShareIcon from "/public/Pictures/share.png";
 import LogoIcon from "/public/Pictures/Logo.png";
+import StarBorder from "@material-ui/icons/StarBorder";
 
 const StyledButton = withStyles({
   root: {
@@ -55,7 +56,7 @@ const CharButton = withStyles({
 export function ExitButton(props) {
   return (
     <CharButton variant="outlined" onClick={props.onClick}>
-      x
+      X
     </CharButton>
   );
 }
@@ -66,7 +67,7 @@ export function ExitButton(props) {
 export function AddButton(props) {
   return (
     <CharButton variant="outlined" onClick={props.onClick}>
-      +
+      <StarBorder />
     </CharButton>
   );
 }

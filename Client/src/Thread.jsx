@@ -9,7 +9,7 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    "background-color": "rgba(39,57,61,1)",
+    "background-color": "#212121",
     transform: "translate(-50%, -50%)",
     color: "white"
   }

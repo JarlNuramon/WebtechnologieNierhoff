@@ -9,8 +9,7 @@ const StyledSearchBar = withStyles({
     border: 0,
     color: "black",
     height: 40,
-    padding: "0 10px 0 10px",
-    margin: "auto"
+    padding: "0 10px 0 10px"
   },
   underline: {
     "&:after": {
