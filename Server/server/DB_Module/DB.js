@@ -5,11 +5,11 @@ class DB {
     * sollte eine Datenbank nicht existieren und du willst da trotzdem was rein pushen wird die Datenbank erstellt
     * */
     constructor(database) {
-        this.mongoose=require("mongoose");
-        this.mongoose.connect('mongodb://localhost:27017/'+database, {useNewUrlParser: true});
+        this.mongoose = require("mongoose");
+        this.mongoose.connect('mongodb://localhost:27017/' + database, {useNewUrlParser: true});
         this.db = this.mongoose.connection;
         this.db.on('error', console.error.bind(console, 'connection error:'));
-        this.db.once('open',()=> {
+        this.db.once('open', () => {
             //Wenn es funktioniert
             console.log("Datenbank verbunden");
 
@@ -22,7 +22,7 @@ class DB {
     * Bsp.:schema={"id": Number, "name": String}
     * collectionName="Name" (existiert die COllection nicht wird sie angelegt)
     * */
-    setSchema(schema, collectionName){
+    setSchema(schema, collectionName) {
         let currentSchema;
         currentSchema = new this.mongoose.Schema(schema);
         this.post = this.mongoose.model(collectionName, currentSchema);
@@ -34,7 +34,7 @@ class DB {
     * Wenn mehrere zum hochladen bitte schleife verwenden
     * */
     postData(jsonObject) {
-        this.post(jsonObject).save((err)=> {
+        this.post(jsonObject).save((err) => {
             if (err) console.error(err);
         });
         console.log("Erfolgreich dem Mongo übergeben!")
@@ -43,9 +43,9 @@ class DB {
     /*
     * Ohne setSchema(schema) geht das nicht!!!
     * */
-    selectData(JsonObjekt){
+    selectData(JsonObjekt) {
 
-        let query=this.post.find(JsonObjekt, null);
+        let query = this.post.find(JsonObjekt, null);
         return query.exec();
 
     }
@@ -54,7 +54,7 @@ class DB {
     * Bitte eindeutige Übergabeparameter ansonsten werden alle Datenensätze mit dem Inhalt von Data gelöscht
     * */
     delData(data) {
-        this.post.find(data,(err,selected)=> {
+        this.post.find(data, (err, selected) => {
             if (err) console.log(err);
         }).deleteOne().exec();
     }
@@ -63,13 +63,14 @@ class DB {
     * Bitte übergabeparameter als JSON übergeben
     * Datenbank elemente werde hier aktualisiert/verändert
     * Bitte eindeutige Übergabeparameter ansonsten werden alle Datensätze die "alt" enthalten verändert
-    */
-    updateData(alt, neu){
-    this.post.find(alt, (err,selected)=> {
-        if(err)
-            console.log(err);
-    }).updateOne(neu).exec();
+    * */
+    updateData(alt, neu) {
+        this.post.find(alt, (err, selected) => {
+            if (err)
+                console.log(err);
+        }).updateOne(neu).exec();
 
     }
 }
+
 module.exports = DB;

@@ -1,38 +1,46 @@
+let mongoose = require("mongoose");
+
 class Schemata {
-    static PostSchema =
-        {
-            title: String,
-            link: String,
-            text: String,
-            post_date: {
-                type: Date, default: Date.now
-            },
-            tags: [],
 
-            author: String,
-            author_id: ObjectId,
+    static post_schemas = {
+        title: String,
+        link: String,
+        text: String,
+        post_date: {
+            type: Date, default: Date.now
+        },
+        tags: [],
 
-            section_id: ObjectId,
-            section: String
-        };
-    static Section = {
+        author: String,
+        author_id: mongoose.Schema.Types.ObjectId,
+
+        section_id: mongoose.Schema.Types.ObjectId,
+        section: String
+    };
+
+    static sections = {
         name: String,
         revelant_tags: [String],
-        professors_ID: [ObjectId],
-        parent_id: ObjectId
+        professors_ID: [mongoose.Schema.Types.ObjectId],
+        parent_id: mongoose.Schema.Types.ObjectId
     };
-    static Thread_Post = {
+
+    static thread_posts = {
         title: String,
-        post_date: Date,
+        post_date: {
+            type: Date, default: Date.now
+        },
         tags: [String],
         author: String,
-        author_id: ObjectId
+        author_id: mongoose.Schema.Types.ObjectId
     };
-    static User = {
+
+    static users = {
         name: String,
         hash: String,
         salt: String,
         group: String
     }
 }
-module.exports=Schemata;
+
+module.exports = Schemata;
