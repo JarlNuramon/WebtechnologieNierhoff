@@ -40,92 +40,100 @@ Die Input Parameter müssen als JSON formatiert seien z.B.:
     "pass": "asd"
 }
 */
+
+const DB = require('../DB_Module/DB')
+const Schemata = require('../DB_Module/Schemata')
 const crypto = require('crypto')
 
+const  UserDB = new DB('Pidvid')
+UserDB.setSchema(Schemata.users, 'users')
+
+const LoginDB = new DB('Pidvid')
+LoginDB.setSchema(Schemata.logdin_users, 'logdin_users')
+
 const tokenLength = 300
-
-
-/*
-userData und logdinUsers sollen aus der DB kommen
- */
-let userData = [//asd 123 a
-    {name: 'karl', hash: 'KmoIWdlmleP89oiYHp+xwpYFwL+r+GJtKrVaQbQqGMk=', salt: 'lqh5lLRgguBR0sIQbVCa'},
-    {name: 'hans', hash: 'gbQbUo0V5PxL6cIkXPiWNIOk6i1vJKd6gVESizZ0Zbw=', salt: '2OOqp9cWIIcJz4icUYy3'},
-    {name: 'a', hash: 'hz0sJJVXD2oazgqQuNm5oFy3Ni3yrAJiqflny6pvjPI=', salt: 'pR6hLlTMbb7vZZZRrESn'}
-]
-let logdinUsers = []
+const saltLength = 40
 
 module.exports = function(app) {
+
     app.post("/api/user/login", (req, res) => {
-        let userName = validateLogin(req.body.name, req.body.pass)
-        if (userName) {
-            let token = generateToken(tokenLength)
-            loginUser(userName, token)
-            res.send(token)
-        } else {
-            res.send("Nope")
+        if (req.body.name !== undefined && req.body.pass !== undefined) {
+            validateLogin(req.body.name, req.body.pass).then(userName => {
+                if(userName) {
+                    let token = generateToken(tokenLength)
+                    loginUser(userName, token)
+                    res.send(token)
+                } else {
+                    res.send("Nope")
+                }
+            })
         }
-        console.log(logdinUsers)
     })
 
     app.post("/api/user/logout", (req, res) => {
-        res.set("Access-Control-Allow-Origin", '*')
-        if (validateSession(req.body.name, req.body.token)) {
-            logoutUser(req.body.name, req.body.token)
-            res.send("Jep")
-        } else {
-            res.send("Nope")
+        if (req.body.name !== undefined && req.body.token !== undefined) {
+            validateSession(req.body.name, req.body.token).then(valid => {
+                if(valid) {
+                    logoutUser(req.body.name, req.body.token)
+                    res.send("Jep")
+                } else {
+                    res.send("Nope")
+                }
+            })
         }
-        //console.log(li)
     })
 
     app.post("/api/user/register", (req, res) => {
-        res.set("Access-Control-Allow-Origin", '*')
         if (req.body.name !== undefined && req.body.pass !== undefined) {
-            if (!registerUser(req.body.name, req.body.pass)) {
-                res.send("User already exists")
-            } else {
-                res.send("Jep")
-            }
+            registerUser(req.body.name, req.body.pass, 'student').then(data => {
+                if(data) {
+                    res.send("Jep")
+                } else {
+                    res.send("User already exists")
+                }
+            })
         } else {
             res.send("Nope")
         }
-        //console.log(userData)
     })
 
     app.post("/api/user/delete", (req, res) => {
-        res.set("Access-Control-Allow-Origin", '*')
         if (req.body.name !== undefined && req.body.pass !== undefined) {
-            if (deleteUser(req.body.name, req.body.pass)) {
-                res.send("Jep")
-            } else {
-                res.send("Nope")
-            }
+            deleteUser(req.body.name, req.body.pass).then(data => {
+                if(data) {
+                    res.send("Jep")
+                } else {
+                    res.send("Nope")
+                }
+            })
         }
-        //console.log(userData)
     })
 
     app.post("/api/user/changepass", (req, res) => {
-        res.set("Access-Control-Allow-Origin", '*')
         if (req.body.name !== undefined && req.body.oldpass !== undefined && req.body.newpass !== undefined) {
-            if (changePass(req.body.name, req.body.oldpass, req.body.newpass)) {
-                res.send("Jep")
-            } else {
-                res.send("Nope")
-            }
+            changePass(req.body.name, req.body.oldpass, req.body.newpass).then(valid => {
+                if(valid) {
+                    res.send("Jep")
+                } else {
+                    res.send("Nope")
+                }
+            })
         }
-        //console.log(userData)
     })
 }
 
 function validateLogin(userName, pass) {
-    let user = userData.find((obj) => obj.name === userName)
-    if(user === undefined) {return false}
-    if(user.hash === crypto.createHash('sha256').update(user.salt + user.salt + user.salt + pass + user.salt).digest('base64')) {
-        return user.name
-    } else {
-        return false
-    }
+    return UserDB.selectData({name: userName}).then(data => {
+        if(data.length == 1) {
+            if (data[0].hash === crypto.createHash('sha256').update(data[0].salt + data[0].salt + data[0].salt + pass + data[0].salt).digest('base64')) {
+                return data[0].name
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    })
 }
 
 function generateToken(length) {
@@ -138,52 +146,70 @@ function generateToken(length) {
 }
 
 function loginUser(userName, token) {
-    logdinUsers = logdinUsers.filter((obj) => obj.name !== userName)
-    logdinUsers.push({name: userName, token: token})
+    LoginDB.delData({name: userName})
+    LoginDB.postData({name: userName, token: token})
 }
 
 function validateSession(userName, token) {
-    return logdinUsers.find((obj) => obj.name === userName && obj.token === token) ? true : false
+    return LoginDB.selectData({name: userName, token: token}). then(user => {
+        if(user.length == 1) {
+            return true
+        } else {
+            return false
+        }
+    })
 }
 
 function logoutUser(userName, token) {
-    logdinUsers = logdinUsers.filter((obj) => obj.name !== userName && obj.token !== token)
+    LoginDB.delData({name: userName, token: token})
 }
 
 function generateHash(pass) {
-    let salt = generateToken(20)
+    let salt = generateToken(saltLength)
     return {hash: crypto.createHash('sha256').update(salt + salt + salt + pass + salt).digest('base64'), salt: salt}
 }
 
-function registerUser(userName, pass) {
-    if(userData.find((obj) => obj.name === userName) === undefined) {
-        let hash = generateHash(pass)
-        userData.push({name: userName, hash: hash.hash, salt: hash.salt})
-        return true
-    } else {
-        return false
-    }
+function registerUser(userName, pass, group) {
+    return UserDB.selectData({name: userName}).then(data => {
+        if(data.length == 0) {
+            let hash = generateHash(pass)
+            UserDB.postData({name: userName, hash: hash.hash, salt: hash.salt, group: group})
+            return true
+        } else {
+            return false
+        }
+    })
 }
 
 function deleteUser(userName, pass) {
-    if(validateLogin(userName, pass) !== false) {
-        userData = userData.filter((obj) => obj.name !== userName)
-        return true
-    } else {
-        return false
-    }
+    return validateLogin(userName, pass).then(data => {
+        if(data) {
+            UserDB.delData({name: userName})
+            return true
+        } else {
+            return false
+        }
+    })
 }
 
 function changePass(userName, oldpass, newpass) {
-    if(validateLogin(userName, oldpass)) {
-        let hash = generateHash(newpass)
-        let index = userData.findIndex((obj) => obj.name === userName)
-        userData[index].hash = hash.hash
-        userData[index].salt = hash.salt
-        console.log("true")
-        return true
-    } else {
-        console.log("false")
-        return false
-    }
+    return validateLogin(userName, oldpass).then(user => {
+        if(user) {
+            let newHash = generateHash(newpass)
+            return UserDB.selectData({name: user}).then(data => {
+                if(data.length == 1) {
+                    let oldUser = data[0]
+                    let newUser = JSON.parse(JSON.stringify(oldUser))
+                    newUser.hash = newHash.hash
+                    newUser.salt = newHash.salt
+                    UserDB.updateData(oldUser, newUser)
+                    return true
+                } else {
+                    return false
+                }
+            })
+        } else {
+            return false
+        }
+    })
 }

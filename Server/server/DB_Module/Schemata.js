@@ -41,6 +41,11 @@ class Schemata {
         salt: String,
         group: String
     }
+
+    static logdin_users = {
+        name: String,
+        token: String
+    }
 }
 
 module.exports = Schemata;
