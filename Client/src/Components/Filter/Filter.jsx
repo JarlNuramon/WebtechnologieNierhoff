@@ -19,6 +19,7 @@ const th = {
 export class Filter extends React.Component {
   constructor(props) {
     super(props);
+
     this.searchAction = props.searchAction;
     let json = require("/src/data.json");
     this.t = json.Filter;
@@ -37,6 +38,7 @@ export class Filter extends React.Component {
     this.kurs = this.fill(this.t.Kurs);
 
     this.state = {
+      checked: true,
       datum: this.datum,
       fach: this.fach,
       kurs: this.kurs,
