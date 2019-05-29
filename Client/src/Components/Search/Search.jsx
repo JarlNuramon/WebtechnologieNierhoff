@@ -58,7 +58,6 @@ export class SearchHeader extends React.Component {
   constructor(props) {
     super(props);
     this.action = props.action;
-    console.log(props.action);
     this.switchFilter = props.filter;
   }
 

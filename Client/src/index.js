@@ -12,6 +12,7 @@ import LogoIcon from "/public/Pictures/Logo.png";
 import { FullPageLogin } from "./Components/Login.jsx";
 import { NormalButton } from "./Components/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
+import Collapse from "@material-ui/core/Collapse";
 
 ReactModal.setAppElement("#root");
 class App extends React.Component {
@@ -69,16 +70,13 @@ class App extends React.Component {
     this.setState({
       showFilter: !this.state.showFilter
     });
+    console.log("bin in switchFilter");
   }
   returnFavorite() {
     //TODO: Server soll hier alle fav. Videos zurück geben.
   }
 
   render() {
-    let filter = "";
-    if (this.state.showFilter === true)
-      filter = <Filter searchAction={this.searchStarted} />;
-
     if (this.state.page === "start")
       return (
         <div className="App">
@@ -90,8 +88,11 @@ class App extends React.Component {
             handleClick={this.searchStarted}
             filter={this.switchFilter}
             searchFav={this.returnFavorite}
+            aria-label="Collapse"
           />
-          {filter}
+          <Collapse in={this.state.showFilter}>
+            <Filter searchAction={this.searchStarted} />
+          </Collapse>
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
             <img src={LogoIcon} className="logoInMain" alt="logo" width="40%" />
@@ -109,7 +110,9 @@ class App extends React.Component {
       return (
         <div className="App">
           <Header onStartPage="false" handleFav={this.returnFavorite} />
-          {filter}
+          <Collapse in={this.state.showFilter}>
+            <Filter searchAction={this.searchStarted} />
+          </Collapse>
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
             <FeedThread
