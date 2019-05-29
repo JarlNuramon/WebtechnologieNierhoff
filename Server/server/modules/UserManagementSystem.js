@@ -40,19 +40,16 @@ Die Input Parameter müssen als JSON formatiert seien z.B.:
     "pass": "asd"
 }
 */
-
+const Config = require('../config.js')
 const DB = require('../DB_Module/DB')
 const Schemata = require('../DB_Module/Schemata')
 const crypto = require('crypto')
 
-const  UserDB = new DB('Pidvid')
+const  UserDB = new DB(Config.DBNAME)
 UserDB.setSchema(Schemata.users, 'users')
 
-const LoginDB = new DB('Pidvid')
+const LoginDB = new DB(Config.DBNAME)
 LoginDB.setSchema(Schemata.logdin_users, 'logdin_users')
-
-const tokenLength = 300
-const saltLength = 40
 
 module.exports = function(app) {
 
@@ -60,7 +57,7 @@ module.exports = function(app) {
         if (req.body.name !== undefined && req.body.pass !== undefined) {
             validateLogin(req.body.name, req.body.pass).then(userName => {
                 if(userName) {
-                    let token = generateToken(tokenLength)
+                    let token = generateToken(Config.TOKEN_LENGTH)
                     loginUser(userName, token)
                     res.send(token)
                 } else {
@@ -165,7 +162,7 @@ function logoutUser(userName, token) {
 }
 
 function generateHash(pass) {
-    let salt = generateToken(saltLength)
+    let salt = generateToken(Config.SALT_LENGTH)
     return {hash: crypto.createHash('sha256').update(salt + salt + salt + pass + salt).digest('base64'), salt: salt}
 }
 
