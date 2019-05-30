@@ -44,6 +44,7 @@ const Config = require('../config.js')
 const DB = require('../DB_Module/DB')
 const Schemata = require('../DB_Module/Schemata')
 const crypto = require('crypto')
+const logger = require('./Logger')
 
 const  UserDB = new DB(Config.DBNAME)
 UserDB.setSchema(Schemata.users, 'users')
@@ -60,8 +61,10 @@ module.exports = function(app) {
                     let token = generateToken(Config.TOKEN_LENGTH)
                     loginUser(userName, token)
                     res.send(token)
+                    logger.sendDebug("Login form User: " + req.body.name)
                 } else {
                     res.send("Nope")
+                    logger.sendDebug("Login FAILD with Username: " + req.body.name)
                 }
             })
         }
@@ -73,8 +76,10 @@ module.exports = function(app) {
                 if(valid) {
                     logoutUser(req.body.name, req.body.token)
                     res.send("Jep")
+                    logger.sendDebug("Logout from User: " + req.body.name)
                 } else {
                     res.send("Nope")
+                    logger.sendDebug("Logout FAILD with Username: " + req.body.name)
                 }
             })
         }
@@ -85,12 +90,12 @@ module.exports = function(app) {
             registerUser(req.body.name, req.body.pass, 'student').then(data => {
                 if(data) {
                     res.send("Jep")
+                    logger.sendDebug("Registration for User: " + req.body.name)
                 } else {
                     res.send("User already exists")
+                    logger.sendDebug("Registration FAILD for Username: " + req.body.name)
                 }
             })
-        } else {
-            res.send("Nope")
         }
     })
 
@@ -99,8 +104,10 @@ module.exports = function(app) {
             deleteUser(req.body.name, req.body.pass).then(data => {
                 if(data) {
                     res.send("Jep")
+                    logger.sendDebug("Deletet User: " + req.body.name)
                 } else {
                     res.send("Nope")
+                    logger.sendDebug("FAILD to Delete User: " + req.body.name)
                 }
             })
         }
@@ -111,8 +118,10 @@ module.exports = function(app) {
             changePass(req.body.name, req.body.oldpass, req.body.newpass).then(valid => {
                 if(valid) {
                     res.send("Jep")
+                    logger.sendDebug("Changed pass from User: " + req.body.name)
                 } else {
                     res.send("Nope")
+                    logger.sendDebug("FAILD to change pass from User: " + req.body.name)
                 }
             })
         }

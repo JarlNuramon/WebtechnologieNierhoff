@@ -1,4 +1,5 @@
 Server/server/node_modules/
 Server/server/DB_Module/node_modules
 Server/server/DB_Module/user.js
+Server/server/logs/*
 /.idea

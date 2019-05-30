@@ -31,6 +31,7 @@ app.use(function(req, res, next) {
 app.use(function (error, req, res, next) {
     //Log Erros here
     //console.log("catch")
+    Logger.sendError("Error in Server Main.\nError:\n" + error)
 })
 
 //connect UserManagementSystem with app
