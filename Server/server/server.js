@@ -1,9 +1,7 @@
 /*
 TODO: Error Loggen
-    Faild Login Loggen
     User Registration verifikation (mail verifikation)
     Nach Debug ausgaben suchen und entfernen
-    Logger in UMS und Server integrieren
 */
 
 const express = require('express')

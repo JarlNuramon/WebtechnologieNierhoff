@@ -41,16 +41,11 @@ Die Input Parameter müssen als JSON formatiert seien z.B.:
 }
 */
 const Config = require('../config.js')
-const DB = require('../DB_Module/DB')
-const Schemata = require('../DB_Module/Schemata')
 const crypto = require('crypto')
 const logger = require('./Logger')
 
-const  UserDB = new DB(Config.DBNAME)
-UserDB.setSchema(Schemata.users, 'users')
-
-const LoginDB = new DB(Config.DBNAME)
-LoginDB.setSchema(Schemata.logdin_users, 'logdin_users')
+const UserDB = require('../DB_Module/DB_Connection_Storage').UserDB
+const LoginDB = require('../DB_Module/DB_Connection_Storage').LoginDB
 
 module.exports = function(app) {
 
@@ -91,7 +86,7 @@ module.exports = function(app) {
 
     app.post("/api/user/register", (req, res) => {
         if (req.body.name !== undefined && req.body.pass !== undefined) {
-            registerUser(req.body.name, req.body.pass, 'student').then(data => {
+            registerUser(req.body.name, req.body.pass, 'dozent').then(data => {
                 if(data) {
                     res.send("Jep")
                     logger.sendDebug("Registration for User: " + req.body.name)
