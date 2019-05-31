@@ -12,7 +12,11 @@ UserDB.setSchema(Schemata.users, 'users')
 const LoginDB = new DB(Config.DBNAME)
 LoginDB.setSchema(Schemata.logdin_users, 'logdin_users')
 
+const PostDB = new DB(Config.DBNAME)
+PostDB.setSchema(Schemata.post_schemas, "post_schemas")
+
 module.exports = {
     UserDB,
-    LoginDB
+    LoginDB,
+    PostDB
 }

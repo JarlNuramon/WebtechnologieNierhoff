@@ -47,7 +47,7 @@ const logger = require('./Logger')
 const UserDB = require('../DB_Module/DB_Connection_Storage').UserDB
 const LoginDB = require('../DB_Module/DB_Connection_Storage').LoginDB
 
-module.exports = function(app) {
+module.exports = app => {
 
     app.post("/api/user/login", (req, res) => {
         if (req.body.name !== undefined && req.body.pass !== undefined) {

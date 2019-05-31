@@ -10,12 +10,8 @@ class Schemata {
             type: Date, default: Date.now
         },
         tags: [],
-
-        author: String,
         author_id: mongoose.Schema.Types.ObjectId,
-
-        section_id: mongoose.Schema.Types.ObjectId,
-        section: String
+        section_id: mongoose.Schema.Types.ObjectId
     };
 
     static sections = {

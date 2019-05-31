@@ -15,6 +15,8 @@ const Logger = require('./modules/Logger')
 
 //includes all component for the UserManagementSystem (Login, Changepass, usw.)
 const UMS = require('./modules/UserManagementSystem')
+//include the PostManager API
+const PostMan = require("./modules/PostMan")
 
 app.use(express.json())
 
@@ -34,6 +36,8 @@ app.use(function (error, req, res, next) {
 
 //connect UserManagementSystem with app
 UMS(app)
+//connect PostManager with app
+PostMan(app)
 
 //start server
 app.listen(Config.PORT, () => console.log("Server started on " + Config.PORT))
