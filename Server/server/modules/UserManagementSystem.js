@@ -67,6 +67,8 @@ module.exports = function(app) {
                     logger.sendDebug("Login FAILD with Username: " + req.body.name)
                 }
             })
+        } else {
+            logger.sendDebug("API /api/user/login called without required parameters: name, pass")
         }
     })
 
@@ -82,6 +84,8 @@ module.exports = function(app) {
                     logger.sendDebug("Logout FAILD with Username: " + req.body.name)
                 }
             })
+        } else {
+            logger.sendDebug("API /api/user/logout called without required parameters: name, token")
         }
     })
 
@@ -96,6 +100,8 @@ module.exports = function(app) {
                     logger.sendDebug("Registration FAILD for Username: " + req.body.name)
                 }
             })
+        } else {
+            logger.sendDebug("API /api/user/register called without required parameters: name, pass")
         }
     })
 
@@ -110,6 +116,8 @@ module.exports = function(app) {
                     logger.sendDebug("FAILD to Delete User: " + req.body.name)
                 }
             })
+        } else {
+            logger.sendDebug("API /api/user/delete called without required parameters: name, pass")
         }
     })
 
@@ -124,6 +132,8 @@ module.exports = function(app) {
                     logger.sendDebug("FAILD to change pass from User: " + req.body.name)
                 }
             })
+        } else {
+            logger.sendDebug("API /api/user/changepass called without required parameters: name, oldpass, newpass")
         }
     })
 }

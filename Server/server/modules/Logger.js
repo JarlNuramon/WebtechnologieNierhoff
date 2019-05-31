@@ -26,6 +26,10 @@ function sendError(errorMessage) {
     }
 
     checkLogSize(Config.ERROR_LOG_PATH, Config.MAX_ERROR_LOG_SIZE_IN_BYTES)
+
+    if(Config.ERROR_TO_CONSOLE_ENABLED) {
+        console.log(errorMessage)
+    }
 }
 
 function sendDebug(debugMessage) {
