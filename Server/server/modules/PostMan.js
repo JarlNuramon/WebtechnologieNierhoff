@@ -34,24 +34,29 @@ module.exports = app => {
             req.body.token !== undefined) {
             ff.validateDozentSession(req.body.author, req.body.token).then(result => {
                 if(result) {
-                    PostDB.postData({
-                        title: req.body.title,
-                        link: req.body.link,
-                        text: req.body.text,
-                        post_date: req.body.post_date,
-                        tags: req.body.tags,
-                        author_id: result._id,
-                        section_id: req.body.section
-                    })
-                    res.send("Jep")
-                    logger.sendDebug("User " + result.name + " added a post.")
+                    if(isNaN(new Date(req.body.post_date).getTime())) {
+                        res.send("Nope")
+                        logger.sendDebug("[POSTMAN][POST /api/post] Trying to add Invalid Date.")
+                    } else {
+                        PostDB.postData({
+                            title: req.body.title,
+                            link: req.body.link,
+                            text: req.body.text,
+                            post_date: req.body.post_date,
+                            tags: req.body.tags,
+                            author_id: result._id,
+                            section_id: req.body.section
+                        })
+                        res.send("Jep")
+                        logger.sendDebug("[POSTMAN][POST /api/post] User " + result.name + " added a post.")
+                    }
                 } else {
                     res.send("Nope")
-                    logger.sendDebug("Post post FAILD. Invalid token/user.")
+                    logger.sendDebug("[POSTMAN][POST /api/post] FAILD because Invalid user/token.")
                 }
             })
         } else {
-            logger.sendDebug("POST API /api/post called without required parameters")
+            logger.sendDebug("[POSTMAN][POST /api/post] called without required parameters.")
         }
     })
 
@@ -62,11 +67,11 @@ module.exports = app => {
                     res.send(post[0])
                 } else {
                     res.send("Nope")
-                    logger.sendDebug("FAILD to find post with id " + req.params.postid)
+                    logger.sendDebug('[POSTMAN][GET /api/post/:postid] FAILD to find post with id "' + req.params.postid + '".')
                 }
             })
         } else {
-            logger.sendDebug("GET API /api/post/:postid called without required parameter")
+            logger.sendDebug("[POSTMAN][GET /api/post/:postid] called without required parameter.")
         }
     })
 }

@@ -56,14 +56,14 @@ module.exports = app => {
                     let token = generateToken(Config.TOKEN_LENGTH)
                     loginUser(userName, token)
                     res.send(token)
-                    logger.sendDebug("Login form User: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/login] Login form User: "' + req.body.name + '".')
                 } else {
                     res.send("Nope")
-                    logger.sendDebug("Login FAILD with Username: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/login] Login FAILD with Username: "' + req.body.name + '".')
                 }
             })
         } else {
-            logger.sendDebug("API /api/user/login called without required parameters: name, pass")
+            logger.sendDebug("[UMS][POST /api/user/login] called without required parameters: name, pass")
         }
     })
 
@@ -73,14 +73,14 @@ module.exports = app => {
                 if(valid) {
                     logoutUser(req.body.name, req.body.token)
                     res.send("Jep")
-                    logger.sendDebug("Logout from User: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/logout] Logout from User: "' + req.body.name + '".')
                 } else {
                     res.send("Nope")
-                    logger.sendDebug("Logout FAILD with Username: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/logout] Logout FAILD with Username: "' + req.body.name + '".')
                 }
             })
         } else {
-            logger.sendDebug("API /api/user/logout called without required parameters: name, token")
+            logger.sendDebug('[UMS][POST /api/user/logout] called without required parameters: name, token')
         }
     })
 
@@ -89,14 +89,14 @@ module.exports = app => {
             registerUser(req.body.name, req.body.pass, 'dozent').then(data => {
                 if(data) {
                     res.send("Jep")
-                    logger.sendDebug("Registration for User: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/register] Registration done for User: "' + req.body.name + "'.")
                 } else {
                     res.send("User already exists")
-                    logger.sendDebug("Registration FAILD for Username: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/register] Registration FAILD for Username: "' + req.body.name + "'.")
                 }
             })
         } else {
-            logger.sendDebug("API /api/user/register called without required parameters: name, pass")
+            logger.sendDebug("[UMS][POST /api/user/register] called without required parameters: name, pass")
         }
     })
 
@@ -105,14 +105,14 @@ module.exports = app => {
             deleteUser(req.body.name, req.body.pass).then(data => {
                 if(data) {
                     res.send("Jep")
-                    logger.sendDebug("Deletet User: " + req.body.name)
+                    logger.sendDebug("[UMS][POST /api/user/delete] Deletet User: " + req.body.name)
                 } else {
                     res.send("Nope")
-                    logger.sendDebug("FAILD to Delete User: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/delete] FAILD to Delete User: "' + req.body.name + "'.")
                 }
             })
         } else {
-            logger.sendDebug("API /api/user/delete called without required parameters: name, pass")
+            logger.sendDebug("[UMS][POST /api/user/delete] called without required parameters: name, pass")
         }
     })
 
@@ -121,14 +121,14 @@ module.exports = app => {
             changePass(req.body.name, req.body.oldpass, req.body.newpass).then(valid => {
                 if(valid) {
                     res.send("Jep")
-                    logger.sendDebug("Changed pass from User: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/changepass] Changed pass from User: "' + req.body.name + '".')
                 } else {
                     res.send("Nope")
-                    logger.sendDebug("FAILD to change pass from User: " + req.body.name)
+                    logger.sendDebug('[UMS][POST /api/user/changepass] FAILD to change pass from User: "' + req.body.name + "'.")
                 }
             })
         } else {
-            logger.sendDebug("API /api/user/changepass called without required parameters: name, oldpass, newpass")
+            logger.sendDebug("[UMS][POST /api/user/changepass] called without required parameters: name, oldpass, newpass")
         }
     })
 }
