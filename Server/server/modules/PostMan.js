@@ -6,13 +6,17 @@ Diese Datei stellt folgende REST api's zur verfügung:
             title -> String
             link -> String
             text -> String
-            post_date -> Date ("12.05.1999" seams to work (ask Metin for details))
+            post_date -> Date ("2019.12.11" seams to work (ask Metin for details))
             tags -> String Array
             author -> String (Name of the User)
             section -> String (ID of the Section)
             token -> String (Valid login token)
         Return:
             Jep or Nope
+
+    GET /api/post/:postid
+        Return:
+            One Post as JSON
 */
 const ff = require('./FunnyFunctions')
 const logger = require('./Logger')
@@ -48,6 +52,21 @@ module.exports = app => {
             })
         } else {
             logger.sendDebug("POST API /api/post called without required parameters")
+        }
+    })
+
+    app.get("/api/post/:postid", (req, res) => {
+        if(req.params.postid !== undefined) {
+            PostDB.selectData({_id: req.params.postid}).then(post => {
+                if(post.length == 1) {
+                    res.send(post[0])
+                } else {
+                    res.send("Nope")
+                    logger.sendDebug("FAILD to find post with id " + req.params.postid)
+                }
+            })
+        } else {
+            logger.sendDebug("GET API /api/post/:postid called without required parameter")
         }
     })
 }
