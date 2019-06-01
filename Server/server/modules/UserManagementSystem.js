@@ -36,13 +36,25 @@ Diese Datei stellt folgende REST api's zur verfügung:
 
 /api/user/promote
     Input Parameter:
-        promoteUser, user, token //user must be of group "dozent"
+        promoteUser, user, token //user must be of group "dozent" or "admin"
     Return:
         Jep oder Nope
 
 /api/user/demote
     Input Parameter:
-        demoteUser, user, token  //user must be of group "dozent"
+        demoteUser, user, token  //user must be of group "dozent" or "admin"
+    Return:
+        Jep oder Nope
+
+/api/user/makeadmin
+    Input Parameter:
+        newAdminUser, user, token  //user must be of group "admin"
+    Return:
+        Jep oder Nope
+
+/api/user/unadmin
+    Input Parameter:
+        unAdminUser, user, token  //user must be of group "admin"
     Return:
         Jep oder Nope
 
@@ -155,7 +167,7 @@ module.exports = app => {
                             newUser.group = "dozent"
                             UserDB.updateData(result[0], newUser)
                             res.send("Jep")
-                            logger.sendDebug('[UMS][POST /api/user/promote] User "' + req.body.promoteUser + '" was promoted by "' + req.body.user + '".')
+                            logger.sendDebug('[UMS][POST /api/user/promote] User "' + req.body.promoteUser + '" was promoted to dozent by "' + req.body.user + '".')
                         } else {
                             res.send("Nope")
                             logger.sendDebug("[UMS][POST /api/user/promote] FAILD because promoteUser dose not exists.")
@@ -194,6 +206,58 @@ module.exports = app => {
             })
         } else {
             logger.sendDebug("[UMS][POST /api/user/demote] called without required parameters.")
+        }
+    })
+
+    app.post("/api/user/makeadmin", (req, res) => {
+        if(req.body.newAdminUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateAdminSession(req.body.user, req.body.token).then(result => {
+                if(result) {
+                    UserDB.selectData({name: req.body.newAdminUser}).then(result => {
+                        if(result.length == 1) {
+                            let newUser = JSON.parse(JSON.stringify(result[0]))
+                            newUser.group = "admin"
+                            UserDB.updateData(result[0], newUser)
+                            res.send("Jep")
+                            logger.sendDebug('[UMS][POST /api/user/makeadmin] User "' + req.body.newAdminUser + '" was promoted to admin by "' + req.body.user + '".')
+                        } else {
+                            res.send("Nope")
+                            logger.sendDebug("[UMS][POST /api/user/makeadmin] FAILD because newAdminUser dose not exists.")
+                        }
+                    })
+                } else {
+                    res.send("Nope")
+                    logger.sendDebug("[UMS][POST /api/user/makeadmin] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            logger.sendDebug("[UMS][POST /api/user/makeadmin] called without required parameters.")
+        }
+    })
+
+    app.post("/api/user/unadmin", (req, res) => {
+        if(req.body.unAdminUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateAdminSession(req.body.user, req.body.token).then(result => {
+                if(result) {
+                    UserDB.selectData({name: req.body.unAdminUser}).then(result => {
+                        if(result.length == 1) {
+                            let newUser = JSON.parse(JSON.stringify(result[0]))
+                            newUser.group = "dozent"
+                            UserDB.updateData(result[0], newUser)
+                            res.send("Jep")
+                            logger.sendDebug('[UMS][POST /api/user/unadmin] User "' + req.body.unAdminUser + '" was demoted to dozent by "' + req.body.user + '".')
+                        } else {
+                            res.send("Nope")
+                            logger.sendDebug("[UMS][POST /api/user/unadmin] FAILD because unAdminUser dose not exists.")
+                        }
+                    })
+                } else {
+                    res.send("Nope")
+                    logger.sendDebug("[UMS][POST /api/user/unadmin] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            logger.sendDebug("[UMS][POST /api/user/unadmin] called without required parameters.")
         }
     })
 }
