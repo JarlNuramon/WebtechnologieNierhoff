@@ -21,6 +21,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
 const ff = require('./FunnyFunctions')
 const logger = require('./Logger')
 const PostDB = require('../DB_Module/DB_Connection_Storage').PostDB
+const UserDB = require('../DB_Module/DB_Connection_Storage').UserDB
 
 module.exports = app => {
     app.post("/api/post", (req, res) => {
@@ -82,6 +83,57 @@ module.exports = app => {
             })
         } else {
             logger.sendDebug("[POSTMAN][GET /api/post/search/:search] called without required parameter.")
+        }
+    })
+
+    app.delete("/api/post", (req, res) => {
+        if(req.body.postid !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateAdminSession(req.body.user, req.body.token).then(adminUser => {
+                if(adminUser) {
+                    //User is admin
+                    PostDB.selectData({_id: req.body.postid}).then(post => {
+                        if(post.length == 1) {
+                            //Post exists
+                            PostDB.delData({_id: post[0]._id})
+                            res.send("Jep")
+                            logger.sendDebug('[POSTMAN][DELETE /api/post] Deleted post "' + req.body.postid + '".')
+                        } else {
+                            res.send("Nope")
+                            logger.sendDebug("[POSTMAN][DELETE /api/post] FAILD Post with id: \"" + req.body.postid + "\" does not exists.")
+                        }
+                    })
+                } else {
+                    ff.validateDozentSession(req.body.user, req.body.token).then(dozentUser => {
+                        if(dozentUser) {
+                            //User is Dozent
+                            PostDB.selectData({_id: req.body.postid}).then(post => {
+                                if(post.length == 1) {
+                                    //Post exists
+                                    UserDB.selectData({name: req.body.user}).then(user => {
+                                        if(user[0]._id.toString() === post[0].author_id.toString()) {
+                                            //User is the author
+                                            PostDB.delData({_id: post[0]._id})
+                                            res.send("Jep")
+                                            logger.sendDebug('[POSTMAN][DELETE /api/post] Deleted post "' + req.body.postid + '".')
+                                        } else {
+                                            res.send("Nope")
+                                            logger.sendDebug('[POSTMAN][DELETE /api/post] FAILD User "' + req.body.user + '" is not the author.')
+                                        }
+                                    })
+                                } else {
+                                    res.send("Nope")
+                                    logger.sendDebug("[POSTMAN][DELETE /api/post] FAILD Post with id: \"" + req.body.postid + "\" does not exists.")
+                                }
+                            })
+                        } else {
+                            res.send("Nope")
+                            logger.sendDebug("[POSTMAN][DELETE /api/post] FAILD because Invalid user/token.")
+                        }
+                    })
+                }
+            })
+        } else {
+            logger.sendDebug("[POSTMAN][DELETE /api/post] called without required parameter.")
         }
     })
 
