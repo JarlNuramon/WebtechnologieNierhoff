@@ -34,6 +34,18 @@ Diese Datei stellt folgende REST api's zur verfügung:
     Return:
         Jep oder Nope
 
+/api/user/promote
+    Input Parameter:
+        promoteUser, user, token //user must be of group "dozent"
+    Return:
+        Jep oder Nope
+
+/api/user/demote
+    Input Parameter:
+        demoteUser, user, token  //user must be of group "dozent"
+    Return:
+        Jep oder Nope
+
 Die Input Parameter müssen als JSON formatiert seien z.B.:
 {
     "name": "karl",
@@ -43,6 +55,7 @@ Die Input Parameter müssen als JSON formatiert seien z.B.:
 const Config = require('../config.js')
 const crypto = require('crypto')
 const logger = require('./Logger')
+const ff = require('./FunnyFunctions')
 
 const UserDB = require('../DB_Module/DB_Connection_Storage').UserDB
 const LoginDB = require('../DB_Module/DB_Connection_Storage').LoginDB
@@ -80,7 +93,7 @@ module.exports = app => {
                 }
             })
         } else {
-            logger.sendDebug('[UMS][POST /api/user/logout] called without required parameters: name, token')
+            logger.sendDebug('[UMS][POST /api/user/logout] called without required parameters: name, token.')
         }
     })
 
@@ -128,7 +141,59 @@ module.exports = app => {
                 }
             })
         } else {
-            logger.sendDebug("[UMS][POST /api/user/changepass] called without required parameters: name, oldpass, newpass")
+            logger.sendDebug("[UMS][POST /api/user/changepass] called without required parameters: name, oldpass, newpass.")
+        }
+    })
+
+    app.post("/api/user/promote", (req, res) => {
+        if(req.body.promoteUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateDozentSession(req.body.user, req.body.token).then(result => {
+                if(result) {
+                    UserDB.selectData({name: req.body.promoteUser}).then(result => {
+                        if(result.length == 1) {
+                            let newUser = JSON.parse(JSON.stringify(result[0]))
+                            newUser.group = "dozent"
+                            UserDB.updateData(result[0], newUser)
+                            res.send("Jep")
+                            logger.sendDebug('[UMS][POST /api/user/promote] User "' + req.body.promoteUser + '" was promoted by "' + req.body.user + '".')
+                        } else {
+                            res.send("Nope")
+                            logger.sendDebug("[UMS][POST /api/user/promote] FAILD because promoteUser dose not exists.")
+                        }
+                    })
+                } else {
+                    res.send("Nope")
+                    logger.sendDebug("[UMS][POST /api/user/promote] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            logger.sendDebug("[UMS][POST /api/user/promote] called without required parameters.")
+        }
+    })
+
+    app.post("/api/user/demote", (req, res) => {
+        if(req.body.demoteUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateDozentSession(req.body.user, req.body.token).then(result => {
+                if(result) {
+                    UserDB.selectData({name: req.body.demoteUser}).then(result => {
+                        if(result.length == 1) {
+                            let newUser = JSON.parse(JSON.stringify(result[0]))
+                            newUser.group = "student"
+                            UserDB.updateData(result[0], newUser)
+                            res.send("Jep")
+                            logger.sendDebug('[UMS][POST /api/user/demote] User "' + req.body.demoteUser + '" was demoted by "' + req.body.user + '".')
+                        } else {
+                            res.send("Nope")
+                            logger.sendDebug("[UMS][POST /api/user/demote] FAILD because demoteUser dose not exists.")
+                        }
+                    })
+                } else {
+                    res.send("Nope")
+                    logger.sendDebug("[UMS][POST /api/user/demote] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            logger.sendDebug("[UMS][POST /api/user/demote] called without required parameters.")
         }
     })
 }
