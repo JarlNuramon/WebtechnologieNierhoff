@@ -60,18 +60,29 @@ module.exports = app => {
         }
     })
 
-    app.get("/api/post/:postid", (req, res) => {
+    app.get("/api/post/id/:postid", (req, res) => {
         if(req.params.postid !== undefined) {
             PostDB.selectData({_id: req.params.postid}).then(post => {
                 if(post.length == 1) {
                     res.send(post[0])
                 } else {
                     res.send("Nope")
-                    logger.sendDebug('[POSTMAN][GET /api/post/:postid] FAILD to find post with id "' + req.params.postid + '".')
+                    logger.sendDebug('[POSTMAN][GET /api/post/id/:postid] FAILD to find post with id "' + req.params.postid + '".')
                 }
             })
         } else {
-            logger.sendDebug("[POSTMAN][GET /api/post/:postid] called without required parameter.")
+            logger.sendDebug("[POSTMAN][GET /api/post/id/:postid] called without required parameter.")
         }
     })
+
+    app.get("/api/post/search/:search", (req, res) => {
+        if(req.params.search !== undefined) {
+            PostDB.selectData({title: new RegExp(req.params.search, 'i')}).then(result => {
+                res.send(result)
+            })
+        } else {
+            logger.sendDebug("[POSTMAN][GET /api/post/search/:search] called without required parameter.")
+        }
+    })
+
 }
