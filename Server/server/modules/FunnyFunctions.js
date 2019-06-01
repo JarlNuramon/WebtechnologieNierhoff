@@ -9,7 +9,7 @@ module.exports = {
 
     /*
         returns String with time like "2019-05-31 12:54:55"
-     */
+    */
     timestamp() {
         function pad(n) {
             return n < 10 ? "0" + n : n
@@ -27,7 +27,7 @@ module.exports = {
     /*
         if this user/token has a session the user is returned
         else it returns false
-     */
+    */
     validateSession(userName, token) {
         return LoginDB.selectData({name: userName, token: token}).then(user => {
             if (user.length == 1) {
@@ -47,17 +47,39 @@ module.exports = {
     /*
         if this user/token has a session and the user belongs to the group "dozent" the user is returned
         else it returns false
-     */
+    */
     validateDozentSession(userName, token) {
         return this.validateSession(userName, token).then(result => {
             if (result) {
                 return UserDB.selectData({name: result.name}).then(user => {
                     if(user.length == 1) {
-                        if(user[0].group === "dozent") {
+                        if(user[0].group === "dozent" || user[0].group === "admin") {
                             return user[0]
                         } else {
                             return false
                         }
+                    } else {
+                        return false
+                    }
+                })
+            } else {
+                return false
+            }
+        })
+    },
+
+    validateAdminSession(userName, token) {
+        return this.validateSession(userName, token).then(result => {
+            if (result) {
+                return UserDB.selectData({name: result.name}).then(user => {
+                    if(user.length == 1) {
+                        if(user[0].group === "admin") {
+                            return user[0]
+                        } else {
+                            return false
+                        }
+                    } else {
+                        return false
                     }
                 })
             } else {

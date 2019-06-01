@@ -99,7 +99,7 @@ module.exports = app => {
 
     app.post("/api/user/register", (req, res) => {
         if (req.body.name !== undefined && req.body.pass !== undefined) {
-            registerUser(req.body.name, req.body.pass, 'dozent').then(data => {
+            registerUser(req.body.name, req.body.pass, 'student').then(data => {
                 if(data) {
                     res.send("Jep")
                     logger.sendDebug('[UMS][POST /api/user/register] Registration done for User: "' + req.body.name + "'.")
