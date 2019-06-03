@@ -1,3 +1,4 @@
+const log=require("../modules/Logger");
 class DB {
 
     /*
@@ -8,10 +9,8 @@ class DB {
         this.mongoose = require("mongoose");
         this.mongoose.connect('mongodb://localhost:27017/' + database, {useNewUrlParser: true});
         this.db = this.mongoose.connection;
-        this.db.on('error', console.error.bind(console, 'connection error:'));
+        this.db.on('error', ()=>log.sendError("DB-Connection refused"));
         this.db.once('open', () => {
-            //Wenn es funktioniert
-            console.log("Datenbank verbunden");
 
         });
 
@@ -26,7 +25,7 @@ class DB {
         let currentSchema;
         currentSchema = new this.mongoose.Schema(schema);
         this.post = this.mongoose.model(collectionName, currentSchema);
-        console.log("Ich sehe klar und deutlich ein Schema vor mir.")
+
     }
 
     /*
@@ -35,9 +34,9 @@ class DB {
     * */
     postData(jsonObject) {
         this.post(jsonObject).save((err) => {
-            if (err) console.error(err);
+            if (err) log.sendError("Could not insert JSON into the DB");
         });
-        console.log("Erfolgreich dem Mongo übergeben!")
+
     };
 
     /*
@@ -55,7 +54,7 @@ class DB {
     * */
     delData(data) {
         this.post.find(data, (err, selected) => {
-            if (err) console.log(err);
+            if (err) log.sendError("Could not delete from DB");
         }).deleteOne().exec();
     }
 
@@ -67,7 +66,7 @@ class DB {
     updateData(alt, neu) {
         this.post.find(alt, (err, selected) => {
             if (err)
-                console.log(err);
+                log.sendError("Could Not Update data from DB")
         }).updateOne(neu).exec();
 
     }
