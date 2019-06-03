@@ -1,5 +1,5 @@
 /*
-TODO: Error Loggen
+TODO:
     User Registration verifikation (mail verifikation)
     Nach Debug ausgaben suchen und entfernen
 */
@@ -15,8 +15,12 @@ const Logger = require('./modules/Logger')
 
 //includes all component for the UserManagementSystem (Login, Changepass, usw.)
 const UMS = require('./modules/UserManagementSystem')
+
 //include the PostManager API
 const PostMan = require("./modules/PostMan")
+
+//include SectionManager API
+const SecMan = require("./modules/SecMan")
 
 app.use(express.json())
 
@@ -29,15 +33,17 @@ app.use(function(req, res, next) {
 
 //catch errors
 app.use(function (error, req, res, next) {
-    //Log Erros here
-    //console.log("catch")
     Logger.sendError("Error in Server Main.\nError:\n" + error)
 })
 
 //connect UserManagementSystem with app
 UMS(app)
+
 //connect PostManager with app
 PostMan(app)
+
+//connect SectionManager with app
+SecMan(app)
 
 //start server
 app.listen(Config.PORT, () => console.log("Server started on " + Config.PORT))

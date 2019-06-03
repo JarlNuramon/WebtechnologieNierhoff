@@ -17,7 +17,7 @@ class Schemata {
     static sections = {
         name: String,
         revelant_tags: [String],
-        professors_ID: [mongoose.Schema.Types.ObjectId],
+        dozent_id: [mongoose.Schema.Types.ObjectId],
         parent_id: mongoose.Schema.Types.ObjectId
     };
 

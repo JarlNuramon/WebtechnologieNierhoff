@@ -14,9 +14,21 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Return:
             Jep or Nope
 
-    GET /api/post/:postid
+    GET /api/post/id/:postid
         Return:
-            One Post as JSON
+            One Post as JSON or Nope
+
+    GET /api/post/search/:search
+        Return:
+            Arrey of Posts
+
+    DELETE /api/post
+        Input Parameter:
+            postid
+            user
+            tokrn
+        Return:
+            Jep or Nope
 */
 const ff = require('./FunnyFunctions')
 const logger = require('./Logger')

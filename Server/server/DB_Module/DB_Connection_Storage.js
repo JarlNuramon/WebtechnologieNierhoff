@@ -15,8 +15,12 @@ LoginDB.setSchema(Schemata.logdin_users, 'logdin_users')
 const PostDB = new DB(Config.DBNAME)
 PostDB.setSchema(Schemata.post_schemas, "post_schemas")
 
+const SectionDB = new DB(Config.DBNAME)
+SectionDB.setSchema(Schemata.sections, 'sections')
+
 module.exports = {
     UserDB,
     LoginDB,
-    PostDB
+    PostDB,
+    SectionDB
 }
