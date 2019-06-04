@@ -9,13 +9,14 @@ export class FilterItem extends React.Component {
     super(props);
     this.searchAction = props.searchAction;
     this.name = props.name;
+    this.id = props.id;
   }
 
   render() {
     return (
       <td
         onClick={() => {
-          this.searchAction(this.name);
+          if (this.id != null) this.searchAction(this.name);
         }}
         style={td}
       >
