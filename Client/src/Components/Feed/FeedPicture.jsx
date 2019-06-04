@@ -19,9 +19,13 @@ export class FeedPicture extends React.Component {
   }
   render() {
     return (
-      <div className="FeedVideo">
-        <img src={this.picture} onClick={() => this.onclick(this.id)} />
-      </div>
+      <img
+        alt=""
+        src={this.picture}
+        onClick={() => this.onclick(this.id)}
+        width="100%"
+        height="auto"
+      />
     );
   }
 }
