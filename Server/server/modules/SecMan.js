@@ -12,6 +12,14 @@ Diese Datei stellt folgende REST api's zur verfügung:
 
         Return:
             Jep or Nope
+
+    GET /api/section/id/:sectionid
+        Return:
+            A section or Nope
+
+    GET /api/section
+        Return:
+            All sections
 */
 const ff = require('./FunnyFunctions')
 const logger = require('./Logger')
@@ -67,5 +75,11 @@ module.exports = app => {
         } else {
             logger.sendDebug("[SECMAN][GET /api/section/id/:sectionid] called without required parameter.")
         }
+    })
+
+    app.get("/api/section", (req, res) => {
+        SectionDB.selectData({}).then(result => {
+            res.send(result)
+        })
     })
 }
