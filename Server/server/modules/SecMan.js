@@ -8,7 +8,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
             parent_id -> ObjectID
             dozent_id -> ObjectID Array
             user -> String //Name of an admin user
-            token -> String //token of an admin user
+            token -> String //Token of an admin user
 
         Return:
             Jep or Nope
@@ -20,6 +20,12 @@ Diese Datei stellt folgende REST api's zur verfügung:
     GET /api/section
         Return:
             All sections
+
+    DELETE /api/section
+        Input Parameter:
+            section_id -> ObjectID
+	        user -> String //Name of an admin user
+	        token -> String //Token of an admin user
 */
 const ff = require('./FunnyFunctions')
 const logger = require('./Logger')
@@ -81,5 +87,27 @@ module.exports = app => {
         SectionDB.selectData({}).then(result => {
             res.send(result)
         })
+    })
+
+    app.delete("/api/section", (req, res) => {
+        if(req.body.section_id !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            if(ff.checkObjectIdFormat(req.body.section_id)) {
+                ff.validateAdminSession(req.body.user, req.body.token).then(user => {
+                    if (user) {
+                        SectionDB.delData({_id: req.body.section_id})
+                        res.send("Jep")
+                        logger.sendDebug("[SECMAN][DELETE /api/section] User: " + req.body.user + ' deleted Section: "' + req.body.section_id + '".')
+                    } else {
+                        res.send("Nope")
+                        logger.sendDebug("[SECMAN][DELETE /api/section] FAILD because Invalid user/token.")
+                    }
+                })
+            } else {
+                res.send("Nope")
+                logger.sendDebug("[SECMAN][DELETE /api/section] invalid section_id.")
+            }
+        } else {
+            logger.sendDebug("[SECMAN][DELETE /api/section] called without required parameter.")
+        }
     })
 }
