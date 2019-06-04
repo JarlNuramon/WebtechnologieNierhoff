@@ -40,7 +40,7 @@ class CheeseburgerMenue extends React.Component {
         <Menu
           isOpen={this.state.menuIsOpen}
           closeCallback={this.closeMenu}
-          backgroundColor="rgba(39, 57, 61, 1)"
+          backgroundColor="#131c1e"
         >
           <Menue handleClick={this.handleClick} searchFav={this.searchFav} />
         </Menu>

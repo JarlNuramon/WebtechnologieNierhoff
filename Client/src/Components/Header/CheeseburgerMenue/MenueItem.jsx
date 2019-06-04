@@ -4,6 +4,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import "/src/Components/Header/CheeseburgerMenue/CheeseburgerMenue.css";
 
 export class MenueItem extends React.Component {
   state = {
@@ -27,7 +28,7 @@ export class MenueItem extends React.Component {
   render() {
     if (this.child.length < 1)
       return (
-        <ListItem className="MenueItem" onClick={() => this.click(this.name)}>
+        <ListItem className="textInMenue" onClick={() => this.click(this.name)}>
           {this.name}
         </ListItem>
       );
@@ -35,7 +36,10 @@ export class MenueItem extends React.Component {
       <div>
         <ListItem button onClick={this.handleClick}>
           <ListItemText>
-            <div className="MenueItem" onClick={() => this.click(this.name)}>
+            <div
+              className="textUnderlindesInMenue"
+              onClick={() => this.click(this.name)}
+            >
               {this.name}
             </div>
           </ListItemText>
@@ -44,7 +48,7 @@ export class MenueItem extends React.Component {
         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
           <ListItem button>
             <ListItemText>
-              <div>{this.child}</div>
+              <div className="textInMenue">{this.child}</div>
             </ListItemText>
           </ListItem>
         </Collapse>

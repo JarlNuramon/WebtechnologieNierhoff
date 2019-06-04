@@ -5,6 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import StarBorder from "@material-ui/icons/StarBorder";
+import "/src/Components/Header/CheeseburgerMenue/CheeseburgerMenue.css";
 
 export class Menue extends React.Component {
   constructor(props) {
@@ -30,13 +31,17 @@ export class Menue extends React.Component {
   }
   render() {
     return (
-      <div className="Sections">
+      <div>
         <List>
-          <ListItem onClick={() => this.searchFav()} button className="nested">
+          <ListItem onClick={() => this.searchFav()} button>
             <ListItemIcon>
-              <StarBorder />
+              <div className="starIconInMenue">
+                <StarBorder />
+              </div>
             </ListItemIcon>
-            <ListItemText primary="Favoriten" />
+            <ListItemText>
+              <div className="textInMenue">Favoriten</div>
+            </ListItemText>
           </ListItem>
           <ul>{this.menue}</ul>
         </List>
@@ -69,3 +74,5 @@ export class Menue extends React.Component {
     return child;
   }
 }
+
+export default Menue;

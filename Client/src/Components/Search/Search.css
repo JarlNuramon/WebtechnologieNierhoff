@@ -1,0 +1,10 @@
+.startButtons {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.twoColumn {
+  margin: auto;
+  flex: 50%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
