@@ -182,7 +182,47 @@ module.exports = app => {
             logger.sendDebug("[UMS][POST /api/user/promote] called without required parameters.")
         }
     })
+    app.get("/api/user", (req, res) => {
+        if(req.body.user !== undefined && req.body.token !== undefined) {
+            logger.sendDebug('[UMS][POST /api/user/promote] User "' + req.body.user + '" wanted to see all Users!"');
+            ff.validateAdminSession(req.body.user, req.body.token).then(result => {
+                if(result) {
+                    UserDB.selectData({}).then(result => {
+                        let hilf = undefined;
+                        let i = 0;
+                        result.forEach((element) => {
+                            if (i > 0) {
+                                hilf = hilf.concat([{
+                                    _id: element._id,
+                                    name: element.name,
+                                    group: element.group,
+                                    __v: element.__v
+                                }])
+                            } else {
+                                hilf = [{
+                                    _id: element._id,
+                                    name: element.name,
+                                    group: element.group,
+                                    __v: element.__v
+                                }];
+                                i++;
+                            }
+                        });
 
+                        res.send(hilf);
+
+                    });
+                }
+                else {
+
+                }
+            });
+        }
+        else
+            {
+            console.log(req.body);
+            res.send("meeh")
+        }});
     app.post("/api/user/demote", (req, res) => {
         if(req.body.demoteUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateDozentSession(req.body.user, req.body.token).then(result => {
