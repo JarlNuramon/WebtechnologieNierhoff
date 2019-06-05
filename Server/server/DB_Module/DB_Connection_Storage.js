@@ -18,9 +18,13 @@ PostDB.setSchema(Schemata.post_schemas, "post_schemas")
 const SectionDB = new DB(Config.DBNAME)
 SectionDB.setSchema(Schemata.sections, 'sections')
 
+const FavoriteDB = new DB(Config.DBNAME)
+FavoriteDB.setSchema(Schemata.favorites, 'favorites')
+
 module.exports = {
     UserDB,
     LoginDB,
     PostDB,
-    SectionDB
+    SectionDB,
+    FavoriteDB
 }
