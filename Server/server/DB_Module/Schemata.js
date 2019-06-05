@@ -36,11 +36,15 @@ class Schemata {
         hash: String,
         salt: String,
         group: String
-    }
+    };
 
     static logdin_users = {
         name: String,
         token: String
+    };
+    static favorites = {
+        user: String,
+        fav: [mongoose.Schema.Types.ObjectId]
     }
 }
 
