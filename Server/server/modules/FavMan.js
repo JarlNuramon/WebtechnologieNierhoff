@@ -18,6 +18,15 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Return:
             Array of favorite posts or Nope
 
+    DELETE /api/favorite
+        Input Parameter:
+            post_id -> ObjectID
+            user -> String
+            token -> String
+
+        Return:
+            Jep or Nope
+
 */
 const ff = require('./FunnyFunctions')
 const logger = require('./Logger')
@@ -75,6 +84,43 @@ module.exports = app => {
             })
         } else {
             logger.sendDebug("[FAVMAN][GET /api/favorite] called without required parameters.")
+        }
+    })
+
+    app.delete("/api/favorite", (req, res) => {
+        if(req.body.post_id !== undefined && req.body.user !== undefined && req.body.token) {
+            ff.validateSession(req.body.user, req.body.token).then(user => {
+                if(user) {
+                    if(ff.checkObjectIdFormat(req.body.post_id)) {
+                        FavoriteDB.selectData({user: user.name}).then(fav => {
+                            if (fav.length == 1) {
+                                let newFav = JSON.parse(JSON.stringify(fav[0]))
+                                let index = newFav.fav.indexOf(req.body.post_id)
+                                if (index !== -1) {
+                                    newFav.fav.splice(index, 1)
+                                    FavoriteDB.updateData(fav[0], newFav)
+                                    res.send("Jep")
+                                } else {
+                                    res.send("Nope")
+                                    logger.sendDebug("[FAVMAN][DELETE /api/favorite] FAILD because there is nothing to delete.")
+                                }
+
+                            } else {
+                                res.send("Nope")
+                                logger.sendDebug("[FAVMAN][DELETE /api/favorite] FAILD because there is nothing to delete.")
+                            }
+                        })
+                    } else {
+                        res.send("Nope")
+                        logger.sendDebug("[FAVMAN][DELETE /api/favorite] FAILD because Invalid post_id.")
+                    }
+                } else {
+                    res.send("Nope")
+                    logger.sendDebug("[FAVMAN][DELETE /api/favorite] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            logger.sendDebug("[FAVMAN][DELETE /api/favorite] called without required parameters.")
         }
     })
 }
