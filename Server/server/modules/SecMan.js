@@ -22,6 +22,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
             All sections
 
     DELETE /api/section
+        //Can only delete a Section when this Section hse no children
         Input Parameter:
             section_id -> ObjectID
 	        user -> String //Name of an admin user
@@ -94,9 +95,16 @@ module.exports = app => {
             if(ff.checkObjectIdFormat(req.body.section_id)) {
                 ff.validateAdminSession(req.body.user, req.body.token).then(user => {
                     if (user) {
-                        SectionDB.delData({_id: req.body.section_id})
-                        res.send("Jep")
-                        logger.sendDebug("[SECMAN][DELETE /api/section] User: " + req.body.user + ' deleted Section: "' + req.body.section_id + '".')
+                        SectionDB.selectData({parent_id: req.body.section_id}).then(childSections => {
+                            if(childSections.length == 0) {
+                                SectionDB.delData({_id: req.body.section_id})
+                                res.send("Jep")
+                                logger.sendDebug("[SECMAN][DELETE /api/section] User: " + req.body.user + ' deleted Section: "' + req.body.section_id + '".')
+                            } else {
+                                res.send("Nope")
+                                logger.sendDebug('[SECMAN][DELETE /api/section] FAILD to delete Section: "' + req.body.section_id + '" because it has children.')
+                            }
+                        })
                     } else {
                         res.send("Nope")
                         logger.sendDebug("[SECMAN][DELETE /api/section] FAILD because Invalid user/token.")
