@@ -9,14 +9,14 @@ class Schemata {
         post_date: {
             type: Date, default: Date.now
         },
-        tags: [],
+        tags: [String],
         author_id: mongoose.Schema.Types.ObjectId,
         section_id: mongoose.Schema.Types.ObjectId
     };
 
     static sections = {
         name: String,
-        revelant_tags: [String],
+        relevant_tags: [String],
         dozent_id: [mongoose.Schema.Types.ObjectId],
         parent_id: mongoose.Schema.Types.ObjectId
     };

@@ -41,7 +41,7 @@ module.exports = app => {
                         if (admin) {
                             SectionDB.postData({
                                 name: req.body.name,
-                                revelant_tags: req.body.relevant_tags,
+                                relevant_tags: req.body.relevant_tags,
                                 dozent_id: req.body.dozent_id,
                                 parent_id: req.body.parent_id
                             })
