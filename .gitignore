@@ -1,5 +1,7 @@
 Server/server/node_modules/
 Server/server/DB_Module/node_modules
 Server/server/DB_Module/user.js
-Server/server/logs/*
+Server/server/logs/debug.txt
+Server/server/logs/error.txt
 /.idea
+/Server/server/user.js

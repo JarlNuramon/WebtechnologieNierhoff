@@ -40,6 +40,12 @@ Diese Datei stellt folgende REST api's zur verfügung:
     Return:
         Jep oder Nope
 
+/api/user
+    Input Parameter:
+        user, token //user must be of group "admin"
+    Return:
+        (Alle User ohne Hash und Salt) oder (Nope)
+
 /api/user/demote
     Input Parameter:
         demoteUser, user, token  //user must be of group "dozent" or "admin"
@@ -77,7 +83,7 @@ module.exports = app => {
     app.post("/api/user/login", (req, res) => {
         if (req.body.name !== undefined && req.body.pass !== undefined) {
             validateLogin(req.body.name, req.body.pass).then(userName => {
-                if(userName) {
+                if (userName) {
                     let token = generateToken(Config.TOKEN_LENGTH)
                     loginUser(userName, token)
                     res.send(token)
@@ -95,7 +101,7 @@ module.exports = app => {
     app.post("/api/user/logout", (req, res) => {
         if (req.body.name !== undefined && req.body.token !== undefined) {
             validateSession(req.body.name, req.body.token).then(valid => {
-                if(valid) {
+                if (valid) {
                     logoutUser(req.body.name, req.body.token)
                     res.send("Jep")
                     logger.sendDebug('[UMS][POST /api/user/logout] Logout from User: "' + req.body.name + '".')
@@ -112,7 +118,7 @@ module.exports = app => {
     app.post("/api/user/register", (req, res) => {
         if (req.body.name !== undefined && req.body.pass !== undefined) {
             registerUser(req.body.name, req.body.pass, 'student').then(data => {
-                if(data) {
+                if (data) {
                     res.send("Jep")
                     logger.sendDebug('[UMS][POST /api/user/register] Registration done for User: "' + req.body.name + "'.")
                 } else {
@@ -128,7 +134,7 @@ module.exports = app => {
     app.post("/api/user/delete", (req, res) => {
         if (req.body.name !== undefined && req.body.pass !== undefined) {
             deleteUser(req.body.name, req.body.pass).then(data => {
-                if(data) {
+                if (data) {
                     res.send("Jep")
                     logger.sendDebug("[UMS][POST /api/user/delete] Deletet User: " + req.body.name)
                 } else {
@@ -144,7 +150,7 @@ module.exports = app => {
     app.post("/api/user/changepass", (req, res) => {
         if (req.body.name !== undefined && req.body.oldpass !== undefined && req.body.newpass !== undefined) {
             changePass(req.body.name, req.body.oldpass, req.body.newpass).then(valid => {
-                if(valid) {
+                if (valid) {
                     res.send("Jep")
                     logger.sendDebug('[UMS][POST /api/user/changepass] Changed pass from User: "' + req.body.name + '".')
                 } else {
@@ -158,11 +164,11 @@ module.exports = app => {
     })
 
     app.post("/api/user/promote", (req, res) => {
-        if(req.body.promoteUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+        if (req.body.promoteUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateDozentSession(req.body.user, req.body.token).then(result => {
-                if(result) {
+                if (result) {
                     UserDB.selectData({name: req.body.promoteUser}).then(result => {
-                        if(result.length == 1) {
+                        if (result.length == 1) {
                             let newUser = JSON.parse(JSON.stringify(result[0]))
                             newUser.group = "dozent"
                             UserDB.updateData(result[0], newUser)
@@ -182,13 +188,49 @@ module.exports = app => {
             logger.sendDebug("[UMS][POST /api/user/promote] called without required parameters.")
         }
     })
-
+    app.get("/api/user", (req, res) => {
+        if (req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateAdminSession(req.body.user, req.body.token).then(result => {
+                if (result) {
+                    UserDB.selectData({}).then(result => {
+                        let filteredResult = undefined;
+                        let notFirstTime = false;
+                        result.forEach((element) => {
+                            if (notFirstTime) {
+                                filteredResult = filteredResult.concat([{
+                                    _id: element._id,
+                                    name: element.name,
+                                    group: element.group,
+                                    __v: element.__v
+                                }])
+                            } else {
+                                filteredResult = [{
+                                    _id: element._id,
+                                    name: element.name,
+                                    group: element.group,
+                                    __v: element.__v
+                                }];
+                                notFirstTime = !notFirstTime;
+                            }
+                        });
+                        res.send(filteredResult);
+                        logger.sendDebug('[UMS][POST /api/user] User "' + req.body.user + '" wanted to see all Users!"');
+                    });
+                } else {
+                    logger.sendDebug("[UMS][POST /api/user] User " + req.body.user + " wanted to see all Users but something went wrong!");
+                }
+            });
+        } else {
+            logger.sendDebug('[UMS][POST /api/user] FAILED because Invalid user/token.');
+            res.send("Nope");
+        }
+    });
     app.post("/api/user/demote", (req, res) => {
-        if(req.body.demoteUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+        if (req.body.demoteUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateDozentSession(req.body.user, req.body.token).then(result => {
-                if(result) {
+                if (result) {
                     UserDB.selectData({name: req.body.demoteUser}).then(result => {
-                        if(result.length == 1) {
+                        if (result.length == 1) {
                             let newUser = JSON.parse(JSON.stringify(result[0]))
                             newUser.group = "student"
                             UserDB.updateData(result[0], newUser)
@@ -210,11 +252,11 @@ module.exports = app => {
     })
 
     app.post("/api/user/makeadmin", (req, res) => {
-        if(req.body.newAdminUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+        if (req.body.newAdminUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateAdminSession(req.body.user, req.body.token).then(result => {
-                if(result) {
+                if (result) {
                     UserDB.selectData({name: req.body.newAdminUser}).then(result => {
-                        if(result.length == 1) {
+                        if (result.length == 1) {
                             let newUser = JSON.parse(JSON.stringify(result[0]))
                             newUser.group = "admin"
                             UserDB.updateData(result[0], newUser)
@@ -236,11 +278,11 @@ module.exports = app => {
     })
 
     app.post("/api/user/unadmin", (req, res) => {
-        if(req.body.unAdminUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+        if (req.body.unAdminUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateAdminSession(req.body.user, req.body.token).then(result => {
-                if(result) {
+                if (result) {
                     UserDB.selectData({name: req.body.unAdminUser}).then(result => {
-                        if(result.length == 1) {
+                        if (result.length == 1) {
                             let newUser = JSON.parse(JSON.stringify(result[0]))
                             newUser.group = "dozent"
                             UserDB.updateData(result[0], newUser)
@@ -264,7 +306,7 @@ module.exports = app => {
 
 function validateLogin(userName, pass) {
     return UserDB.selectData({name: userName}).then(data => {
-        if(data.length == 1) {
+        if (data.length == 1) {
             if (data[0].hash === crypto.createHash('sha256').update(data[0].salt + data[0].salt + data[0].salt + pass + data[0].salt).digest('base64')) {
                 return data[0].name
             } else {
@@ -291,8 +333,8 @@ function loginUser(userName, token) {
 }
 
 function validateSession(userName, token) {
-    return LoginDB.selectData({name: userName, token: token}). then(user => {
-        if(user.length == 1) {
+    return LoginDB.selectData({name: userName, token: token}).then(user => {
+        if (user.length == 1) {
             return true
         } else {
             return false
@@ -311,7 +353,7 @@ function generateHash(pass) {
 
 function registerUser(userName, pass, group) {
     return UserDB.selectData({name: userName}).then(data => {
-        if(data.length == 0) {
+        if (data.length == 0) {
             let hash = generateHash(pass)
             UserDB.postData({name: userName, hash: hash.hash, salt: hash.salt, group: group})
             return true
@@ -323,7 +365,7 @@ function registerUser(userName, pass, group) {
 
 function deleteUser(userName, pass) {
     return validateLogin(userName, pass).then(data => {
-        if(data) {
+        if (data) {
             UserDB.delData({name: userName})
             return true
         } else {
@@ -334,10 +376,10 @@ function deleteUser(userName, pass) {
 
 function changePass(userName, oldpass, newpass) {
     return validateLogin(userName, oldpass).then(user => {
-        if(user) {
+        if (user) {
             let newHash = generateHash(newpass)
             return UserDB.selectData({name: user}).then(data => {
-                if(data.length == 1) {
+                if (data.length == 1) {
                     let oldUser = data[0]
                     let newUser = JSON.parse(JSON.stringify(oldUser))
                     newUser.hash = newHash.hash

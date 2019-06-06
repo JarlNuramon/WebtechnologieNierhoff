@@ -11,6 +11,13 @@ const customStyles = {
     marginRight: "-50%",
     "background-color": "#212121",
     transform: "translate(-50%, -50%)",
+    color: "white",
+    width: "50vw"
+  },
+  text: {
+    height: "100px",
+    "overflow-y": "auto",
+    "overflow-x": "none",
     color: "white"
   }
 };
@@ -56,7 +63,7 @@ export class Thread extends React.Component {
             opts={this.opts}
             onReady={this._onReady}
           />
-          {this.post["text"]}
+          <div style={customStyles.text}>{this.post["text"]} </div>
         </ReactModal>
       </div>
     );

@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "25d710fe-a94e-44d6-9bf9-a80de28d159c",
+		"name": "UMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://server1:300/api/user/logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"jan\",\n\t\"token\": \"skSxmQU46eBkt3TZ3LZ7epEmZFuOBWsinoNY05rLY4YQr0FyoGwcWrySPW9AU2hmkro2VT1aLSNQEzu3n6CoCjdp3z00IRIU2Atti4nY3dflBRan4obiIwiETBytSiUpBT0fXsFwsCJLhylLM5p8XT9ZYwiwj57I2YM5vqpbypqqOvQhAkTuoUaasBDISa53KWqujKRG5b7KsSlHnC4dTcAsTkemw8vo90Z6O8UqsMl6j56bQRsEGSCUZ6MYtOFtUrceeUbypWAtKHkw6xmgrH3XQTSaqC8xOzp334jmLObv\"\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/user/logout",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/user/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"jan\",\n\t\"pass\": \"asd\"\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/user/login",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/user/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"fritz\",\n\t\"pass\": \"asd\"\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/user/register",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/user/delete",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"title\": \"First Post\",\r\n\t\"link\": \"http://LeckMichDochAmArsch.de/\",\r\n\t\"text\": \"Ich habe den Längsten!\",\r\n\t\"post_date\": \"12.05.1999\",\r\n\t\"tags\": [\"Genial\", \"Gutaussehend\", \"Rechtschreibschwäche\"],\r\n\t\"author_id\": \"jan\",\r\n\t\"section\": \"5cf109323a64640cba1d095B\",\r\n\t\"token\": \"CAvPWlgLXsXaSv49vOOvG2C3P2T3yJwxgktzrGtmES2CUoX1Q7sRVjmclhlYzpoafn5vdD55go1P2Juxwivd4d8lT34W9sk9pJ55YIAWBPBa9csO9mLzuMJmGcuSbaf9lNwqLr5P738lrjgt7qsklUMWO7HLxmR6jqgRTGMl2hquqnKOzSZYvRWqsQaZ9tFgZUDj1beC3HEI5dSb9VY47JZU5P5QjykPptU1YmEbCr53tcPeHKVd0ORcziIO8XN3HxWWLSKsiP5TnivtJkMTw6PU2pErbVDLW2fam7Azojbn\"\r\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/post",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/user/demote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"demoteUser\": \"karl\",\n\t\"user\": \"jan\",\n\t\"token\": \"CAvPWlgLXsXaSv49vOOvG2C3P2T3yJwxgktzrGtmES2CUoX1Q7sRVjmclhlYzpoafn5vdD55go1P2Juxwivd4d8lT34W9sk9pJ55YIAWBPBa9csO9mLzuMJmGcuSbaf9lNwqLr5P738lrjgt7qsklUMWO7HLxmR6jqgRTGMl2hquqnKOzSZYvRWqsQaZ9tFgZUDj1beC3HEI5dSb9VY47JZU5P5QjykPptU1YmEbCr53tcPeHKVd0ORcziIO8XN3HxWWLSKsiP5TnivtJkMTw6PU2pErbVDLW2fam7Azojbn\"\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/user/demote",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"user",
+						"demote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/user/promote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"promoteUser\": \"karl\",\n\t\"user\": \"jan\",\n\t\"token\": \"CAvPWlgLXsXaSv49vOOvG2C3P2T3yJwxgktzrGtmES2CUoX1Q7sRVjmclhlYzpoafn5vdD55go1P2Juxwivd4d8lT34W9sk9pJ55YIAWBPBa9csO9mLzuMJmGcuSbaf9lNwqLr5P738lrjgt7qsklUMWO7HLxmR6jqgRTGMl2hquqnKOzSZYvRWqsQaZ9tFgZUDj1beC3HEI5dSb9VY47JZU5P5QjykPptU1YmEbCr53tcPeHKVd0ORcziIO8XN3HxWWLSKsiP5TnivtJkMTw6PU2pErbVDLW2fam7Azojbn\"\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/user/promote",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"user",
+						"promote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/user/makeadmin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"newAdminUser\": \"jan\",\n\t\"user\": \"marius\",\n\t\"token\": \"5o3bQsWzxOk9pVCSK69F86FueC2e8872cdeHA1WhgJDtFoYdcCmjwEgSFWqL0CGEIx6cTQn09bhWAFn9sZPysLgqiG2DhATToXr3iEiGgqaIuZaQGQeEKZQO3W3ct4hRIIC6s3MvvbWKJftcqx0JAzwpuQ5RDztOWqSq2EiIaA9FSFoEx10YPgW6aeoPgTmEEkwM3MWwsjWVBYeNNDlcND3MZVeQMR1ZRQbI6hwVaMyYLMfs97ZnsxPwrz7Su1LXnHOSdB7OLvT7pGQ3RPmQNmZ8023jX8nBzY6AUcapWrfp\"\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/user/makeadmin",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"user",
+						"makeadmin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/user/unadmin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"unAdminUser\": \"jan\",\n\t\"user\": \"marius\",\n\t\"token\": \"5o3bQsWzxOk9pVCSK69F86FueC2e8872cdeHA1WhgJDtFoYdcCmjwEgSFWqL0CGEIx6cTQn09bhWAFn9sZPysLgqiG2DhATToXr3iEiGgqaIuZaQGQeEKZQO3W3ct4hRIIC6s3MvvbWKJftcqx0JAzwpuQ5RDztOWqSq2EiIaA9FSFoEx10YPgW6aeoPgTmEEkwM3MWwsjWVBYeNNDlcND3MZVeQMR1ZRQbI6hwVaMyYLMfs97ZnsxPwrz7Su1LXnHOSdB7OLvT7pGQ3RPmQNmZ8023jX8nBzY6AUcapWrfp\"\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/user/unadmin",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"user",
+						"unadmin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

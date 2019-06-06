@@ -22,6 +22,9 @@ const PostMan = require("./modules/PostMan")
 //include SectionManager API
 const SecMan = require("./modules/SecMan")
 
+//include FavoriteManager API
+const FavMan = require("./modules/FavMan")
+
 app.use(express.json())
 
 //Set default header
@@ -44,6 +47,9 @@ PostMan(app)
 
 //connect SectionManager with app
 SecMan(app)
+
+//connect FavoriteManager with app
+FavMan(app)
 
 //start server
 app.listen(Config.PORT, () => console.log("Server started on " + Config.PORT))
