@@ -100,3 +100,22 @@
   margin-bottom: 4%;
   width: 20%;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(64, 98, 105);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(39, 57, 61, 1);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(25, 157, 116, 1);
+}

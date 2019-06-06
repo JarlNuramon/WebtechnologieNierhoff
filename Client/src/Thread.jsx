@@ -17,6 +17,7 @@ const customStyles = {
   text: {
     height: "100px",
     "overflow-y": "auto",
+    "overflow-x": "none",
     color: "white"
   }
 };
