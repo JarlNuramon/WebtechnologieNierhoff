@@ -1,37 +1,38 @@
 import React from "react";
 import { FeedPicture } from "./FeedPicture.jsx";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 
 const classes = {
   root: {
-    "padding-left": "40px",
-    "padding-right": "40px",
-    "padding-top": "20px",
-    "padding-bottom": "20px"
+    alignItems: "center",
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    paddingTop: "20px",
+    paddingBottom: "20px",
+    alignContent: "center",
+    width: "80%"
   },
   item: {
     flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    overflow: "hidden",
     borderColor: "rgba(25,157,116,1)",
     borderWidth: 1,
     backgroundColor: "#212121",
     margin: 5,
     width: "160px",
-    height: "200px"
+    height: "200px",
+    textAlign: "left"
   },
   text: {
-    "padding-top": "0px",
     alignItems: "flex-start",
     padding: 5,
+    paddingTop: "0px",
     color: "white",
-    "word-wrap": "break-word",
-    "white-space": "nowrap",
+    wordWrap: "break-word",
+    whiteSpace: "nowrap",
     overflow: "hidden",
     width: "90%",
-    "text-overflow": "ellipsis",
-    "line-height": 1.5
+    textOverflow: "ellipsis",
+    lineHeight: 1.0
   }
 };
 
@@ -40,7 +41,7 @@ export class Feed extends React.Component {
     super(props);
     let json = require("/src/Post.json");
     this.feedPictures = [];
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < json.Posts.length; i++) {
       var x = json.Posts[i];
       this.feedPictures.push(
         <View key={x["id"]} style={classes.item}>
