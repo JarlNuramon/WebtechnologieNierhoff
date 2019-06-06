@@ -7,7 +7,7 @@ class Schemata {
         link: String,
         text: String,
         post_date: {
-            type: Date, default: Date.now
+            type: String, default: new Date().toLocaleString()
         },
         tags: [String],
         author_id: mongoose.Schema.Types.ObjectId,
@@ -24,7 +24,7 @@ class Schemata {
     static thread_posts = {
         title: String,
         post_date: {
-            type: Date, default: Date.now
+            type: String, default: new Date().toLocaleString()
         },
         tags: [String],
         author: String,
