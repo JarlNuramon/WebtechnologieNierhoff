@@ -26,14 +26,15 @@ import FormGroup from "@material-ui/core/FormGroup";
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    paddingBottom: "64px"
   },
   MuiAppBar: {
-    "background-color": "#212121"
+    backgroundColor: "#212121"
   },
   grow: {
     flexGrow: 1,
-    "background-color": "#212121"
+    backgroundColor: "#212121"
   }
 };
 
@@ -58,7 +59,6 @@ export class Header extends React.Component {
 
     this.switchFilter = props.filter;
     this.searchFav = props.searchFav;
-
   }
 
   returnOpenModal() {
@@ -113,7 +113,11 @@ export class Header extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" className={classes.MuiAppBar}>
+        <AppBar
+          position="static"
+          className={classes.MuiAppBar}
+          style={{ position: "fixed" }}
+        >
           <Toolbar>
             <tr>
               <td>
