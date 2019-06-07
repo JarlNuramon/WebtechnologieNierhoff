@@ -5,12 +5,12 @@ import { Text, View, ScrollView } from "react-native";
 const classes = {
   root: {
     alignItems: "center",
-    paddingLeft: "10%",
-    paddingRight: "10%",
+    paddingLeft: "12.5%",
+    paddingRight: "12.5%",
     paddingTop: "20px",
     paddingBottom: "20px",
     alignContent: "center",
-    width: "80%"
+    width: "75%"
   },
   item: {
     flexDirection: "column",

@@ -17,6 +17,7 @@
   flex: 25%;
   padding: 0px;
   background-color: rgba(39, 57, 61, 1);
+  width: auto;
 }
 
 .FeedThread img {
@@ -39,10 +40,6 @@
   padding-top: 5;
   padding-left: 5;
   background-color: rgba(39, 57, 61, 1);
-}
-#searchDiv {
-  width: 75%;
-  margin: auto;
 }
 .Posting {
   width: 100%;
