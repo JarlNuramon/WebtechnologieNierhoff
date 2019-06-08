@@ -73,6 +73,7 @@ export class Thread extends React.Component {
     event.target.pauseVideo();
   }
 
+  //TODO: Integration Request info for one Post
   getPost(id) {
     let json = require("./Post.json");
     for (var i = 0; i < json.Posts.length; i++) {

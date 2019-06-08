@@ -21,6 +21,7 @@ export class Filter extends React.Component {
     super(props);
 
     this.searchAction = props.searchAction;
+    //TODO integration get all Sections
     let json = require("/src/data.json");
     this.t = json.Filter;
 
