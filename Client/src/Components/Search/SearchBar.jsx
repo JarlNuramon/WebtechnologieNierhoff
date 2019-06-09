@@ -9,7 +9,8 @@ const StyledSearchBar = withStyles({
     border: 0,
     color: "black",
     height: 40,
-    padding: "0 10px 0 10px"
+    padding: "0 10px 0 10px",
+    width: "100%"
   },
   underline: {
     "&:after": {
@@ -28,6 +29,7 @@ export default function Searchbar(props) {
       placeholder="Search..."
       onChange={props.onChange}
       fullWidth={true}
+      className="searchBar"
       onKeyDown={props.onKeyDown}
     />
   );

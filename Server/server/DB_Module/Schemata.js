@@ -7,16 +7,16 @@ class Schemata {
         link: String,
         text: String,
         post_date: {
-            type: Date, default: Date.now
+            type: String, default: new Date().toLocaleString()
         },
-        tags: [],
+        tags: [String],
         author_id: mongoose.Schema.Types.ObjectId,
         section_id: mongoose.Schema.Types.ObjectId
     };
 
     static sections = {
         name: String,
-        revelant_tags: [String],
+        relevant_tags: [String],
         dozent_id: [mongoose.Schema.Types.ObjectId],
         parent_id: mongoose.Schema.Types.ObjectId
     };
@@ -24,7 +24,7 @@ class Schemata {
     static thread_posts = {
         title: String,
         post_date: {
-            type: Date, default: Date.now
+            type: String, default: new Date().toLocaleString()
         },
         tags: [String],
         author: String,
@@ -36,11 +36,15 @@ class Schemata {
         hash: String,
         salt: String,
         group: String
-    }
+    };
 
     static logdin_users = {
         name: String,
         token: String
+    };
+    static favorites = {
+        user: String,
+        fav: [mongoose.Schema.Types.ObjectId]
     }
 }
 

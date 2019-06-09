@@ -28,7 +28,7 @@ export class Search extends React.Component {
               className="SearchBarInSearch"
               onChange={this.updateSearch}
               onKeyDown={e => {
-                e.key === "Enter" ? this.action(this.state.search) : null;
+                if (e.key === "Enter") this.action(this.state.search);
               }}
             />
           </div>
@@ -69,25 +69,20 @@ export class SearchHeader extends React.Component {
   render() {
     return (
       <div id="searchHeader">
-        <tr>
-          <td>
+        <ul>
+          <li>
             <SearchBar
               type="text"
               onChange={this.updateSearch}
               onKeyDown={e => {
-                e.key === "Enter" ? this.action(this.state.search) : null;
+                if (e.key === "Enter") this.action(this.state.search);
               }}
             />
-          </td>
-          <td>
-            <NormalButton
-              text="Filter"
-              onClick={this.switchFilter}
-              background="red"
-              color="red"
-            />
-          </td>
-        </tr>
+          </li>
+          <li>
+            <NormalButton text="Filter" onClick={this.switchFilter} />
+          </li>
+        </ul>
       </div>
     );
   }

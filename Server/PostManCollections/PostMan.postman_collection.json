@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "e3ed8794-cf4a-4a1d-af62-2c2f8fd4d275",
+		"name": "PostMan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://server1:300/api/post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"title\": \"First Post\",\r\n\t\"link\": \"http://LeckMichDochAmArsch.de/\",\r\n\t\"text\": \"Ich habe den Längsten!\",\r\n\t\"post_date\": \"12.05.1999\",\r\n\t\"tags\": [\"Genial\", \"Gutaussehend\", \"Rechtschreibschwäche\"],\r\n\t\"author\": \"jan\",\r\n\t\"section\": \"5cf109323a64640cba1d095B\",\r\n\t\"token\": \"CAvPWlgLXsXaSv49vOOvG2C3P2T3yJwxgktzrGtmES2CUoX1Q7sRVjmclhlYzpoafn5vdD55go1P2Juxwivd4d8lT34W9sk9pJ55YIAWBPBa9csO9mLzuMJmGcuSbaf9lNwqLr5P738lrjgt7qsklUMWO7HLxmR6jqgRTGMl2hquqnKOzSZYvRWqsQaZ9tFgZUDj1beC3HEI5dSb9VY47JZU5P5QjykPptU1YmEbCr53tcPeHKVd0ORcziIO8XN3HxWWLSKsiP5TnivtJkMTw6PU2pErbVDLW2fam7Azojbn\"\r\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/post",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/post/search/ich",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://server1:300/api/post/search/ich",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"post",
+						"search",
+						"ich"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/post/id/5cf17290fa12330948c222ba",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://server1:300/api/post/id/5cf17290fa12330948c222ba",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"post",
+						"id",
+						"5cf17290fa12330948c222ba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"postid\": \"5cf17a5d6936d90a94315929\",\r\n\t\"user\": \"marius\",\r\n\t\"token\": \"5o3bQsWzxOk9pVCSK69F86FueC2e8872cdeHA1WhgJDtFoYdcCmjwEgSFWqL0CGEIx6cTQn09bhWAFn9sZPysLgqiG2DhATToXr3iEiGgqaIuZaQGQeEKZQO3W3ct4hRIIC6s3MvvbWKJftcqx0JAzwpuQ5RDztOWqSq2EiIaA9FSFoEx10YPgW6aeoPgTmEEkwM3MWwsjWVBYeNNDlcND3MZVeQMR1ZRQbI6hwVaMyYLMfs97ZnsxPwrz7Su1LXnHOSdB7OLvT7pGQ3RPmQNmZ8023jX8nBzY6AUcapWrfp\"\r\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/post",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

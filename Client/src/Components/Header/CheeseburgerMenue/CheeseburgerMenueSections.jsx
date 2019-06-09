@@ -5,11 +5,12 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import StarBorder from "@material-ui/icons/StarBorder";
-import "/src/Components/Header/CheeseburgerMenue/CheeseburgerMenue.css";
+import "./CheeseburgerMenue.css";
 
 export class Menue extends React.Component {
   constructor(props) {
     super(props);
+    //TODO integration SECTIONS
     let json = require("/src/Section.json");
     this.root = this.getRootSections(json);
     this.menue = [];

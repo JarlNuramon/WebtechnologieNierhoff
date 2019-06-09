@@ -8,3 +8,23 @@
   margin-top: 4%;
   margin-bottom: 4%;
 }
+#searchDiv {
+  width: 75%;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+}
+#searchHeader ul {
+  width: 100%;
+  display: inline-flex;
+  margin: 0;
+}
+#searchHeader li {
+  width: 100%;
+  display: inline-flex;
+  list-style-type: none;
+  margin: 0;
+  min-width: -webkit-fill-available;
+}
+#searchHeader > .searchBar {
+  width: 50vw;
+}

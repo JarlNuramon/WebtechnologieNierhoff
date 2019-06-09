@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "864111d0-6446-46f9-a253-3d267c7da034",
+		"name": "SecMan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://server1:300/api/section",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Section One\",\r\n    \"relevant_tags\": \"a\",\r\n    \"dozent_id\": \"5cf109323a64640cba1d095a\",\r\n    \"parent_id\": null,\r\n    \"user\": \"marius\",\r\n    \"token\": \"5o3bQsWzxOk9pVCSK69F86FueC2e8872cdeHA1WhgJDtFoYdcCmjwEgSFWqL0CGEIx6cTQn09bhWAFn9sZPysLgqiG2DhATToXr3iEiGgqaIuZaQGQeEKZQO3W3ct4hRIIC6s3MvvbWKJftcqx0JAzwpuQ5RDztOWqSq2EiIaA9FSFoEx10YPgW6aeoPgTmEEkwM3MWwsjWVBYeNNDlcND3MZVeQMR1ZRQbI6hwVaMyYLMfs97ZnsxPwrz7Su1LXnHOSdB7OLvT7pGQ3RPmQNmZ8023jX8nBzY6AUcapWrfp\"\r\n}"
+				},
+				"url": {
+					"raw": "http://server1:300/api/section",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"section"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://server1:300/api/section/id/5cf68934d029380adfbb8df7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://server1:300/api/section/id/5cf68934d029380adfbb8df7",
+					"protocol": "http",
+					"host": [
+						"server1"
+					],
+					"port": "300",
+					"path": [
+						"api",
+						"section",
+						"id",
+						"5cf68934d029380adfbb8df7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

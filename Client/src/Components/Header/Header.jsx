@@ -11,6 +11,7 @@ import { WritePopUp } from "./WritePopUp";
 import { ToStartPage } from "./ToStartPage";
 import CheeseburgerMenu from "./CheeseburgerMenue/CheeseburgerMenue";
 import { SearchHeader } from "/src/Components/Search/Search";
+import "./Header.css";
 
 /*
 import Switch from "@material-ui/core/Switch";
@@ -26,14 +27,15 @@ import FormGroup from "@material-ui/core/FormGroup";
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    paddingBottom: "64px"
   },
   MuiAppBar: {
-    "background-color": "#212121"
+    backgroundColor: "#212121"
   },
   grow: {
     flexGrow: 1,
-    "background-color": "#212121"
+    backgroundColor: "#212121"
   }
 };
 
@@ -58,7 +60,6 @@ export class Header extends React.Component {
 
     this.switchFilter = props.filter;
     this.searchFav = props.searchFav;
-
   }
 
   returnOpenModal() {
@@ -101,7 +102,7 @@ export class Header extends React.Component {
 
     let logo = "";
     let search = "";
-    if (this.state.onStartPage === "false") {
+    if (this.state.onStartPage === false) {
       logo = <ToStartPage action={this.action} />;
       search = (
         <SearchHeader action={this.searchAction} filter={this.switchFilter} />
@@ -113,30 +114,34 @@ export class Header extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" className={classes.MuiAppBar}>
-          <Toolbar>
-            <tr>
-              <td>
+        <AppBar
+          position="static"
+          className={classes.MuiAppBar}
+          style={{ position: "fixed", "max-height": "64px" }}
+        >
+          <Toolbar id="Toolbar">
+            <ul id="toolUl">
+              <li id="toolLi">
                 <CheeseburgerMenu
                   handleClick={this.handleClick}
                   searchFav={this.searchFav}
                 />
-              </td>
-              <td>{logo}</td>
-            </tr>
-            <tr className={classes.grow} align="center">
-              <td>{search}</td>
-            </tr>
-            <tr>
-              <td>
+              </li>
+              <li id="toolLi">{logo}</li>
+            </ul>
+            <ul id="toolUl" className={classes.grow} align="center">
+              <li id="toolLi">{search}</li>
+            </ul>
+            <ul id="toolUl">
+              <li id="toolLi">
                 <WritePopUp
                   className={classes.SharePopUp}
                   showModal={this}
                   handleCloseModal={this.handleCloseModal}
                   handleOpenModal={this.handleOpenModal}
                 />
-              </td>
-              <td>
+              </li>
+              <li id="toolLi">
                 {auth && (
                   <div>
                     <IconButton
@@ -171,8 +176,8 @@ export class Header extends React.Component {
                     </Menu>
                   </div>
                 )}
-              </td>
-            </tr>
+              </li>
+            </ul>
           </Toolbar>
         </AppBar>
       </div>

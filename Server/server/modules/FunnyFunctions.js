@@ -3,7 +3,7 @@
 */
 const UserDB = require('../DB_Module/DB_Connection_Storage').UserDB
 const LoginDB = require('../DB_Module/DB_Connection_Storage').LoginDB
-
+const mongoose = require("mongoose")
 
 module.exports = {
 
@@ -86,5 +86,25 @@ module.exports = {
                 return false
             }
         })
+    },
+
+    checkObjectIdFormat(objectID) {
+        try {
+            new mongoose.mongo.ObjectId(objectID)
+            return true
+        }catch (e) {
+            return false
+        }
+    },
+
+    checkObjectIdFormatArray(objectIDArray) {
+        try {
+            objectIDArray.forEach( ele => {
+                new mongoose.mongo.ObjectId(ele)
+            })
+            return true
+        }catch (e) {
+            return false
+        }
     }
 }
