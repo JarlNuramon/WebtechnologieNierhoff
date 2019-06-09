@@ -51,6 +51,7 @@ export class Thread extends React.Component {
           isOpen={this.main.state.showPostModal}
           contentLabel="Minimal Modal Example"
           style={customStyles}
+          onRequestClose={this.onclick}
         >
           <ExitButton onClick={this.onclick} />
           <AddButton onClick={this.fav} />
