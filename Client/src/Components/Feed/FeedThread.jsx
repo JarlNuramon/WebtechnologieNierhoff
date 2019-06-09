@@ -15,10 +15,13 @@ export class FeedThread extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({ search: nextProps.search });
   }
+  closeTree = () => {
+    this.setState({ isOpenTreeModal: false });
+  };
+
   render() {
     var x = searchForTag(this.state.search);
     this.SearchPictures = [];
-
     for (var i = 0; i < x.length; i++) {
       this.SearchPictures.push(
         <div className="SearchResult">
