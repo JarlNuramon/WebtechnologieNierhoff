@@ -1,0 +1,10 @@
+#Toolbar ul {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+}
+#Toolbar li {
+  display: inline-flex;
+  list-style-type: none;
+  margin: 0;
+}

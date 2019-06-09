@@ -11,6 +11,7 @@ import { WritePopUp } from "./WritePopUp";
 import { ToStartPage } from "./ToStartPage";
 import CheeseburgerMenu from "./CheeseburgerMenue/CheeseburgerMenue";
 import { SearchHeader } from "/src/Components/Search/Search";
+import "./Header.css";
 
 /*
 import Switch from "@material-ui/core/Switch";
@@ -116,31 +117,31 @@ export class Header extends React.Component {
         <AppBar
           position="static"
           className={classes.MuiAppBar}
-          style={{ position: "fixed" }}
+          style={{ position: "fixed", "max-height": "64px" }}
         >
-          <Toolbar>
-            <tr>
-              <td>
+          <Toolbar id="Toolbar">
+            <ul>
+              <li>
                 <CheeseburgerMenu
                   handleClick={this.handleClick}
                   searchFav={this.searchFav}
                 />
-              </td>
-              <td>{logo}</td>
-            </tr>
-            <tr className={classes.grow} align="center">
-              <td>{search}</td>
-            </tr>
-            <tr>
-              <td>
+              </li>
+              <li>{logo}</li>
+            </ul>
+            <ul className={classes.grow} align="center">
+              <li>{search}</li>
+            </ul>
+            <ul>
+              <li>
                 <WritePopUp
                   className={classes.SharePopUp}
                   showModal={this}
                   handleCloseModal={this.handleCloseModal}
                   handleOpenModal={this.handleOpenModal}
                 />
-              </td>
-              <td>
+              </li>
+              <li>
                 {auth && (
                   <div>
                     <IconButton
@@ -175,8 +176,8 @@ export class Header extends React.Component {
                     </Menu>
                   </div>
                 )}
-              </td>
-            </tr>
+              </li>
+            </ul>
           </Toolbar>
         </AppBar>
       </div>
