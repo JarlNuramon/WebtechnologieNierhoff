@@ -24,7 +24,8 @@ class App extends React.Component {
       showWriteModal: false,
       showPostModal: false,
       search: "",
-      showFilter: false
+      showFilter: false,
+      isOpenTreeModal: false
     };
     this.setLogin = this.setLogin.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
@@ -35,6 +36,14 @@ class App extends React.Component {
     this.switchFilter = this.switchFilter.bind(this);
     this.returnFavorite = this.returnFavorite.bind(this);
   }
+  closeTree = () => {
+    this.setState({ isOpenTreeModal: false });
+  };
+  treeClick(id) {
+    this.setState({ isOpenTreeModal: false });
+    this.proceedClick(id);
+  }
+
   returnOpenModal() {
     return this.state.showModal;
   }
