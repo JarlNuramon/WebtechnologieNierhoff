@@ -63,6 +63,7 @@ export class WritePopUp extends React.Component {
           isOpen={this.main.state.showWriteModal}
           contentLabel="Minimal Modal Example"
           style={customStyles}
+          onRequestClose={this.handleCloseModal}
         >
           <ExitButton onClick={this.handleCloseModal} /> <br />
           <FormControl className="Posting">

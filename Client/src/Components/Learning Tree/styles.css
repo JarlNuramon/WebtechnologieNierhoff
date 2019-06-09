@@ -1,0 +1,14 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.tree {
+  text-align: center;
+}
+
+#children {
+  display: inline-flex;
+}
+#parent {
+  margin: 5px;
+}

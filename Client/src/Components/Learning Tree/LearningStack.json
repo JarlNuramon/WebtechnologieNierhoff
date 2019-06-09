@@ -1,0 +1,34 @@
+{
+  "Stack": [
+    {
+      "id": 1,
+      "video_id": 2019289309482934,
+      "title": "React",
+      "parent_id": 1111111111111111
+    },
+    {
+      "id": 1,
+      "video_id": 201933309482936,
+      "title": "NodeJs",
+      "parent_id": 1111111111111111
+    },
+    {
+      "id": 1,
+      "video_id": 20193330482936,
+      "title": "PHP",
+      "parent_id": 1111111111111111
+    },
+    {
+      "id": 1,
+      "video_id": 2019282209482938,
+      "title": "Express.js",
+      "parent_id": 201933309482936
+    },
+    {
+      "id": 1,
+      "video_id": 1111111111111111,
+      "title": "JavaScript",
+      "parent_id": null
+    }
+  ]
+}
