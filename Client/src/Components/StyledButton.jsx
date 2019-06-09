@@ -91,8 +91,7 @@ const Start = withStyles({
 
 const StyleLogoButton = withStyles({
   root: {
-    width: 140,
-    padding: "center"
+    //padding: "center"
   }
 })(Button);
 /**
@@ -102,7 +101,7 @@ const StyleLogoButton = withStyles({
 export function LogoButton(props) {
   return (
     <StyleLogoButton onClick={props.onClick}>
-      <img src={LogoIcon} alt="logo" />
+      <img src={LogoIcon} alt="logo" width="140" />
     </StyleLogoButton>
   );
 }
