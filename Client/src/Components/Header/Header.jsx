@@ -102,7 +102,7 @@ export class Header extends React.Component {
 
     let logo = "";
     let search = "";
-    if (this.state.onStartPage === "false") {
+    if (this.state.onStartPage === false) {
       logo = <ToStartPage action={this.action} />;
       search = (
         <SearchHeader action={this.searchAction} filter={this.switchFilter} />
@@ -120,20 +120,20 @@ export class Header extends React.Component {
           style={{ position: "fixed", "max-height": "64px" }}
         >
           <Toolbar id="Toolbar">
-            <ul>
-              <li>
+            <ul id="toolUl">
+              <li id="toolLi">
                 <CheeseburgerMenu
                   handleClick={this.handleClick}
                   searchFav={this.searchFav}
                 />
               </li>
-              <li>{logo}</li>
+              <li id="toolLi">{logo}</li>
             </ul>
-            <ul className={classes.grow} align="center">
-              <li>{search}</li>
+            <ul id="toolUl" className={classes.grow} align="center">
+              <li id="toolLi">{search}</li>
             </ul>
-            <ul>
-              <li>
+            <ul id="toolUl">
+              <li id="toolLi">
                 <WritePopUp
                   className={classes.SharePopUp}
                   showModal={this}
@@ -141,7 +141,7 @@ export class Header extends React.Component {
                   handleOpenModal={this.handleOpenModal}
                 />
               </li>
-              <li>
+              <li id="toolLi">
                 {auth && (
                   <div>
                     <IconButton

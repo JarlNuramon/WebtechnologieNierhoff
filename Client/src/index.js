@@ -84,7 +84,7 @@ class App extends React.Component {
             showModal={this}
             action={this.returnToStartPage}
             searchAction={this.searchStarted}
-            onStartPage="true"
+            onStartPage={true}
             handleClick={this.searchStarted}
             filter={this.switchFilter}
             searchFav={this.returnFavorite}
@@ -109,7 +109,7 @@ class App extends React.Component {
     if (this.state.page === "thread")
       return (
         <div className="App">
-          <Header onStartPage="false" handleFav={this.returnFavorite} />
+          <Header onStartPage={false} handleFav={this.returnFavorite} />
           <Collapse in={this.state.showFilter}>
             <Filter searchAction={this.searchStarted} />
           </Collapse>
