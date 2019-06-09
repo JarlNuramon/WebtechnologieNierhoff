@@ -23,4 +23,8 @@
   display: inline-flex;
   list-style-type: none;
   margin: 0;
+  min-width: -webkit-fill-available;
+}
+#searchHeader > .searchBar {
+  width: 50vw;
 }

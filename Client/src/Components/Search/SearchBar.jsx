@@ -29,6 +29,7 @@ export default function Searchbar(props) {
       placeholder="Search..."
       onChange={props.onChange}
       fullWidth={true}
+      className="searchBar"
       onKeyDown={props.onKeyDown}
     />
   );
