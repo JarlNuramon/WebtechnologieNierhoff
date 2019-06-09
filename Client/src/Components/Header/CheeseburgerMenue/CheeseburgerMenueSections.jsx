@@ -5,7 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import StarBorder from "@material-ui/icons/StarBorder";
-import "/src/Components/Header/CheeseburgerMenue/CheeseburgerMenue.css";
+import "./CheeseburgerMenue.css";
 
 export class Menue extends React.Component {
   constructor(props) {
