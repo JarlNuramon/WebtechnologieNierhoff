@@ -39,10 +39,12 @@ class App extends React.Component {
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
   };
-  treeClick = id => {
+
+    treeClick = id => {
     this.setState({ isOpenTreeModal: false });
     this.proceedClick(id);
   };
+
 
   returnOpenModal() {
     return this.state.showModal;
