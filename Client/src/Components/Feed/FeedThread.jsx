@@ -57,6 +57,7 @@ export class FeedThread extends React.Component {
     return <div className="result">{rows}</div>;
   }
 }
+//TODO INTEGRATION tag search
 function searchForTag(search) {
   let json = require("/src/Post.json");
   console.log(search);
