@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -25,21 +23,7 @@ import FormGroup from "@material-ui/core/FormGroup";
   </div>
   */
 
-const styles = {
-  root: {
-    flexGrow: 1,
-    paddingBottom: "64px"
-  },
-  MuiAppBar: {
-    backgroundColor: "#212121"
-  },
-  grow: {
-    flexGrow: 1,
-    backgroundColor: "#212121"
-  }
-};
-
-export class Header extends React.Component {
+export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,7 +80,6 @@ export class Header extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
@@ -113,12 +96,8 @@ export class Header extends React.Component {
     }
 
     return (
-      <div className={classes.root}>
-        <AppBar
-          position="static"
-          className={classes.MuiAppBar}
-          style={{ position: "fixed", "max-height": "64px" }}
-        >
+      <div className="root">
+        <AppBar position="static" id="MuiAppBar">
           <Toolbar id="Toolbar">
             <ul id="toolUl">
               <li id="toolLi">
@@ -129,13 +108,11 @@ export class Header extends React.Component {
               </li>
               <li id="toolLi">{logo}</li>
             </ul>
-            <ul id="toolUl" className={classes.grow} align="center">
-              <li id="toolLi">{search}</li>
-            </ul>
+            <ul id="grow">{search}</ul>
             <ul id="toolUl">
               <li id="toolLi">
                 <WritePopUp
-                  className={classes.SharePopUp}
+                  className="SharePopUp"
                   showModal={this}
                   handleCloseModal={this.handleCloseModal}
                   handleOpenModal={this.handleOpenModal}
@@ -184,9 +161,3 @@ export class Header extends React.Component {
     );
   }
 }
-
-Header.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(Header);

@@ -1,10 +1,36 @@
+.root {
+  padding-bottom: 64px;
+}
+#MuiAppBar {
+  background-color: #212121;
+  position: fixed;
+  max-height: 64px;
+}
+#grow {
+  background-color: #212121;
+}
+#Toolbar {
+  display: flex;
+}
+#Toolbar ul:nth-of-type(1) {
+  flex-grow: 0;
+}
+#Toolbar ul:nth-of-type(2) {
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+  padding-left: 30px;
+}
+#Toolbar ul:nth-of-type(3) {
+  flex-grow: 0;
+  margin-left: 150px;
+}
 #toolUl {
   display: inline-flex;
   margin: 0;
   padding: 0;
 }
 #toolLi {
-  display: inline-flex;
   list-style-type: none;
   margin: 0;
 }
