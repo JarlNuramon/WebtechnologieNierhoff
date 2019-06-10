@@ -1,5 +1,6 @@
 import { FeedPicture } from "./FeedPicture.jsx";
 import React from "react";
+import "./Feed.css";
 
 //TODO: Warning beheben: Warning: Each child in a list should have a unique "key" prop.
 export class FeedThread extends React.Component {

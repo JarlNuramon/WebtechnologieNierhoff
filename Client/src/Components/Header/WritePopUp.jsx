@@ -4,7 +4,7 @@ import {
   NormalButton,
   ExitButton,
   ShareButton
-} from "/src/Components/StyledButton";
+} from "../StyledButton/StyledButton";
 import DataInput from "../StyledInput/StyledInput";
 import FormControl from "@material-ui/core/FormControl";
 import "/src/Author.json";

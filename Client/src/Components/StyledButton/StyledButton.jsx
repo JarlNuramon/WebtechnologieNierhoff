@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import ShareIcon from "/public/Pictures/share.png";
 import LogoIcon from "/public/Pictures/Logo.png";
 import StarBorder from "@material-ui/icons/StarBorder";
+import "./StyledButton.css";
 
 /**
  * Gives you the standardlayout of PidVid buttons
@@ -11,11 +12,7 @@ import StarBorder from "@material-ui/icons/StarBorder";
  */
 export function NormalButton(props) {
   return (
-    <Button
-      onClick={props.onClick}
-      className={props.className}
-      id="normalButton"
-    >
+    <Button onClick={props.onClick} className="normalButton">
       {props.text}
     </Button>
   );
@@ -26,7 +23,7 @@ export function NormalButton(props) {
  */
 export function ExitButton(props) {
   return (
-    <Button variant="outlined" onClick={props.onClick} id="charButton">
+    <Button variant="outlined" onClick={props.onClick} className="charButton">
       X
     </Button>
   );
@@ -37,14 +34,14 @@ export function ExitButton(props) {
  */
 export function AddButton(props) {
   return (
-    <Button variant="outlined" onClick={props.onClick} id="charButton">
+    <Button variant="outlined" onClick={props.onClick} className="charButton">
       <StarBorder />
     </Button>
   );
 }
 export function StartButton(props) {
   return (
-    <Button onClick={props.onClick} id="startButton">
+    <Button onClick={props.onClick} className="startButton">
       {props.text}
     </Button>
   );

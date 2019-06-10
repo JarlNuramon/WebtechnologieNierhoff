@@ -1,8 +1,8 @@
 import React from "react";
 import FormControl from "@material-ui/core/FormControl";
-import { StartButton, NormalButton } from "/src/Components/StyledButton";
+import { StartButton, NormalButton } from "../StyledButton/StyledButton";
 import SearchBar from "../StyledInput/StyledInput";
-import "/src/Components/Search/Search.css";
+import "./Search.css";
 
 export class Search extends React.Component {
   state = {
@@ -71,7 +71,7 @@ export class SearchHeader extends React.Component {
   render() {
     return (
       <div id="searchHeader">
-        <ul>
+        <ul abc="hallo">
           <li>
             <SearchBar
               type="text"

@@ -1,31 +1,31 @@
-#normalButton,
-#charButton,
-#startButton {
-  border-radius: 1px;
-  border: 0px;
-  height: 40px;
-  padding: 0 30px;
+.normalButton,
+.charButton,
+.startButton {
+  border-radius: 1px !important;
+  border: 0px !important;
+  height: 40px !important;
+  padding: 0 30px !important;
 }
-#normalButton {
-  background: rgba(25, 157, 116, 1);
-  color: black;
+.normalButton {
+  background: rgba(25, 157, 116, 1) !important;
+  color: black !important;
 }
-#charButton {
-  background: transparent;
-  color: rgba(25, 157, 116, 1);
+.charButton {
+  background: transparent !important;
+  color: rgba(25, 157, 116, 1) !important;
 }
-#startButton {
-  background: rgba(25, 157, 116, 0);
-  border: 1px;
-  border-color: rgba(25, 157, 116, 1);
-  border-style: solid;
-  color: rgba(25, 157, 116, 1);
+.startButton {
+  background: rgba(25, 157, 116, 0) !important;
+  border: 1px !important;
+  border-color: rgba(25, 157, 116, 1) !important;
+  border-style: solid !important;
+  color: rgba(25, 157, 116, 1) !important;
 }
-#shareButton {
-  width: 0px;
+.shareButton {
+  width: 0px !important;
 }
-#normalButton label,
-#charButton label,
-#startButton label {
-  text-transform: capitalize;
+.normalButton label,
+.charButton label,
+.startButton label {
+  text-transform: capitalize !important;
 }

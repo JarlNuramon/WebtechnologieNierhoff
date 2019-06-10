@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/Login.css";
-import { NormalButton } from "./StyledButton";
+import { NormalButton } from "./StyledButton/StyledButton";
 import Input from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 

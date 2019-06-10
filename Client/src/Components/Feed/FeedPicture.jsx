@@ -1,4 +1,5 @@
 import React from "react";
+import "./Feed.css";
 /**
  * Returns you the thumbnail of a Youtube video as an img.
  * @param onclick Has onclick which will be applied to the Thumbnail
