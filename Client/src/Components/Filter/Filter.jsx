@@ -1,20 +1,6 @@
 import React from "react";
 import { FilterItem } from "./ FilterItem";
-
-const style = {
-  "background-color": "#131c1e",
-  color: "white"
-};
-
-const table = {
-  width: "80%",
-  padding: 20
-};
-
-const th = {
-  color: "rgba(25,157,116,1)",
-  "text-align": "left"
-};
+import "./Filter.css";
 
 export class Filter extends React.Component {
   constructor(props) {
@@ -76,20 +62,20 @@ export class Filter extends React.Component {
 
   render() {
     return (
-      <div align="center" style={style}>
-        <table style={table}>
+      <div align="center" className="style">
+        <table className="table">
           <thead>
             <tr>
-              <th style={th}>
+              <th>
                 <u>Datum</u>
               </th>
-              <th style={th}>
+              <th>
                 <u>Fachbereich</u>
               </th>
-              <th style={th}>
+              <th>
                 <u>Fach</u>
               </th>
-              <th style={th}>
+              <th>
                 <u>Kurs</u>
               </th>
             </tr>

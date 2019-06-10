@@ -6,37 +6,9 @@ import {
   ShareButton
 } from "/src/Components/StyledButton";
 import Input from "@material-ui/core/Input";
-import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import "/src/Author.json";
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    width: "50%",
-
-    backgroundColor: "#212121",
-    transform: "translate(-50%, -50%)"
-  }
-};
-const StyledInput = withStyles({
-  root: {
-    background: "rgba(255,255,255,1)",
-    borderRadius: 3,
-    border: 0,
-    color: "black",
-    height: 40,
-    padding: "0 10px 0 10px",
-    margin: "left"
-  },
-  underline: {
-    "&:after": {
-      borderBottomColor: "rgba(25,157,116,1)"
-    }
-  }
-})(Input);
+import "./Header.css";
 
 export class WritePopUp extends React.Component {
   constructor(props) {
@@ -62,54 +34,60 @@ export class WritePopUp extends React.Component {
         <ReactModal
           isOpen={this.main.state.showWriteModal}
           contentLabel="Minimal Modal Example"
-          style={customStyles}
+          className="Modal"
+          overlayClassName="Overlay"
         >
           <ExitButton onClick={this.handleCloseModal} /> <br />
           <FormControl className="Posting">
             <br />
             <b id="formText">Titel</b>
             <br />
-            <StyledInput
+            <Input
               type="text"
               placeholder="title"
               name="title"
               onChange={this.updateInput}
+              className="Input"
             />{" "}
             <br />
             <b id="formText">Beschreibung</b>
             <br />
-            <StyledInput
+            <Input
               type="text"
               placeholder="text"
               name="text"
               onChange={this.updateInput}
+              className="Input"
             />
             <br />
             <b id="formText">Link</b>
             <br />
-            <StyledInput
+            <Input
               type="text"
               placeholder="https://www.youtube.com/watch?v=example"
               name="link"
               onChange={this.updateInput}
+              className="Input"
             />
             <br />
             <b id="formText">Ort</b>
             <br />
-            <StyledInput
+            <Input
               type="text"
               placeholder="Ort"
               name="ort"
               onChange={this.updateInput}
+              className="Input"
             />
             <br />
             <b id="formText">Tags</b>
             <br />
-            <StyledInput
+            <Input
               type="text"
               name="tags"
               placeholder="Tag1, Tag2 ..."
               onChange={this.updateInput}
+              className="Input"
             />
             <br />
           </FormControl>

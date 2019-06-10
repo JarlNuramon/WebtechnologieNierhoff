@@ -24,6 +24,7 @@
   list-style-type: none;
   margin: 0;
   min-width: -webkit-fill-available;
+  min-width: -moz-available;
 }
 #searchHeader > .searchBar {
   width: 50vw;

@@ -1,8 +1,5 @@
 import React from "react";
-
-const td = {
-  width: "20%"
-};
+import "./Filter.css";
 
 export class FilterItem extends React.Component {
   constructor(props) {
@@ -18,7 +15,6 @@ export class FilterItem extends React.Component {
         onClick={() => {
           if (this.id != null) this.searchAction(this.name);
         }}
-        style={td}
       >
         {this.name}
       </td>

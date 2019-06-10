@@ -3,20 +3,10 @@ import Menu from "cheeseburger-menu";
 import { Menue } from "./CheeseburgerMenueSections.jsx";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import "./CheeseburgerMenue.css";
 
-const styles = {
-  root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    "background-color": "#131C1E"
-  }
-};
-
-class CheeseburgerMenue extends React.Component {
+export default class CheeseburgerMenue extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = props.handleClick.bind(this);
@@ -36,7 +26,7 @@ class CheeseburgerMenue extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="CheeseburgerMenueRoot">
         <Menu
           isOpen={this.state.menuIsOpen}
           closeCallback={this.closeMenu}
@@ -60,5 +50,3 @@ class CheeseburgerMenue extends React.Component {
 CheeseburgerMenue.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
-export default withStyles(styles)(CheeseburgerMenue);

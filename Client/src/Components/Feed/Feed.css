@@ -1,0 +1,32 @@
+/* Feed */
+#feedRoot {
+  align-items: center;
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  align-content: center;
+  width: 75%;
+}
+.item {
+  flex-direction: column;
+  border-color: rgba(25, 157, 116, 1);
+  border-width: 1px;
+  background-color: #212121;
+  margin: 3px;
+  width: 160px;
+  height: 200px;
+  text-align: left;
+}
+#text {
+  align-items: flex-start;
+  padding: 5px;
+  padding-top: 0px;
+  color: white;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 90%;
+  text-overflow: ellipsis;
+  line-height: 1px;
+}

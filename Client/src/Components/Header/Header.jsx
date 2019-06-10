@@ -11,18 +11,6 @@ import CheeseburgerMenu from "./CheeseburgerMenue/CheeseburgerMenue";
 import { SearchHeader } from "/src/Components/Search/Search";
 import "./Header.css";
 
-/*
-import Switch from "@material-ui/core/Switch";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-<div className="my-menu-content">
-    <ul>
-      <li><Link to="/thing1" onClick={this.closeMenu}>Menu item 1</Link></li>
-      <li><Link to="/thing2" onClick={this.closeMenu}>Menu item 2</Link></li>
-    </ul>
-  </div>
-  */
-
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
