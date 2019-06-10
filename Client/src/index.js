@@ -13,7 +13,7 @@ import { FullPageLogin } from "./Components/Login.jsx";
 import { NormalButton } from "./Components/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
-import LearningTree from "./Components/Learning Tree/Learning Tree.jsx";
+import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 ReactModal.setAppElement("#root");
 class App extends React.Component {
   constructor(props) {
@@ -40,11 +40,10 @@ class App extends React.Component {
     this.setState({ isOpenTreeModal: false });
   };
 
-    treeClick = id => {
+  treeClick = id => {
     this.setState({ isOpenTreeModal: false });
     this.proceedClick(id);
   };
-
 
   returnOpenModal() {
     return this.state.showModal;
