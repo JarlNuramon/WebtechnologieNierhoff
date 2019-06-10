@@ -1,8 +1,8 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import LearningNode from "./Learning Node.jsx";
+import LearningNode from "./LearningNode.jsx";
 import ReactModal from "react-modal";
-import "./styles.css";
+import "./LearningTree.css";
 const customStyles = {
   content: {
     top: "50%",
