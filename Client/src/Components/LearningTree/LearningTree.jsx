@@ -2,6 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import LearningNode from "./LearningNode.jsx";
 import ReactModal from "react-modal";
+import { ExitButton } from "../StyledButton/StyledButton";
 import "./LearningTree.css";
 
 const customStyles = {
@@ -67,7 +68,7 @@ export default class LearningTree extends React.Component {
           style={customStyles}
           onRequestClose={this.close}
         >
-          <button onClick={this.close}>Close Modal</button>
+          <ExitButton onClick={this.close} />
           {this.tree}
         </ReactModal>
       </div>

@@ -16,7 +16,7 @@ export class MenueItem extends React.Component {
     this.id = props.id;
     this.child = props.child;
     this.grandchild = props.grandchild;
-    this.click = props.onclick.bind(this);
+    this.click = props.onclick;
   }
 
   handleClick = () => {

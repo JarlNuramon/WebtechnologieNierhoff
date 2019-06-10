@@ -9,7 +9,7 @@ import "./CheeseburgerMenue.css";
 export default class CheeseburgerMenue extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = props.handleClick.bind(this);
+    this.handleClick = props.handleClick;
     this.searchFav = props.searchFav;
     this.state = {
       menuIsOpen: false

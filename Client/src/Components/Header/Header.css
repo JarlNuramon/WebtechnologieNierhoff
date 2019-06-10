@@ -24,7 +24,7 @@
 }
 #Toolbar ul:nth-of-type(3) {
   flex-grow: 0;
-  margin-left: 150px;
+  margin-left: 120px;
 }
 #toolUl {
   display: inline-flex;
