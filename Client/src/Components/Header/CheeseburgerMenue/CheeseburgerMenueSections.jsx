@@ -16,7 +16,7 @@ export class Menue extends React.Component {
     this.menue = [];
     this.search = props.search;
     this.searchFav = props.searchFav;
-    this.handleClick = props.handleClick.bind(this);
+    this.handleClick = props.handleClick;
     for (var i = 0; i < this.root.length; i++) {
       var x = this.root[i];
       this.menue.push(
