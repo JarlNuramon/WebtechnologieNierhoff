@@ -13,7 +13,7 @@ import { FullPageLogin } from "./Components/Login.jsx";
 import { NormalButton } from "./Components/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
-
+import LearningTree from "./Components/Learning Tree/Learning Tree.jsx";
 ReactModal.setAppElement("#root");
 class App extends React.Component {
   constructor(props) {
@@ -39,10 +39,12 @@ class App extends React.Component {
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
   };
-  treeClick(id) {
+
+    treeClick = id => {
     this.setState({ isOpenTreeModal: false });
     this.proceedClick(id);
-  }
+  };
+
 
   returnOpenModal() {
     return this.state.showModal;
@@ -84,6 +86,9 @@ class App extends React.Component {
   returnFavorite() {
     //TODO: Server soll hier alle fav. Videos zurück geben.
   }
+  closeTree = () => {
+    this.setState({ isOpenTreeModal: false });
+  };
 
   render() {
     if (this.state.page === "start")
@@ -124,6 +129,18 @@ class App extends React.Component {
           </Collapse>
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
+
+            <LearningTree
+              id={1}
+              openThread={this.treeClick}
+              showModal={this}
+              close={this.closeTree}
+            />
+            <NormalButton
+              text="Tree"
+              className="Treemaker"
+              onClick={e => this.setState({ isOpenTreeModal: true })}
+            />
             <FeedThread
               key="Search"
               search={this.state.search}
