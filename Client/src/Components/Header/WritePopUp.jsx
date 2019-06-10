@@ -5,7 +5,7 @@ import {
   ExitButton,
   ShareButton
 } from "/src/Components/StyledButton";
-import Input from "@material-ui/core/Input";
+import DataInput from "../StyledInput/StyledInput";
 import FormControl from "@material-ui/core/FormControl";
 import "/src/Author.json";
 import "./Header.css";
@@ -42,52 +42,42 @@ export class WritePopUp extends React.Component {
             <br />
             <b id="formText">Titel</b>
             <br />
-            <Input
-              type="text"
+            <DataInput
               placeholder="title"
               name="title"
               onChange={this.updateInput}
-              className="Input"
-            />{" "}
+            />
             <br />
             <b id="formText">Beschreibung</b>
             <br />
-            <Input
-              type="text"
+            <DataInput
               placeholder="text"
               name="text"
               onChange={this.updateInput}
-              className="Input"
             />
             <br />
             <b id="formText">Link</b>
             <br />
-            <Input
-              type="text"
+            <DataInput
               placeholder="https://www.youtube.com/watch?v=example"
               name="link"
               onChange={this.updateInput}
-              className="Input"
             />
             <br />
             <b id="formText">Ort</b>
             <br />
-            <Input
-              type="text"
+            <DataInput
               placeholder="Ort"
               name="ort"
               onChange={this.updateInput}
-              className="Input"
             />
             <br />
             <b id="formText">Tags</b>
             <br />
-            <Input
-              type="text"
+            <DataInput
               name="tags"
               placeholder="Tag1, Tag2 ..."
               onChange={this.updateInput}
-              className="Input"
             />
             <br />
           </FormControl>

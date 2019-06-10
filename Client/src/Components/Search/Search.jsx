@@ -1,7 +1,7 @@
 import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import { StartButton, NormalButton } from "/src/Components/StyledButton";
-import SearchBar from "./SearchBar";
+import SearchBar from "../StyledInput/StyledInput";
 import "/src/Components/Search/Search.css";
 
 export class Search extends React.Component {
@@ -26,6 +26,7 @@ export class Search extends React.Component {
           <div id="searchDiv">
             <SearchBar
               type="text"
+              placeholder="Search..."
               className="SearchBarInSearch"
               onChange={this.updateSearch}
               onKeyDown={e => {
@@ -74,6 +75,7 @@ export class SearchHeader extends React.Component {
           <li>
             <SearchBar
               type="text"
+              placeholder="Search..."
               onChange={this.updateSearch}
               onKeyDown={e => {
                 if (e.key === "Enter") this.action(this.state.search);

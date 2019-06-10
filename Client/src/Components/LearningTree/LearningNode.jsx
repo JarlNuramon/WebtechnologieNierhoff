@@ -1,6 +1,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import SteppedLineTo from "react-lineto";
+
 export default class LearningNode extends React.Component {
   static propTypes = {
     root: PropTypes.object.isRequired,

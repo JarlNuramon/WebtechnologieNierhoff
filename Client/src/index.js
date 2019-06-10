@@ -10,7 +10,7 @@ import { Thread } from "./Thread";
 import { FeedThread } from "./Components/Feed/FeedThread";
 import LogoIcon from "/public/Pictures/Logo.png";
 import { FullPageLogin } from "./Components/Login.jsx";
-import { NormalButton } from "./Components/StyledButton.jsx";
+import { NormalButton } from "./Components/StyledButton/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";

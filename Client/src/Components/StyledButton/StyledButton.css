@@ -1,0 +1,31 @@
+#normalButton,
+#charButton,
+#startButton {
+  border-radius: 1px;
+  border: 0px;
+  height: 40px;
+  padding: 0 30px;
+}
+#normalButton {
+  background: rgba(25, 157, 116, 1);
+  color: black;
+}
+#charButton {
+  background: transparent;
+  color: rgba(25, 157, 116, 1);
+}
+#startButton {
+  background: rgba(25, 157, 116, 0);
+  border: 1px;
+  border-color: rgba(25, 157, 116, 1);
+  border-style: solid;
+  color: rgba(25, 157, 116, 1);
+}
+#shareButton {
+  width: 0px;
+}
+#normalButton label,
+#charButton label,
+#startButton label {
+  text-transform: capitalize;
+}
