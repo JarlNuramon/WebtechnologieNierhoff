@@ -1,3 +1,4 @@
+/* Header */
 .root {
   padding-bottom: 64px;
 }
@@ -33,4 +34,32 @@
 #toolLi {
   list-style-type: none;
   margin: 0;
+}
+
+/* WritePopUp */
+.Modal {
+  width: 50vw;
+  padding: 10px;
+  background-color: #212121;
+  transform: translate(50%, 25%);
+}
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.Input {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 3px;
+  border: 0px;
+  color: black;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  margin: left;
+}
+.Input::after {
+  border-bottom-color: rgba(25, 157, 116, 1);
 }
