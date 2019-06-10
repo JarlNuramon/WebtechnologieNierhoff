@@ -1,0 +1,13 @@
+#Input {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 1px;
+  border: 0px;
+  color: black;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  min-width: -webkit-fill-available;
+  min-width: -moz-available;
+}
+.Input::after {
+  border-bottom-color: rgba(25, 157, 116, 1) !important;
+}
