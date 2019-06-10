@@ -1,7 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 import ReactModal from "react-modal";
-import { ExitButton, AddButton } from "./Components/StyledButton";
+import { ExitButton, AddButton } from "./Components/StyledButton/StyledButton";
 const customStyles = {
   content: {
     top: "50%",

@@ -16,7 +16,8 @@
 #searchHeader ul {
   width: 100%;
   display: inline-flex;
-  margin: 0;
+  margin: 0px;
+  padding-left: 0px !important;
 }
 #searchHeader li {
   width: 100%;
