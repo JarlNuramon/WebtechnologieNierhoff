@@ -6,7 +6,7 @@ export class FilterItem extends React.Component {
     super(props);
     this.searchAction = props.searchAction;
     this.name = props.name;
-    this.id = props.id;
+    this.id = "test";
   }
 
   render() {

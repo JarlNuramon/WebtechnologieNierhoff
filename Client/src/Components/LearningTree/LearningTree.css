@@ -4,6 +4,9 @@
 }
 .tree {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 26px;
 }
 
 #children {
