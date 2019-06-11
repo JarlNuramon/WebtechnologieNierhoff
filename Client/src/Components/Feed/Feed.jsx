@@ -31,7 +31,7 @@ export class Feed extends React.Component {
     return (
       <div id="feedRoot">
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {this.feedPictures.map(feedPicture => feedPicture)}
+          {this.feedPictures}
         </ScrollView>
       </div>
     );

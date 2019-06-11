@@ -1,6 +1,7 @@
 import React from "react";
 import ReactModal from "react-modal";
 import ThreadPost from "./ThreadPost";
+import { ExitButton } from "./../StyledButton/StyledButton";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import "./tab.css";
 
@@ -14,7 +15,8 @@ const customStyles = {
     backgroundColor: "#212121",
     transform: "translate(-50%, -50%)",
     color: "white",
-    width: "50vw"
+    width: "50vw",
+    minHeight: "550.8px"
   },
   text: {
     height: "100px",
@@ -59,6 +61,9 @@ export class Thread extends React.Component {
           style={customStyles}
           onRequestClose={this.onclick}
         >
+          <div id="ButtonModal">
+            <ExitButton onClick={this.onclick} id="Exit" />
+          </div>
           <Tabs>
             <TabList>
               <Tab>Post</Tab>
