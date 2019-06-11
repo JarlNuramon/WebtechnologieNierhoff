@@ -9,7 +9,7 @@ import { Search } from "./Components/Search/Search";
 import { Thread } from "./Components/Thread/Thread.jsx";
 import { FeedThread } from "./Components/Feed/FeedThread";
 import LogoIcon from "./Pictures/Logo.png";
-import { FullPageLogin } from "./Components/Login.jsx";
+import { Login } from "./Components/Login.jsx";
 import { NormalButton } from "./Components/StyledButton/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
@@ -142,7 +142,7 @@ class App extends React.Component {
         </div>
       );
     if (this.state.page === "login") {
-      return <FullPageLogin />;
+      return <Login actionToStart={this.returnToStartPage}/>;
     }
   }
 
