@@ -9,7 +9,7 @@ import { Search } from "./Components/Search/Search";
 import { Thread } from "./Components/Thread/Thread.jsx";
 import { FeedThread } from "./Components/Feed/FeedThread";
 import LogoIcon from "./Pictures/Logo.png";
-import { Login } from "./Components/Login.jsx";
+import { Login } from "./Components/Login/Login.jsx";
 import { NormalButton } from "./Components/StyledButton/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
