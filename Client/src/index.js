@@ -10,7 +10,10 @@ import { Thread } from "/src//Components/Thread/Thread";
 import { FeedThread } from "/src//Components/Feed/FeedThread";
 import LogoIcon from "/public/Pictures/Logo.png";
 import { FullPageLogin } from "/src//Components/Login.jsx";
-import { NormalButton } from "/src//Components/StyledButton/StyledButton.jsx";
+import {
+  NormalButton,
+  TreeButton
+} from "/src//Components/StyledButton/StyledButton.jsx";
 import { Filter } from "/src//Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "/src/Components/LearningTree/LearningTree.jsx";
@@ -145,41 +148,47 @@ class App extends React.Component {
 
   checkIfisPartOfTree(id) {
     let json = require("/src/LearningStack.json");
+    let treeIds = [];
     for (var i = 0; i < json.Stack.length; i++) {
-      if (json.Stack[i].video_id === id) return json.Stack[i].id;
+      if (json.Stack[i].video_id === id) treeIds.push(json.Stack[i].id);
     }
-    return -1;
+    if (treeIds.length >= 1) return treeIds;
+    return [-1];
   }
+  treeProccessing = id => {
+    console.log(id);
+    this.tree = (
+      <LearningTree
+        id={id}
+        openThread={this.treeClick}
+        showModal={this}
+        close={this.closeTree}
+      />
+    );
+    this.setState({ showPostModal: false });
+    this.forceUpdate();
+    this.setState({ isOpenTreeModal: true });
+  };
   proceedClick(id) {
     let tree = this.checkIfisPartOfTree(id);
     console.log(tree);
-    if (tree !== -1) {
-      this.tree = (
-        <LearningTree
-          id={tree}
-          openThread={this.treeClick}
-          showModal={this}
-          close={this.closeTree}
-        />
-      );
-      this.treeComponent = (
-        <NormalButton
+    if (tree[0] !== -1) {
+      var treeComponent = tree.map(element => (
+        <TreeButton
           text="Tree"
+          key={element}
+          id={element}
           className="Treemaker"
-          onClick={e => {
-            this.setState({ showPostModal: false });
-            this.forceUpdate();
-            this.setState({ isOpenTreeModal: true });
-          }}
+          onClick={this.treeProccessing}
         />
-      );
+      ));
     }
     this.postPopUp = (
       <Thread
         id={id}
         showModal={this}
         handleCloseModal={this.handleClosePostModal}
-        tree={this.treeComponent}
+        tree={treeComponent}
       />
     );
     this.setState({ showPostModal: true });
