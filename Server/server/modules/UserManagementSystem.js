@@ -41,10 +41,12 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Jep oder Nope
 
 /api/user
+    GET CALL
+
     Input Parameter:
         user, token //user must be of group "admin"
     Return:
-        (Alle User ohne Hash und Salt) oder (Nope)
+        Array (Alle User ohne Hash und Salt) oder (Nope)
 
 /api/user/demote
     Input Parameter:
@@ -188,43 +190,32 @@ module.exports = app => {
             logger.sendDebug("[UMS][POST /api/user/promote] called without required parameters.")
         }
     })
+
     app.get("/api/user", (req, res) => {
         if (req.body.user !== undefined && req.body.token !== undefined) {
-            ff.validateAdminSession(req.body.user, req.body.token).then(result => {
-                if (result) {
+            ff.validateAdminSession(req.body.user, req.body.token).then(adminUser=> {
+                if (adminUser) {
                     UserDB.selectData({}).then(result => {
-                        let filteredResult = undefined;
-                        let notFirstTime = false;
+                        let filteredResult = [];
                         result.forEach((element) => {
-                            if (notFirstTime) {
-                                filteredResult = filteredResult.concat([{
-                                    _id: element._id,
-                                    name: element.name,
-                                    group: element.group,
-                                    __v: element.__v
-                                }])
-                            } else {
-                                filteredResult = [{
-                                    _id: element._id,
-                                    name: element.name,
-                                    group: element.group,
-                                    __v: element.__v
-                                }];
-                                notFirstTime = !notFirstTime;
-                            }
+                            filteredResult.push({
+                                _id: element._id,
+                                name: element.name,
+                                group: element.group
+                            })
                         });
                         res.send(filteredResult);
-                        logger.sendDebug('[UMS][POST /api/user] User "' + req.body.user + '" wanted to see all Users!"');
+                        logger.sendDebug('[UMS][GET /api/user] User "' + req.body.user + '" got all Users!"');
                     });
                 } else {
-                    logger.sendDebug("[UMS][POST /api/user] User " + req.body.user + " wanted to see all Users but something went wrong!");
+                    logger.sendDebug("[UMS][GET /api/user] User " + req.body.user + " wanted to see all Users but he is not an Admin-User or wrong login!");
                 }
             });
         } else {
-            logger.sendDebug('[UMS][POST /api/user] FAILED because Invalid user/token.');
-            res.send("Nope");
+            logger.sendDebug('[UMS][GET /api/user] FAILED because missing username and / or token.');
         }
     });
+
     app.post("/api/user/demote", (req, res) => {
         if (req.body.demoteUser !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateDozentSession(req.body.user, req.body.token).then(result => {
