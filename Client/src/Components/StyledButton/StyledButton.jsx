@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import ShareIcon from "/public/Pictures/share.png";
-import LogoIcon from "/public/Pictures/Logo.png";
+import ShareIcon from "./../../Pictures/share.png";
+import LogoIcon from "./../../Pictures/Logo.png";
 import StarBorder from "@material-ui/icons/StarBorder";
 import "./StyledButton.css";
 

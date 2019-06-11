@@ -29,7 +29,7 @@ export default class LearningTree extends React.Component {
   };
 
   findTreeNodes(id) {
-    let json = require("/src/LearningStack.json");
+    let json = require("./../../LearningStack.json");
     const nodes = [];
     for (var i = 0; i < json.Stack.length; i++) {
       if (json.Stack[i].id === id) nodes.push(json.Stack[i]);

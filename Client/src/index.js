@@ -3,21 +3,21 @@ import ReactDOM from "react-dom";
 import ReactModal from "react-modal";
 import "./Post.json";
 import "./styles.css";
-import { Feed } from "/src//Components/Feed/Feed";
-import Header from "/src//Components/Header/Header";
-import { Search } from "/src//Components/Search/Search";
-import { Thread } from "/src//Components/Thread/Thread";
-import { FeedThread } from "/src//Components/Feed/FeedThread";
-import LogoIcon from "/public/Pictures/Logo.png";
-import { FullPageLogin } from "/src//Components/Login.jsx";
-import {
-  NormalButton,
-  TreeButton
-} from "/src//Components/StyledButton/StyledButton.jsx";
-import { Filter } from "/src//Components/Filter/Filter";
+import { Feed } from "./Components/Feed/Feed";
+import Header from "./Components/Header/Header";
+import { Search } from "./Components/Search/Search";
+import { Thread } from "./Components/Thread/Thread.jsx";
+import { FeedThread } from "./Components/Feed/FeedThread";
+import LogoIcon from "./Pictures/Logo.png";
+import { FullPageLogin } from "./Components/Login.jsx";
+import { NormalButton } from "./Components/StyledButton/StyledButton.jsx";
+import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
-import LearningTree from "/src/Components/LearningTree/LearningTree.jsx";
+import LearningTree from "./Components/LearningTree/LearningTree.jsx";
+import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
+
 ReactModal.setAppElement("#root");
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -147,7 +147,7 @@ class App extends React.Component {
   }
 
   checkIfisPartOfTree(id) {
-    let json = require("/src/LearningStack.json");
+    let json = require("./LearningStack.json");
     let treeIds = [];
     for (var i = 0; i < json.Stack.length; i++) {
       if (json.Stack[i].video_id === id) treeIds.push(json.Stack[i].id);
