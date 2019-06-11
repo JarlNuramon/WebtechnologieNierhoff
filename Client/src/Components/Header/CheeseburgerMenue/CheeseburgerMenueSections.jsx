@@ -11,7 +11,7 @@ export class Menue extends React.Component {
   constructor(props) {
     super(props);
     //TODO integration SECTIONS
-    let json = require("/src/Section.json");
+    let json = require("./../../../Section.json");
     this.root = this.getRootSections(json);
     this.menue = [];
     this.search = props.search;

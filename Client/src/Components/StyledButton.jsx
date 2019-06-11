@@ -1,8 +1,8 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
-import ShareIcon from "/public/Pictures/share.png";
-import LogoIcon from "/public/Pictures/Logo.png";
+import ShareIcon from "./../Pictures/share.png";
+import LogoIcon from "./../Pictures/Logo.png";
 import StarBorder from "@material-ui/icons/StarBorder";
 
 const StyledButton = withStyles({
@@ -61,7 +61,7 @@ export function ExitButton(props) {
   );
 }
 /**
- * Gives you the standardlayout of PidVid exit buttons
+ * Gives you the standardlayout of PidVid  Favorite buttons
  * @param onClick Has onClick for the onClick exit function
  */
 export function AddButton(props) {

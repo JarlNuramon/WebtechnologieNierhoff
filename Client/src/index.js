@@ -8,8 +8,8 @@ import Header from "./Components/Header/Header";
 import { Search } from "./Components/Search/Search";
 import { Thread } from "./Thread";
 import { FeedThread } from "./Components/Feed/FeedThread";
-import LogoIcon from "/public/Pictures/Logo.png";
-import { FullPageLogin } from "./Components/Login.jsx";
+import LogoIcon from "./Pictures/Logo.png";
+import { Login } from "./Components/Login.jsx";
 import { NormalButton } from "./Components/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
@@ -70,7 +70,6 @@ class App extends React.Component {
     this.setState({
       showFilter: !this.state.showFilter
     });
-    console.log("bin in switchFilter");
   }
   returnFavorite() {
     //TODO: Server soll hier alle fav. Videos zurück geben.
@@ -95,7 +94,7 @@ class App extends React.Component {
           </Collapse>
           {this.state.showPostModal ? this.postPopUp : ""}
           <div id="main">
-            <img src={LogoIcon} className="logoInMain" alt="logo" width="40%" />
+            {<img src={LogoIcon} className="logoInMain" alt="logo" width="40%" />}
             <Search action={this.searchStarted} filter={this.switchFilter} />
             <Feed onclick={this.proceedClick} />
           </div>
@@ -124,7 +123,7 @@ class App extends React.Component {
         </div>
       );
     if (this.state.page === "login") {
-      return <FullPageLogin />;
+      return <Login actionToStart={this.returnToStartPage}/>;
     }
   }
   proceedClick(id) {

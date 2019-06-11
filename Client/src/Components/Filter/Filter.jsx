@@ -22,7 +22,7 @@ export class Filter extends React.Component {
 
     this.searchAction = props.searchAction;
     //TODO integration get all Sections
-    let json = require("/src/data.json");
+    let json = require("./../../data.json");
     this.t = json.Filter;
 
     this.datum = ["Letzte Stunde", "Heute", "Diese Woche", "Dieses Jahr"];

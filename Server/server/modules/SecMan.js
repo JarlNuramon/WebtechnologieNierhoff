@@ -22,7 +22,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
             All sections
 
     DELETE /api/section
-        //Can only delete a Section when this Section hse no children
+        //Can only delete a Section when this Section has no children
         Input Parameter:
             section_id -> ObjectID
 	        user -> String //Name of an admin user

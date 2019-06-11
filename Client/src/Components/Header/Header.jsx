@@ -10,7 +10,7 @@ import Menu from "@material-ui/core/Menu";
 import { WritePopUp } from "./WritePopUp";
 import { ToStartPage } from "./ToStartPage";
 import CheeseburgerMenu from "./CheeseburgerMenue/CheeseburgerMenue";
-import { SearchHeader } from "/src/Components/Search/Search";
+import { SearchHeader } from "./../Search/Search.jsx";
 import "./Header.css";
 
 /*

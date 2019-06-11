@@ -1,8 +1,8 @@
 import React from "react";
 import FormControl from "@material-ui/core/FormControl";
-import { StartButton, NormalButton } from "/src/Components/StyledButton";
+import { StartButton, NormalButton } from "./../StyledButton";
 import SearchBar from "./SearchBar";
-import "/src/Components/Search/Search.css";
+import "./Search.css";
 export class Search extends React.Component {
   state = {
     search: ""

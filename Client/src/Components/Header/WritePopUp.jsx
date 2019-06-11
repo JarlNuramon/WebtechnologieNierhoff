@@ -4,11 +4,11 @@ import {
   NormalButton,
   ExitButton,
   ShareButton
-} from "/src/Components/StyledButton";
+} from "./../StyledButton";
 import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
-import "/src/Author.json";
+import "./Author.json";
 const customStyles = {
   content: {
     top: "50%",
@@ -38,6 +38,10 @@ const StyledInput = withStyles({
   }
 })(Input);
 
+const restServer = "http://localhost:300"; //die url des rest servers
+
+
+
 export class WritePopUp extends React.Component {
   constructor(props) {
     super(props);
@@ -46,6 +50,7 @@ export class WritePopUp extends React.Component {
     this.handleOpenModal = props.handleOpenModal;
     this.updateInput = this.updateInput.bind(this);
     this.post = this.post.bind(this);
+
     this.state = {
       title: "",
       link: "",
@@ -53,6 +58,50 @@ export class WritePopUp extends React.Component {
       tags: "",
       ort: ""
     };
+  }
+  static getCookie(){
+    var cookieList = (document.cookie) ? document.cookie.split(';') : [];
+    var cookieValues = {};
+    for (var i = 0, n = cookieList.length; i !== n; ++i) {
+      var cookie = cookieList[i];
+      var f = cookie.indexOf('=');
+      if (f >= 0) {
+        var cookieName = cookie.substring(0, f);
+        var cookieValue = cookie.substring(f + 1);
+
+        console.log ("cookieName=" + cookieName + " cookieValue=" + cookieValue);
+
+        if (!cookieValues.hasOwnProperty(cookieName)) {
+          cookieValues[cookieName] = cookieValue;
+        }
+      }
+    }
+    return cookieValues;
+  }
+  //@TODO: section hardcode entfernen
+  post(){
+    var cookieList = this.getCookie();
+    fetch(restServer + "/api/post", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify({
+        title: this.state.title,
+        link: this.state.link,
+        text: this.state.text,
+        post_date: new Date(),
+        tags: this.state.tags.split(","),
+        author: cookieList[" user"],
+        section: this.state.session,
+        token: cookieList[" token"]
+      })
+    });
   }
 
   render() {
@@ -125,8 +174,10 @@ export class WritePopUp extends React.Component {
       </div>
     );
   }
+
+  /*
   post() {
-    let json = require("/src/Post.json");
+    let json = require("./../../Post.json");
     var post = {
       id: Math.random()
         .toString(16)
@@ -146,22 +197,25 @@ export class WritePopUp extends React.Component {
     json.Posts.push(post);
     this.handleCloseModal();
   }
-  lookForAuthorId(str) {
-    let json = require("/src/Author.json");
+
+
+  lookForAuthorId(str){
+    let json = require("./Author.json");
     for (var i = 0; i < json.Author.length; i++) {
       if (json.Author[i].name === str) {
         return json.Author[i].id;
       }
     }
   }
-  lookForSectionId(str) {
-    let json = require("/src/Section.json");
+  lookForSectionId(str){
+    let json = require("./../../Section.json");
     for (var i = 0; i < json.Section.length; i++) {
       if (json.Section[i].name === str) {
         return json.Section[i].id;
       }
     }
   }
+*/
 
   updateInput(e) {
     const target = e.target;
@@ -171,4 +225,27 @@ export class WritePopUp extends React.Component {
       [name]: value
     });
   }
-}
+
+
+  //TODO: Aufräumen
+  /*lookForSectionId(Section){
+  fetch(restServer + "/api/section", {
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    referrer: "no-referrer"
+  })
+      .then(response => {
+        return response.text();
+      })
+      .then(response => {
+        if (response !== "Nope") {
+          console.log(response);
+        } else {
+          console.log(response);
+        }
+      });
+}*/
+  }
+

@@ -26,7 +26,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Input Parameter:
             postid
             user
-            tokrn
+            token
         Return:
             Jep or Nope
 */
