@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 import {
   ExitButton,
   AddButton
-} from "/src/Components/StyledButton/StyledButton";
+} from "./../StyledButton/StyledButton";
 import PropTypes from "prop-types";
 export default class ThreadPost extends React.Component {
   render() {

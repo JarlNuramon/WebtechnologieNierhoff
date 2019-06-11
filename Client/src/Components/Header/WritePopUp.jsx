@@ -7,7 +7,7 @@ import {
 } from "../StyledButton/StyledButton";
 import DataInput from "../StyledInput/StyledInput";
 import FormControl from "@material-ui/core/FormControl";
-import "/src/Author.json";
+import "./../../Author.json";
 import "./Header.css";
 
 export class WritePopUp extends React.Component {
@@ -94,7 +94,7 @@ export class WritePopUp extends React.Component {
     );
   }
   post() {
-    let json = require("/src/Post.json");
+    let json = require("./../../Post.json");
     var post = {
       id: Math.random()
         .toString(16)
@@ -115,7 +115,7 @@ export class WritePopUp extends React.Component {
     this.handleCloseModal();
   }
   lookForAuthorId(str) {
-    let json = require("/src/Author.json");
+    let json = require("./../../Author.json");
     for (var i = 0; i < json.Author.length; i++) {
       if (json.Author[i].name === str) {
         return json.Author[i].id;
@@ -123,7 +123,7 @@ export class WritePopUp extends React.Component {
     }
   }
   lookForSectionId(str) {
-    let json = require("/src/Section.json");
+    let json = require("./../../Section.json");
     for (var i = 0; i < json.Section.length; i++) {
       if (json.Section[i].name === str) {
         return json.Section[i].id;
