@@ -7,7 +7,7 @@ class DB {
     * */
     constructor(database) {
         this.mongoose = require("mongoose");
-        this.mongoose.connect('mongodb://localhost:27017/' + database, {useNewUrlParser: true});
+        this.mongoose.connect('mongodb://116.203.153.106:27017/' + database, {useNewUrlParser: true});
         this.db = this.mongoose.connection;
         this.db.on('error', ()=>log.sendError("DB-Connection refused"));
         this.db.once('open', () => {
