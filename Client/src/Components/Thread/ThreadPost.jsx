@@ -1,24 +1,24 @@
 import React from "react";
 import YouTube from "react-youtube";
-import {
-  ExitButton,
-  AddButton
-} from "./../StyledButton/StyledButton";
+import { AddButton } from "./../StyledButton/StyledButton";
 import PropTypes from "prop-types";
 export default class ThreadPost extends React.Component {
   render() {
     return (
       <div>
-        <ExitButton onClick={this.props.onclick} />
-        <AddButton onClick={this.props.fav} />
-        {this.props.post["title"]}
-        <YouTube
-          videoId={this.props.post["link"].replace(
-            "https://www.youtube.com/watch?v=",
-            ""
-          )}
-          onReady={this.props._onReady}
-        />
+        <div id="ButtonModal">
+          <AddButton onClick={this.props.fav} />
+        </div>
+        <center>
+          <div className="title">{this.props.post["title"]}</div>
+          <YouTube
+            videoId={this.props.post["link"].replace(
+              "https://www.youtube.com/watch?v=",
+              ""
+            )}
+            onReady={this.props._onReady}
+          />
+        </center>
         <div style={this.props.customStyles.text}>
           {this.props.post["text"]}{" "}
         </div>

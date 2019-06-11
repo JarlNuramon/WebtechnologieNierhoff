@@ -58,7 +58,11 @@ export class FeedThread extends React.Component {
         );
     }
     console.log(rows.length);
-    return <div className="result">{rows}</div>;
+    return (
+      <center>
+        <div className="result">{rows}</div>
+      </center>
+    );
   }
 }
 //TODO INTEGRATION tag search
