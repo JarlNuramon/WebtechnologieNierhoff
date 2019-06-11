@@ -40,11 +40,10 @@ class App extends React.Component {
     this.setState({ isOpenTreeModal: false });
   };
 
-    treeClick = id => {
+  treeClick = id => {
     this.setState({ isOpenTreeModal: false });
     this.proceedClick(id);
   };
-
 
   returnOpenModal() {
     return this.state.showModal;
@@ -68,7 +67,8 @@ class App extends React.Component {
     this.render();
   }
   searchStarted = searchValue => {
-    this.setState({ search: searchValue, page: "thread" });
+    console.log(searchValue);
+    this.setState({ search: searchValue, showFilter: false, page: "thread" });
     this.render();
   };
   returnToStartPage() {
@@ -108,6 +108,7 @@ class App extends React.Component {
             <Filter searchAction={this.searchStarted} />
           </Collapse>
           {this.state.showPostModal ? this.postPopUp : ""}
+          {this.state.isOpenTreeModal ? this.tree : ""}
           <div id="main">
             <img src={LogoIcon} className="logoInMain" alt="logo" width="40%" />
             <Search action={this.searchStarted} filter={this.switchFilter} />
@@ -129,18 +130,7 @@ class App extends React.Component {
           </Collapse>
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
-
-            <LearningTree
-              id={1}
-              openThread={this.treeClick}
-              showModal={this}
-              close={this.closeTree}
-            />
-            <NormalButton
-              text="Tree"
-              className="Treemaker"
-              onClick={e => this.setState({ isOpenTreeModal: true })}
-            />
+            {this.state.isOpenTreeModal ? this.tree : ""}
             <FeedThread
               key="Search"
               search={this.state.search}
@@ -153,13 +143,43 @@ class App extends React.Component {
       return <FullPageLogin />;
     }
   }
+  checkIfisPartOfTree(id) {
+    let json = require("./LearningStack.json");
+    for (var i = 0; i < json.Stack.length; i++) {
+      if (json.Stack[i].video_id === id) return json.Stack[i].id;
+    }
+    return -1;
+  }
   proceedClick(id) {
-    console.log(id);
+    let tree = this.checkIfisPartOfTree(id);
+    console.log(tree);
+    if (tree !== -1) {
+      this.tree = (
+        <LearningTree
+          id={tree}
+          openThread={this.treeClick}
+          showModal={this}
+          close={this.closeTree}
+        />
+      );
+      this.treeComponent = (
+        <NormalButton
+          text="Tree"
+          className="Treemaker"
+          onClick={e => {
+            this.setState({ showPostModal: false });
+            this.forceUpdate();
+            this.setState({ isOpenTreeModal: true });
+          }}
+        />
+      );
+    }
     this.postPopUp = (
       <Thread
         id={id}
         showModal={this}
         handleCloseModal={this.handleClosePostModal}
+        tree={this.treeComponent}
       />
     );
     this.setState({ showPostModal: true });

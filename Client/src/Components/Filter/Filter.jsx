@@ -20,7 +20,7 @@ export class Filter extends React.Component {
   constructor(props) {
     super(props);
 
-    this.searchAction = props.searchAction;
+    this.searchAction = props.searchAction.bind(this);
     //TODO integration get all Sections
     let json = require("/src/data.json");
     this.t = json.Filter;

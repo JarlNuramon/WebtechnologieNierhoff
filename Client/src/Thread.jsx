@@ -29,6 +29,7 @@ export class Thread extends React.Component {
     this.onclick = props.handleCloseModal;
     this.handleCloseModal = props.handleCloseModal;
     this.handleOpenModal = props.handleOpenModal;
+    this.tree = props.tree;
   }
   /**
    * Bei klick auf den Button AddButton wird ein Objekt erstellt.
@@ -65,6 +66,7 @@ export class Thread extends React.Component {
             onReady={this._onReady}
           />
           <div style={customStyles.text}>{this.post["text"]} </div>
+          {this.tree === null ? "" : this.tree}
         </ReactModal>
       </div>
     );
