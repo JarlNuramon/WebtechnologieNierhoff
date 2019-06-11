@@ -17,6 +17,7 @@
     "react-modal": "3.8.1",
     "react-native-web": "0.11.4",
     "react-responsive-modal": "4.0.1",
+    "react-tabs": "3.0.0",
     "react-youtube": "7.9.0"
   },
   "devDependencies": {

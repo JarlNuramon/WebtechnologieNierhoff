@@ -1,7 +1,9 @@
 import React from "react";
-import YouTube from "react-youtube";
 import ReactModal from "react-modal";
-import { ExitButton, AddButton } from "./Components/StyledButton/StyledButton";
+import ThreadPost from "./ThreadPost";
+import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
+import "./tab.css";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -9,7 +11,7 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    "background-color": "#212121",
+    backgroundColor: "#212121",
     transform: "translate(-50%, -50%)",
     color: "white",
     width: "50vw"
@@ -24,6 +26,9 @@ const customStyles = {
 export class Thread extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      key: "Post"
+    };
     this.main = props.showModal;
     this.post = this.getPost(props.id);
     this.onclick = props.handleCloseModal;
@@ -54,19 +59,22 @@ export class Thread extends React.Component {
           style={customStyles}
           onRequestClose={this.onclick}
         >
-          <ExitButton onClick={this.onclick} />
-          <AddButton onClick={this.fav} />
-          {this.post["title"]}
-          <YouTube
-            videoId={this.post["link"].replace(
-              "https://www.youtube.com/watch?v=",
-              ""
-            )}
-            opts={this.opts}
-            onReady={this._onReady}
-          />
-          <div style={customStyles.text}>{this.post["text"]} </div>
-          {this.tree === null ? "" : this.tree}
+          <Tabs>
+            <TabList>
+              <Tab>Post</Tab>
+              <Tab>More</Tab>
+            </TabList>
+            <TabPanel>
+              <ThreadPost
+                onclick={this.onclick}
+                fav={this.fav}
+                _onReady={this._onReady}
+                customStyles={customStyles}
+                post={this.post}
+              />
+            </TabPanel>
+            <TabPanel>{this.tree}</TabPanel>
+          </Tabs>
         </ReactModal>
       </div>
     );
@@ -77,13 +85,13 @@ export class Thread extends React.Component {
   }
 
   //TODO: Integration Request info for one Post
-  getPost(id) {
-    let json = require("./Post.json");
+  getPost = id => {
+    let json = require("/src/Post.json");
     for (var i = 0; i < json.Posts.length; i++) {
       if (json.Posts[i].id === id) {
         return json.Posts[i];
       }
     }
     return;
-  }
+  };
 }
