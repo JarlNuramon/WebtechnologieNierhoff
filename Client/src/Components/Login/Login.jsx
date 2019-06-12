@@ -1,8 +1,9 @@
 import React from "react";
-import "./css/Login.css";
-import { NormalButton } from "./StyledButton/StyledButton";
+import "./Login.css";
+import { NormalButton } from "./../StyledButton/StyledButton";
 import Input from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
+import LogoIcon from "../../Pictures/Logo.png";
 
 const StyledInput = withStyles({
   root: {
@@ -116,32 +117,33 @@ export class Login extends React.Component {
   render() {
     let statusObject = undefined;
     if (this.state.status === "false") {
-      statusObject = <div>Benutzername oder Password falsch!</div>;
-    } else if (this.state.status === "loading") {
+          statusObject = <div className="false">Bitte Benutzername und Passwort eingeben. Beide Felder berücksichtigen die Groß-/Kleinschreibung.</div>;
+    }
+    if (this.state.status === "loading") {
       statusObject = <div>Success...</div>;
       this.toStartPage();
     }
     return (
-        <div width={"25%"} height={"50%"} className={"FullPageLogin"}>
+
+        <div className={"FullPageLogin"}>
+          <img src={LogoIcon} className="logoInMain" alt="logo" width="40%" />
           <div
               style={{ width: this.state.width, height: this.state.height }}
               className={"Login"}
           >
             <div className={"LoginInner"}>
-              <StyledInput
+                {statusObject}
+                <StyledInput
                   className={"FormItem"}
                   onChange={this.onChangeUser}
                   placeholder={"User name..."}
               />
-              <br />
               <StyledInput
                   className={"FormItem"}
                   onChange={this.onChangePass}
                   placeholder={"Password..."}
                   inputProps={{ type: "password" }}
               />
-              <br />
-              {statusObject}
               <NormalButton
                   text="login"
                   className={"FormItem"}

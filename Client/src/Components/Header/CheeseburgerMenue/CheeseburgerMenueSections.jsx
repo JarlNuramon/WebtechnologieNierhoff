@@ -25,7 +25,6 @@ export class Menue extends React.Component {
         .then(response => {
           if (response !== undefined) {
             return response
-           // this.json=response;
           } else {
             console.log("Error, no sections")
           }
@@ -48,7 +47,6 @@ export class Menue extends React.Component {
           />
       );
     }
-    this.forceUpdate();
   }
 
   constructor(props) {
