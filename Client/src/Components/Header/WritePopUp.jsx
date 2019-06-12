@@ -8,7 +8,8 @@ import {
 import DataInput from "../StyledInput/StyledInput";
 import FormControl from "@material-ui/core/FormControl";
 import "./Header.css";
-
+import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
+import { TreeWrite } from "./TreeWrite.jsx";
 const restServer = "http://localhost:300"; //die url des rest servers
 
 export class WritePopUp extends React.Component {
@@ -85,57 +86,68 @@ export class WritePopUp extends React.Component {
           onRequestClose={this.handleCloseModal}
         >
           <ExitButton onClick={this.handleCloseModal} /> <br />
-          <FormControl className="Posting">
-            <br />
-            <b id="formText">Titel</b>
-            <br />
-            <DataInput
-              placeholder="title"
-              name="title"
-              onChange={this.updateInput}
-            />
-            <br />
-            <b id="formText">Beschreibung</b>
-            <br />
-            <DataInput
-              placeholder="text"
-              name="text"
-              onChange={this.updateInput}
-            />
-            <br />
-            <b id="formText">Link</b>
-            <br />
-            <DataInput
-              placeholder="https://www.youtube.com/watch?v=example"
-              name="link"
-              onChange={this.updateInput}
-            />
-            <br />
-            <b id="formText">Ort</b>
-            <br />
-            <DataInput
-              placeholder="Ort"
-              name="ort"
-              onChange={this.updateInput}
-            />
-            <br />
-            <b id="formText">Tags</b>
-            <br />
-            <DataInput
-              name="tags"
-              placeholder="Tag1, Tag2 ..."
-              onChange={this.updateInput}
-            />
-            <br />
-          </FormControl>
-          <br />
-          <div>
-            <NormalButton
-              text="Posten"
-              onClick={this.post}
-              className="Poster"
-            />
-          </div>
+          <Tabs>
+            <TabList>
+              <Tab>Post</Tab>
+              <Tab>Tree</Tab>
+            </TabList>
+            <TabPanel>
+              <FormControl className="Posting">
+                <br />
+                <b id="formText">Titel</b>
+                <br />
+                <DataInput
+                  placeholder="title"
+                  name="title"
+                  onChange={this.updateInput}
+                />
+                <br />
+                <b id="formText">Beschreibung</b>
+                <br />
+                <DataInput
+                  placeholder="text"
+                  name="text"
+                  onChange={this.updateInput}
+                />
+                <br />
+                <b id="formText">Link</b>
+                <br />
+                <DataInput
+                  placeholder="https://www.youtube.com/watch?v=example"
+                  name="link"
+                  onChange={this.updateInput}
+                />
+                <br />
+                <b id="formText">Ort</b>
+                <br />
+                <DataInput
+                  placeholder="Ort"
+                  name="ort"
+                  onChange={this.updateInput}
+                />
+                <br />
+                <b id="formText">Tags</b>
+                <br />
+                <DataInput
+                  name="tags"
+                  placeholder="Tag1, Tag2 ..."
+                  onChange={this.updateInput}
+                />
+                <br />
+              </FormControl>
+              <br />
+              <div>
+                <NormalButton
+                  text="Posten"
+                  onClick={this.post}
+                  className="Poster"
+                />
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <TreeWrite />
+            </TabPanel>
+          </Tabs>
         </ReactModal>
       </div>
     );
