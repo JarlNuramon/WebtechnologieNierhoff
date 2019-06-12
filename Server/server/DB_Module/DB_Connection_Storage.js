@@ -6,7 +6,7 @@ const Schemata = require('../DB_Module/Schemata')
 
 const DB = require('../DB_Module/DB')
 
-const  UserDB = new DB(Config.DBNAME)
+const UserDB = new DB(Config.DBNAME)
 UserDB.setSchema(Schemata.users, 'users')
 
 const LoginDB = new DB(Config.DBNAME)
@@ -21,10 +21,14 @@ SectionDB.setSchema(Schemata.sections, 'sections')
 const FavoriteDB = new DB(Config.DBNAME)
 FavoriteDB.setSchema(Schemata.favorites, 'favorites')
 
+const filteredDataDB = new DB(Config.DBNAME)
+filteredDataDB.setSchema(Schemata.silter, 'silter');
+
 module.exports = {
     UserDB,
     LoginDB,
     PostDB,
     SectionDB,
-    FavoriteDB
+    FavoriteDB,
+    filteredDataDB
 }
