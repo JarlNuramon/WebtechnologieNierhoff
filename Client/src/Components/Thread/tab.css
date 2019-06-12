@@ -7,6 +7,16 @@
   margin: 0 0 10px;
   padding: 0;
 }
+#ButtonModal {
+  float: left;
+}
+.title {
+  font-size: 40px;
+  text-align: left;
+  padding: 0px;
+  margin-top: -2px;
+  position: static;
+}
 
 .react-tabs__tab {
   display: inline-block;
