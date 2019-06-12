@@ -45,7 +45,12 @@ class Schemata {
     static favorites = {
         user: String,
         fav: [mongoose.Schema.Types.ObjectId]
-    }
+    };
+    static silter = {
+        Fachbereich: [],
+        Fach: [],
+        Kurs: []
+    };
 }
 
 module.exports = Schemata;

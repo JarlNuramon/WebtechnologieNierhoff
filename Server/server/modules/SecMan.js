@@ -31,12 +31,13 @@ Diese Datei stellt folgende REST api's zur verfügung:
 const ff = require('./FunnyFunctions')
 const logger = require('./Logger')
 const SectionDB = require('../DB_Module/DB_Connection_Storage').SectionDB
+const filteredDataDB = require("../DB_Module/DB_Connection_Storage").filteredDataDB;
 
 module.exports = app => {
     app.post("/api/section", (req, res) => {
-        if(req.body.name !== undefined && req.body.relevant_tags !== undefined && req.body.parent_id !== undefined && req.body.dozent_id && req.body.user !== undefined && req.body.token !== undefined) {
-            if(ff.checkObjectIdFormat(req.body.parent_id) || req.body.parent_id == null) {
-                if(ff.checkObjectIdFormatArray(req.body.dozent_id)) {
+        if (req.body.name !== undefined && req.body.relevant_tags !== undefined && req.body.parent_id !== undefined && req.body.dozent_id && req.body.user !== undefined && req.body.token !== undefined) {
+            if (ff.checkObjectIdFormat(req.body.parent_id) || req.body.parent_id == null) {
+                if (ff.checkObjectIdFormatArray(req.body.dozent_id)) {
                     ff.validateAdminSession(req.body.user, req.body.token).then(admin => {
                         if (admin) {
                             SectionDB.postData({
@@ -66,10 +67,10 @@ module.exports = app => {
     })
 
     app.get("/api/section/id/:sectionid", (req, res) => {
-        if(req.params.sectionid !== undefined) {
-            if(ff.checkObjectIdFormat(req.params.sectionid)) {
+        if (req.params.sectionid !== undefined) {
+            if (ff.checkObjectIdFormat(req.params.sectionid)) {
                 SectionDB.selectData({_id: req.params.sectionid}).then(result => {
-                    if(result.length == 1) {
+                    if (result.length == 1) {
                         res.send(result[0])
                     } else {
                         res.send("Nope")
@@ -91,12 +92,12 @@ module.exports = app => {
     })
 
     app.delete("/api/section", (req, res) => {
-        if(req.body.section_id !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
-            if(ff.checkObjectIdFormat(req.body.section_id)) {
+        if (req.body.section_id !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            if (ff.checkObjectIdFormat(req.body.section_id)) {
                 ff.validateAdminSession(req.body.user, req.body.token).then(user => {
                     if (user) {
                         SectionDB.selectData({parent_id: req.body.section_id}).then(childSections => {
-                            if(childSections.length == 0) {
+                            if (childSections.length == 0) {
                                 SectionDB.delData({_id: req.body.section_id})
                                 res.send("Jep")
                                 logger.sendDebug("[SECMAN][DELETE /api/section] User: " + req.body.user + ' deleted Section: "' + req.body.section_id + '".')
@@ -117,5 +118,11 @@ module.exports = app => {
         } else {
             logger.sendDebug("[SECMAN][DELETE /api/section] called without required parameter.")
         }
+    })
+
+    app.get("/api/section/filteredData", (req, res) => {
+        filteredDataDB.selectData(null).then((data) => {
+            res.send(data);
+        });
     })
 }

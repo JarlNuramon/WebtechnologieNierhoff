@@ -1,10 +1,9 @@
 import React from "react";
 import ReactModal from "react-modal";
 import {
-    NormalButton,
-    ExitButton,
-    ShareButton
-
+  NormalButton,
+  ExitButton,
+  ShareButton
 } from "../StyledButton/StyledButton";
 import DataInput from "../StyledInput/StyledInput";
 import FormControl from "@material-ui/core/FormControl";
@@ -12,138 +11,137 @@ import "./Header.css";
 
 const restServer = "http://localhost:300"; //die url des rest servers
 
-
-
 export class WritePopUp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.main = props.showModal;
-        this.handleCloseModal = props.handleCloseModal;
-        this.handleOpenModal = props.handleOpenModal;
-        this.updateInput = this.updateInput.bind(this);
-        this.post = this.post.bind(this);
+  constructor(props) {
+    super(props);
+    this.main = props.showModal;
+    this.handleCloseModal = props.handleCloseModal;
+    this.handleOpenModal = props.handleOpenModal;
+    this.updateInput = this.updateInput.bind(this);
+    this.post = this.post.bind(this);
 
-        this.state = {
-            title: "",
-            link: "",
-            text: "",
-            tags: "",
-            ort: ""
-        };
-    }
-    static getCookie(){
-        var cookieList = (document.cookie) ? document.cookie.split(';') : [];
-        var cookieValues = {};
-        for (var i = 0, n = cookieList.length; i !== n; ++i) {
-            var cookie = cookieList[i];
-            var f = cookie.indexOf('=');
-            if (f >= 0) {
-                var cookieName = cookie.substring(0, f);
-                var cookieValue = cookie.substring(f + 1);
+    this.state = {
+      title: "",
+      link: "",
+      text: "",
+      tags: "",
+      ort: ""
+    };
+  }
+  static getCookie() {
+    var cookieList = document.cookie ? document.cookie.split(";") : [];
+    var cookieValues = {};
+    for (var i = 0, n = cookieList.length; i !== n; ++i) {
+      var cookie = cookieList[i];
+      var f = cookie.indexOf("=");
+      if (f >= 0) {
+        var cookieName = cookie.substring(0, f);
+        var cookieValue = cookie.substring(f + 1);
 
-                console.log ("cookieName=" + cookieName + " cookieValue=" + cookieValue);
+        console.log("cookieName=" + cookieName + " cookieValue=" + cookieValue);
 
-                if (!cookieValues.hasOwnProperty(cookieName)) {
-                    cookieValues[cookieName] = cookieValue;
-                }
-            }
+        if (!cookieValues.hasOwnProperty(cookieName)) {
+          cookieValues[cookieName] = cookieValue;
         }
-        return cookieValues;
+      }
     }
-    //@TODO: section hardcode entfernen
-    post(){
-        var cookieList = this.getCookie();
-        fetch(restServer + "/api/post", {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            redirect: "follow",
-            referrer: "no-referrer",
-            body: JSON.stringify({
-                title: this.state.title,
-                link: this.state.link,
-                text: this.state.text,
-                post_date: new Date(),
-                tags: this.state.tags.split(","),
-                author: cookieList[" user"],
-                section: this.state.session,
-                token: cookieList[" token"]
-            })
-        });
-    }
+    return cookieValues;
+  }
+  //@TODO: section hardcode entfernen
+  post() {
+    var cookieList = this.getCookie();
+    fetch(restServer + "/api/post", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify({
+        title: this.state.title,
+        link: this.state.link,
+        text: this.state.text,
+        post_date: new Date(),
+        tags: this.state.tags.split(","),
+        author: cookieList[" user"],
+        section: this.state.session,
+        token: cookieList[" token"]
+      })
+    });
+  }
 
-    render() {
-        return (
-            <div id="Write">
-                <ShareButton onClick={this.handleOpenModal} />
-                <ReactModal
-                    isOpen={this.main.state.showWriteModal}
-                    contentLabel="Minimal Modal Example"
-                    className="Modal"
-                    overlayClassName="Overlay"
-                >
-                    <ExitButton onClick={this.handleCloseModal} /> <br />
-                    <FormControl className="Posting">
-                        <br />
-                        <b id="formText">Titel</b>
-                        <br />
-                        <DataInput
-                            placeholder="title"
-                            name="title"
-                            onChange={this.updateInput}
-                        />
-                        <br />
-                        <b id="formText">Beschreibung</b>
-                        <br />
-                        <DataInput
-                            placeholder="text"
-                            name="text"
-                            onChange={this.updateInput}
-                        />
-                        <br />
-                        <b id="formText">Link</b>
-                        <br />
-                        <DataInput
-                            placeholder="https://www.youtube.com/watch?v=example"
-                            name="link"
-                            onChange={this.updateInput}
-                        />
-                        <br />
-                        <b id="formText">Ort</b>
-                        <br />
-                        <DataInput
-                            placeholder="Ort"
-                            name="ort"
-                            onChange={this.updateInput}
-                        />
-                        <br />
-                        <b id="formText">Tags</b>
-                        <br />
-                        <DataInput
-                            name="tags"
-                            placeholder="Tag1, Tag2 ..."
-                            onChange={this.updateInput}
-                        />
-                        <br />
-                    </FormControl>
-                    <br />
-                    <div>
-                        <NormalButton
-                            text="Posten"
-                            onClick={this.post}
-                            className="Poster"
-                        />
-                    </div>
-                </ReactModal>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div id="Write">
+        <ShareButton onClick={this.handleOpenModal} />
+        <ReactModal
+          isOpen={this.main.state.showWriteModal}
+          contentLabel="Minimal Modal Example"
+          className="Modal"
+          overlayClassName="Overlay"
+          onRequestClose={this.handleCloseModal}
+        >
+          <ExitButton onClick={this.handleCloseModal} /> <br />
+          <FormControl className="Posting">
+            <br />
+            <b id="formText">Titel</b>
+            <br />
+            <DataInput
+              placeholder="title"
+              name="title"
+              onChange={this.updateInput}
+            />
+            <br />
+            <b id="formText">Beschreibung</b>
+            <br />
+            <DataInput
+              placeholder="text"
+              name="text"
+              onChange={this.updateInput}
+            />
+            <br />
+            <b id="formText">Link</b>
+            <br />
+            <DataInput
+              placeholder="https://www.youtube.com/watch?v=example"
+              name="link"
+              onChange={this.updateInput}
+            />
+            <br />
+            <b id="formText">Ort</b>
+            <br />
+            <DataInput
+              placeholder="Ort"
+              name="ort"
+              onChange={this.updateInput}
+            />
+            <br />
+            <b id="formText">Tags</b>
+            <br />
+            <DataInput
+              name="tags"
+              placeholder="Tag1, Tag2 ..."
+              onChange={this.updateInput}
+            />
+            <br />
+          </FormControl>
+          <br />
+          <div>
+            <NormalButton
+              text="Posten"
+              onClick={this.post}
+              className="Poster"
+            />
+          </div>
+        </ReactModal>
+      </div>
+    );
+  }
 
-    /*
+  /*
     post() {
       let json = require("./../../Post.json");
       var post = {
@@ -185,18 +183,17 @@ export class WritePopUp extends React.Component {
     }
   */
 
-    updateInput(e) {
-        const target = e.target;
-        const value = target.value;
-        const name = target.name;
-        this.setState({
-            [name]: value
-        });
-    }
+  updateInput(e) {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
 
-
-    //TODO: Aufräumen
-    /*lookForSectionId(Section){
+  //TODO: Aufräumen
+  /*lookForSectionId(Section){
     fetch(restServer + "/api/section", {
       method: "GET",
       mode: "cors",
@@ -216,4 +213,3 @@ export class WritePopUp extends React.Component {
         });
   }*/
 }
-
