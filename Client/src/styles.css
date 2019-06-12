@@ -4,7 +4,9 @@
   text-align: center;
   font-family: "Roboto", Helvetica;
 }
-
+body {
+  background-color: rgba(39, 57, 61, 1);
+}
 .Feed {
   height: 50%;
   display: flex;
