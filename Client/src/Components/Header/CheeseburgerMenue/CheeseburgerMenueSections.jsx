@@ -10,41 +10,38 @@ import "./CheeseburgerMenue.css";
 const restServer = "http://localhost:300"; //die url des rest servers
 
 export class Menue extends React.Component {
-
-
-  async getSection(){
+  async getSection() {
     return fetch(restServer + "/api/section", {
       method: "GET",
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin"
     })
-        .then(response => {
-          return response.json();
-        })
-        .then(response => {
-          if (response !== undefined) {
-            return response
-          } else {
-            console.log("Error, no sections")
-          }
-        })
+      .then(response => {
+        return response.json();
+      })
+      .then(response => {
+        if (response !== undefined) {
+          return response;
+        } else {
+          console.log("Error, no sections");
+        }
+      });
   }
 
   async lel() {
     this.json = await this.getSection();
-
-    this.root = this.getRootSections(this.json)
+    this.root = this.getRootSections(this.json);
     for (var i = 0; i < this.root.length; i++) {
       var x = this.root[i];
       this.menue.push(
-          <MenueItem
-              name={x.name}
-              id={x._id}
-              child={this.getChildSections(x._id, this.json)}
-              key={x._id}
-              onclick={this.handleClick}
-          />
+        <MenueItem
+          name={x.name}
+          id={x._id}
+          child={this.getChildSections(x._id, this.json)}
+          key={x._id}
+          onclick={this.handleClick}
+        />
       );
     }
   }
@@ -53,7 +50,7 @@ export class Menue extends React.Component {
     super(props);
     //TODO integration SECTIONS
 
-    this.loading =true;
+    this.loading = true;
 
     this.menue = [];
     this.search = props.search;
@@ -61,8 +58,6 @@ export class Menue extends React.Component {
     this.handleClick = props.handleClick;
     this.lel();
   }
-
-
 
   render() {
     return (
