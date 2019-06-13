@@ -28,7 +28,7 @@ export class WritePopUp extends React.Component {
       ort: ""
     };
   }
-  static getCookie() {
+  async getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
     var cookieValues = {};
     for (var i = 0, n = cookieList.length; i !== n; ++i) {
@@ -50,8 +50,16 @@ export class WritePopUp extends React.Component {
 
   //TODO: section hardcode entfernen
   //TODO: Aufräumen
-  post() {
-    var cookieList = this.getCookie();
+  async post() {
+    var cookieList = await this.getCookie();
+    console.log(this.state.title);
+    console.log(this.state.link);
+    console.log(this.state.text);
+    console.log(new Date());
+    console.log( this.state.tags.split(","));
+    console.log(cookieList[" user"]);
+
+
     fetch(restServer + "/api/post", {
       method: "POST",
       mode: "cors",
@@ -69,7 +77,7 @@ export class WritePopUp extends React.Component {
         post_date: new Date(),
         tags: this.state.tags.split(","),
         author: cookieList[" user"],
-        section: this.state.session,
+        section: "5d013a9d41716443303d37fc",
         token: cookieList[" token"]
       })
     });
@@ -143,6 +151,8 @@ export class WritePopUp extends React.Component {
     );
   }
 
+
+  //TODO: Entfernen
   /*
     post() {
       let json = require("./../../Post.json");
