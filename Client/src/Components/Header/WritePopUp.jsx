@@ -47,7 +47,9 @@ export class WritePopUp extends React.Component {
     }
     return cookieValues;
   }
-  //@TODO: section hardcode entfernen
+
+  //TODO: section hardcode entfernen
+  //TODO: Aufräumen
   post() {
     var cookieList = this.getCookie();
     fetch(restServer + "/api/post", {
@@ -192,24 +194,4 @@ export class WritePopUp extends React.Component {
     });
   }
 
-  //TODO: Aufräumen
-  /*lookForSectionId(Section){
-    fetch(restServer + "/api/section", {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      referrer: "no-referrer"
-    })
-        .then(response => {
-          return response.text();
-        })
-        .then(response => {
-          if (response !== "Nope") {
-            console.log(response);
-          } else {
-            console.log(response);
-          }
-        });
-  }*/
 }

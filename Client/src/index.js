@@ -69,7 +69,7 @@ class App extends React.Component {
     this.setState({ page: "login" });
     this.render();
   }
-  searchStarted = searchValue => {
+    searchStarted = searchValue => {
     this.setState({ search: searchValue, showFilter: false, page: "thread" });
     this.render();
   };

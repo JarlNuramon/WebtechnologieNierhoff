@@ -5,6 +5,9 @@ import { ExitButton } from "./../StyledButton/StyledButton";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import "./tab.css";
 
+const restServer = "http://localhost:300"; //die url des rest servers
+const axios = require('axios')
+
 const customStyles = {
   content: {
     top: "50%",
@@ -29,7 +32,9 @@ export class Thread extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      key: "Post"
+      key: "Post",
+      fav: false,
+      id: 1
     };
     this.main = props.showModal;
     this.post = this.getPost(props.id);
@@ -38,19 +43,48 @@ export class Thread extends React.Component {
     this.handleOpenModal = props.handleOpenModal;
     this.tree = props.tree;
   }
+
+  async getCookie() {
+    var cookieList = document.cookie ? document.cookie.split(";") : [];
+    var cookieValues = {};
+    for (var i = 0, n = cookieList.length; i !== n; ++i) {
+      var cookie = cookieList[i];
+      var f = cookie.indexOf("=");
+      if (f >= 0) {
+        var cookieName = cookie.substring(0, f);
+        var cookieValue = cookie.substring(f + 1);
+        //console.log("cookieName=" + cookieName + " cookieValue=" + cookieValue);
+        if (!cookieValues.hasOwnProperty(cookieName)) {
+          cookieValues[cookieName] = cookieValue;
+        }
+      }
+    }
+    return cookieValues;
+  }
+
   /**
    * Bei klick auf den Button AddButton wird ein Objekt erstellt.
    * Dieses besitzt die ID des Posts aus der Post.json
    * und das Datum beim erstellen.
    */
   fav = () => {
-    var favObj = {
-      id: this.post.id,
-      date: new Date()
-    };
-    //TODO: Integration
-    console.log(favObj);
-  };
+    this.id = this.post.id;
+    this.setFav()
+  }
+
+  async  setFav() {
+    try {
+      var cookieList = await this.getCookie();
+      await axios.post(restServer + "/api/favorite", {
+        post_id: this.id,
+        user: cookieList[" user"],
+        token: cookieList[" token"],
+      });
+      this.setState({fav:true});
+    } catch(error) {
+      console.log(error);
+    }
+  }
 
   render() {
     return (
