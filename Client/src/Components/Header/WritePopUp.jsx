@@ -29,7 +29,7 @@ export class WritePopUp extends React.Component {
       ort: ""
     };
   }
-  static getCookie() {
+  async getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
     var cookieValues = {};
     for (var i = 0, n = cookieList.length; i !== n; ++i) {
@@ -48,9 +48,19 @@ export class WritePopUp extends React.Component {
     }
     return cookieValues;
   }
-  //@TODO: section hardcode entfernen
-  post() {
-    var cookieList = this.getCookie();
+
+  //TODO: section hardcode entfernen
+  //TODO: Aufräumen
+  async post() {
+    var cookieList = await this.getCookie();
+    console.log(this.state.title);
+    console.log(this.state.link);
+    console.log(this.state.text);
+    console.log(new Date());
+    console.log( this.state.tags.split(","));
+    console.log(cookieList[" user"]);
+
+
     fetch(restServer + "/api/post", {
       method: "POST",
       mode: "cors",
@@ -68,7 +78,7 @@ export class WritePopUp extends React.Component {
         post_date: new Date(),
         tags: this.state.tags.split(","),
         author: cookieList[" user"],
-        section: this.state.session,
+        section: "5d013a9d41716443303d37fc",
         token: cookieList[" token"]
       })
     });
@@ -153,6 +163,8 @@ export class WritePopUp extends React.Component {
     );
   }
 
+
+  //TODO: Entfernen
   /*
     post() {
       let json = require("./../../Post.json");
@@ -204,24 +216,4 @@ export class WritePopUp extends React.Component {
     });
   }
 
-  //TODO: Aufräumen
-  /*lookForSectionId(Section){
-    fetch(restServer + "/api/section", {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      referrer: "no-referrer"
-    })
-        .then(response => {
-          return response.text();
-        })
-        .then(response => {
-          if (response !== "Nope") {
-            console.log(response);
-          } else {
-            console.log(response);
-          }
-        });
-  }*/
 }
