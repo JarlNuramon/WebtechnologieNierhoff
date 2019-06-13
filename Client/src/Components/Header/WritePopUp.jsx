@@ -76,7 +76,7 @@ export class WritePopUp extends React.Component {
 
   render() {
     return (
-      <div id="Write">
+      <div>
         <ShareButton onClick={this.handleOpenModal} />
         <ReactModal
           isOpen={this.main.state.showWriteModal}
