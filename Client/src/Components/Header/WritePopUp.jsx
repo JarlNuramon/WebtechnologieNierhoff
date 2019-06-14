@@ -61,7 +61,6 @@ export class WritePopUp extends React.Component {
     console.log(this.state.tags);
     console.log(cookieList[" user"]);
 
-
     fetch(restServer + "/api/post", {
       method: "POST",
       mode: "cors",
@@ -133,7 +132,7 @@ export class WritePopUp extends React.Component {
                   onChange={this.updateInput}
                 />
                 <br />
-                <b id="formText">Ort</b>
+                <b id="formText">Section</b>
                 <br />
                 <DataInput
                   placeholder="Ort"
@@ -215,5 +214,4 @@ export class WritePopUp extends React.Component {
       [name]: value
     });
   }
-
 }

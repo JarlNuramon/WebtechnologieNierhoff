@@ -3,6 +3,20 @@
   margin: 0;
   padding: 0;
 }
+
+.TagScrollView {
+  min-height: 44px;
+}
+
+.TagScrollView .normalButton {
+  margin: 2px !important;
+}
+
 .Selected .normalButton {
-  background: red !important;
+  background: rgb(0, 155, 255) !important;
+}
+
+.TagSearch {
+  width: -moz-available;
+  width: -webkit-fill-available;
 }

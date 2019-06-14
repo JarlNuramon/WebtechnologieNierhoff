@@ -80,12 +80,12 @@ export default class TagManager extends React.Component {
     return (
       <>
         <ul className="Taglist">
-          <li>
+          <li className="TagSearch">
             <SearchBar
               className="TagSearch"
               onChange={this.updateTagBar}
               name="tags"
-              placeholder="Tag1, Tag2 ..."
+              placeholder="Search Tag"
             />
           </li>
           <li>
@@ -100,7 +100,11 @@ export default class TagManager extends React.Component {
             />
           </li>
         </ul>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          className="TagScrollView"
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
           {this.state.tags.map(tag =>
             tag.isClicked === true ? (
               <div className="Selected">{tag.button}</div>
