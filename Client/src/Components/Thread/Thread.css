@@ -1,4 +1,8 @@
 .Modal {
+  text-color: white;
+  line-height: 100px;
+  overflow-y: auto;
+  overflow-x: none;
   width: 50vw;
   min-height: 550.8px;
   padding: 10px;

@@ -17,6 +17,6 @@
 }
 
 .TagSearch {
-  width: -moz-available;
   width: -webkit-fill-available;
+  width: -moz-available;
 }

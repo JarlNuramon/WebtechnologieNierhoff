@@ -13,15 +13,7 @@ const customStyles = {
     top: "50%",
     left: "50%",
     right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    color: "white"
-  },
-  text: {
-    height: "100px",
-    overflowY: "auto",
-    overflowX: "none",
-    color: "white"
+    bottom: "auto"
   }
 };
 export class Thread extends React.Component {
