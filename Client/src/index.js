@@ -14,6 +14,8 @@ import { NormalButton } from "./Components/StyledButton/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
+import TagManager from "./Components/TagManager/TagManager.jsx";
+
 ReactModal.setAppElement("#root");
 class App extends React.Component {
   constructor(props) {
@@ -117,6 +119,7 @@ class App extends React.Component {
             className="Login"
             onClick={e => this.setLogin()}
           />
+          <TagManager />
         </div>
       );
     if (this.state.page === "thread")

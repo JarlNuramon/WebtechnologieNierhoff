@@ -9,6 +9,7 @@ import DataInput from "../StyledInput/StyledInput";
 import FormControl from "@material-ui/core/FormControl";
 import "/src/Author.json";
 import "./Header.css";
+import TagManager from "../TagManager/TagManager.jsx";
 
 export class WritePopUp extends React.Component {
   constructor(props) {
@@ -22,11 +23,15 @@ export class WritePopUp extends React.Component {
       title: "",
       link: "",
       text: "",
-      tags: "",
+      tags: [],
       ort: ""
     };
   }
 
+  updateTags = tags => {
+    console.log(`Added new Tags ${tags}`);
+    this.setState({ tags: tags });
+  };
   render() {
     return (
       <div id="Write">
@@ -74,11 +79,7 @@ export class WritePopUp extends React.Component {
             <br />
             <b id="formText">Tags</b>
             <br />
-            <DataInput
-              name="tags"
-              placeholder="Tag1, Tag2 ..."
-              onChange={this.updateInput}
-            />
+            <TagManager onFinish={this.updateTags} />
             <br />
           </FormControl>
           <br />
@@ -103,7 +104,7 @@ export class WritePopUp extends React.Component {
       link: this.state.link,
       text: this.state.text,
       post_date: new Date(),
-      tags: this.state.tags.split(","),
+      tags: this.state.tags,
       author: "Jan Nierhoff",
       author_id: this.lookForAuthorId("Jan Nierhoff"),
       section_id: this.lookForSectionId(this.state.ort),
