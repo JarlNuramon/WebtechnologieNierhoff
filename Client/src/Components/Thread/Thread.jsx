@@ -8,22 +8,6 @@ import "./Thread.css";
 const axios = require("axios");
 const restServer = "http://localhost:300"; //die url des rest servers
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    color: "white"
-  },
-  text: {
-    height: "100px",
-    overflowY: "auto",
-    overflowX: "none",
-    color: "white"
-  }
-};
 export class Thread extends React.Component {
   constructor(props) {
     super(props);
@@ -117,7 +101,6 @@ export class Thread extends React.Component {
                 onclick={this.onclick}
                 fav={this.fav}
                 _onReady={this._onReady}
-                customStyles={customStyles}
                 postid={this.id}
               />
             </TabPanel>
