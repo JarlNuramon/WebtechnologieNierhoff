@@ -3,13 +3,10 @@ import ReactModal from "react-modal";
 import ThreadPost from "./ThreadPost";
 import { ExitButton } from "./../StyledButton/StyledButton";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
-import "./tab.css";
+import "./Thread.css";
 
-
-const axios = require('axios');
+const axios = require("axios");
 const restServer = "http://localhost:300"; //die url des rest servers
-
-
 
 const customStyles = {
   content: {
@@ -18,11 +15,7 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    backgroundColor: "#212121",
-    transform: "translate(-50%, -50%)",
-    color: "white",
-    width: "50vw",
-    minHeight: "550.8px"
+    color: "white"
   },
   text: {
     height: "100px",
@@ -75,8 +68,7 @@ export class Thread extends React.Component {
   fav = () => {
     this.id = this.post.id;
     this.setFav();
-  }
-
+  };
 
   //TODO: Favoriten button ändern wenn fav hinzugefühgt ist
   //      Zweites drücken entfernt den fav
@@ -88,27 +80,28 @@ export class Thread extends React.Component {
    * die Videoid, den Usernamen und den Token an die Api und setzt Favoriete
    * @returns {Promise<void>}
    */
-  async  setFav() {
-      try {
-        var cookieList = await this.getCookie();
-        await axios.post(restServer + "/api/favorite", {
-          "post_id": this.id,
-          "user": cookieList[" user"],
-          "token": cookieList[" token"]
-        });
-      } catch (error) {
-        console.log(error);
-      }
+  async setFav() {
+    try {
+      var cookieList = await this.getCookie();
+      await axios.post(restServer + "/api/favorite", {
+        post_id: this.id,
+        user: cookieList[" user"],
+        token: cookieList[" token"]
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
-    console.table("über dem render"+this.state.json);
+    console.table("über dem render" + this.state.json);
     return (
       <div class="Post">
         <ReactModal
           isOpen={this.main.state.showPostModal}
           contentLabel="Minimal Modal Example"
-          style={customStyles}
+          className="Modal"
+          overlayClassName="Overlay"
           onRequestClose={this.onclick}
         >
           <div id="ButtonModal">
@@ -121,11 +114,11 @@ export class Thread extends React.Component {
             </TabList>
             <TabPanel>
               <ThreadPost
-                  onclick={this.onclick}
-                  fav={this.fav}
-                  _onReady={this._onReady}
-                  customStyles={customStyles}
-                  postid={this.id}
+                onclick={this.onclick}
+                fav={this.fav}
+                _onReady={this._onReady}
+                customStyles={customStyles}
+                postid={this.id}
               />
             </TabPanel>
             <TabPanel>{this.tree}</TabPanel>
@@ -139,7 +132,6 @@ export class Thread extends React.Component {
     event.target.pauseVideo();
   }
 
-
   //TODO: Entfernen?
 
   /*getPost = id => {
@@ -151,5 +143,4 @@ export class Thread extends React.Component {
     }
     return;
   };*/
-
 }

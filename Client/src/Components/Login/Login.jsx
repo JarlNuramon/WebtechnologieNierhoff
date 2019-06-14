@@ -67,11 +67,11 @@ export class Login extends React.Component {
         })
         .then(response => {
           if (response !== "Nope") {
-            console.log(response);
-            document.cookie = "token=" + response + ";";
+            document.cookie = "token=" + JSON.parse(response).token + ";";
             document.cookie = "path=/;";
             document.cookie = "domain=" + thisDomain + ";"
             document.cookie = "user=" + this.state.user + ";";
+            document.cookie = "group=" + JSON.parse(response).group +";";
             this.setState({
               status: "loading"
             });

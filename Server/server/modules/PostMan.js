@@ -29,8 +29,13 @@ Diese Datei stellt folgende REST api's zur verfügung:
             tokrn
         Return:
             Jep or Nope
+
+    GET /api/post/newest
+        Return:
+            Newest videos as JSON Array.
 */
 const ff = require('./FunnyFunctions')
+const Config = require('../config')
 const logger = require('./Logger')
 const PostDB = require('../DB_Module/DB_Connection_Storage').PostDB
 const UserDB = require('../DB_Module/DB_Connection_Storage').UserDB
@@ -106,6 +111,16 @@ module.exports = app => {
         } else {
             logger.sendDebug("[POSTMAN][GET /api/post/search/:search] called without required parameter.")
         }
+    })
+
+    app.get("/api/post/newest", (req, res) => {
+        PostDB.selectData({}).then(posts => {
+            console.log(posts)
+            posts.sort((a, b) => {
+                return new Date(a.post_date) - new Date(b.post_date)
+            })
+            res.send(posts.slice(0, Config.FEED_LENGTH))
+        })
     })
 
     app.delete("/api/post", (req, res) => {
