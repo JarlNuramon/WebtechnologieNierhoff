@@ -3,6 +3,10 @@
 */
 module.exports = {
     DBNAME: "Pidvid",
+    DBUser: "mongo",
+    DBPass: "mongo1234",
+    DBUrl: "116.203.153.106",
+    DBPort: "27017",
     PORT: 300,
     TOKEN_LENGTH: 300,
     SALT_LENGTH: 40,
