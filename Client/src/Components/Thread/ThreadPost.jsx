@@ -24,20 +24,16 @@ export default class ThreadPost extends React.Component {
         this.getPost();
     }
 
-    //TODO: Integration Request info for one Post
+    //TODO: HARDCODE MIT DER ID ENTFERNEN
+    //      5d028fbc9f18f61f440c5247 durch this.id ersetzen
     getPost() {
-        console.log("bin in getPost")
         axios.get(restServer+"/api/post/id/5d028fbc9f18f61f440c5247").then(avc => {
-            console.log(avc.data);
             this.setState({json: avc.data});
 
         });
     };
 
   render() {
-      console.log("bin in ThreadPost")
-      console.log(this.id);
-      console.log(this.state.json);
       if(this.state.json !== null)
           return (
            <div>

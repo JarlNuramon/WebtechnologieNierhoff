@@ -39,7 +39,6 @@ export class Thread extends React.Component {
     this.handleCloseModal = props.handleCloseModal;
     this.handleOpenModal = props.handleOpenModal;
     this.tree = props.tree;
-    console.log("BIN IM CONSTRUCTOR");
   }
 
   async getCookie() {
@@ -94,7 +93,6 @@ export class Thread extends React.Component {
   }
 
   render() {
-    console.table("über dem render" + this.state.json);
     return (
       <div class="Post">
         <ReactModal
