@@ -17,10 +17,10 @@ export class Feed extends React.Component {
             id={x["id"]}
             onclick={props.onclick.bind(this)}
           />
-          <Text id="text">
+          <Text id="text" className="text">
             <h4>{x["title"]}</h4>
             <font size="1">by: {x["author"]}</font>
-            <p>{x["text"]}</p>
+            <p className="FeedP">{x["text"]}</p>
           </Text>
         </View>
       );
