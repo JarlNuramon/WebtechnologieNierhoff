@@ -72,7 +72,6 @@ export class Login extends React.Component {
             document.cookie = "path=/;";
             document.cookie = "domain=" + thisDomain + ";"
             document.cookie = "user=" + this.state.user + ";";
-            document.cookie = "gruppe=" +  this.state.gruppe + ";";
             this.setState({
               status: "loading"
             });
