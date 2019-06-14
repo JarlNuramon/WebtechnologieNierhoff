@@ -14,6 +14,7 @@ export default function Searchbar(props) {
       placeholder={props.placeholder}
       onChange={props.onChange}
       onKeyDown={props.onKeyDown}
+      inputProps={props.inputProps}
       fullWidth={true}
       id="Input"
       className="Input"

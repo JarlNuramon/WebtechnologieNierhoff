@@ -1,4 +1,7 @@
 .Modal {
+  color: white;
+  overflow-y: auto;
+  overflow-x: none;
   width: 50vw;
   min-height: 550.8px;
   padding: 10px;
@@ -13,6 +16,14 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.Text {
+  height: 100px;
+  overflow-y: auto;
+  overflow-x: none;
+  color: white;
+  bottom: auto;
 }
 
 .react-tabs {

@@ -80,3 +80,8 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(25, 157, 116, 1);
 }
+
+html {
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(39, 57, 61, 1) !important;
+  scrollbar-width: thin !important;
+}

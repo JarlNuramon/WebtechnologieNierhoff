@@ -6,6 +6,7 @@
 
 .TagScrollView {
   min-height: 44px;
+  scrollbar-width: none;
 }
 
 .TagScrollView .normalButton {
@@ -17,6 +18,6 @@
 }
 
 .TagSearch {
-  width: -moz-available;
   width: -webkit-fill-available;
+  width: -moz-available;
 }

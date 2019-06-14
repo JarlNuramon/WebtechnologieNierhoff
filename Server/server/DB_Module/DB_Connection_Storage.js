@@ -24,11 +24,19 @@ FavoriteDB.setSchema(Schemata.favorites, 'favorites')
 const filteredDataDB = new DB(Config.DBNAME)
 filteredDataDB.setSchema(Schemata.silter, 'silter');
 
+const TreeDB = new DB(Config.DBNAME)
+TreeDB.setSchema(Schemata.trees, 'trees')
+
+const TreeNodesDB = new DB(Config.DBNAME)
+TreeNodesDB.setSchema(Schemata.tree_nodes, 'tree_nodes')
+
 module.exports = {
     UserDB,
     LoginDB,
     PostDB,
     SectionDB,
     FavoriteDB,
-    filteredDataDB
+    filteredDataDB,
+    TreeDB,
+    TreeNodesDB
 }
