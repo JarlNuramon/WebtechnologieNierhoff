@@ -30,7 +30,11 @@ export class Feed extends React.Component {
   render() {
     return (
       <div id="feedRoot">
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          className="FeedScrollView"
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
           {this.feedPictures}
         </ScrollView>
       </div>
