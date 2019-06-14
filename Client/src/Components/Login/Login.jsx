@@ -67,10 +67,12 @@ export class Login extends React.Component {
         })
         .then(response => {
           if (response !== "Nope") {
+            console.log(response);
             document.cookie = "token=" + response + ";";
             document.cookie = "path=/;";
             document.cookie = "domain=" + thisDomain + ";"
             document.cookie = "user=" + this.state.user + ";";
+            document.cookie = "gruppe=" +  this.state.gruppe + ";";
             this.setState({
               status: "loading"
             });
@@ -92,9 +94,7 @@ export class Login extends React.Component {
       if (f >= 0) {
         var cookieName = cookie.substring(0, f);
         var cookieValue = cookie.substring(f + 1);
-
         console.log ("cookieName=" + cookieName + " cookieValue=" + cookieValue);
-
         if (!cookieValues.hasOwnProperty(cookieName)) {
           cookieValues[cookieName] = cookieValue;
         }

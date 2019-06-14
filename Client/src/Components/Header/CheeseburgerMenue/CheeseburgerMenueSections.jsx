@@ -33,7 +33,6 @@ export class Menue extends React.Component {
 
   async lel() {
     this.json = await this.getSection();
-
     this.root = this.getRootSections(this.json)
     for (var i = 0; i < this.root.length; i++) {
       var x = this.root[i];
@@ -51,10 +50,7 @@ export class Menue extends React.Component {
 
   constructor(props) {
     super(props);
-    //TODO integration SECTIONS
-
     this.loading =true;
-
     this.menue = [];
     this.search = props.search;
     this.searchFav = props.searchFav;
@@ -83,6 +79,7 @@ export class Menue extends React.Component {
       </div>
     );
   }
+
   getRootSections(json) {
     var root = [];
     for (var i = 0; i < json.length; i++) {
@@ -92,6 +89,7 @@ export class Menue extends React.Component {
     }
     return root;
   }
+
   getChildSections(id, json) {
     var child = [];
     for (var i = 0; i < json.length; i++) {
