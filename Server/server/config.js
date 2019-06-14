@@ -1,5 +1,6 @@
 /*
     Basic Server configuration
+
 */
 module.exports = {
     DBNAME: "Pidvid",
