@@ -22,7 +22,7 @@ export class Feed extends React.Component {
     }
 
   jsonToHTML(){
-        for (var i = 0; i < this.state.json.length; i++) {
+        for (var i = this.state.json.length-1; i >= 0; --i) {
             var x = this.state.json[i];
             this.setState(prevState => {
                     return {
