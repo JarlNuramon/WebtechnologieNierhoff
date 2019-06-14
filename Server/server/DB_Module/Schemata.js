@@ -57,7 +57,7 @@ class Schemata {
     static tree_nodes = {
         title: String,
         parent_id: mongoose.Schema.Types.ObjectId,
-        tree_id: mongoose.Schema.Types.ObjectId,
+        tree_name: String,
         video_id: mongoose.Schema.Types.ObjectId
     };
 }
