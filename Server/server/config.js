@@ -6,6 +6,7 @@ module.exports = {
     PORT: 300,
     TOKEN_LENGTH: 300,
     SALT_LENGTH: 40,
+    FEED_LENGTH: 5,
 
     MAX_ERROR_LOG_SIZE_IN_BYTES: 1500,
     ERROR_LOG_PATH: "./logs/error.txt",
