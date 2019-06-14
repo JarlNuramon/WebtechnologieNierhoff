@@ -27,10 +27,23 @@ Diese Datei stellt folgende REST api's zur verfügung:
             section_id -> ObjectID
 	        user -> String //Name of an admin user
 	        token -> String //Token of an admin user
+
+    GET /api/section/filteredData
+        Return:
+            Fixed Object
+        Input Parameter:
+            None
+
+    GET /api/tags
+        Return:
+            All Tags
+        Input Parameter:
+            None
 */
 const ff = require('./FunnyFunctions')
 const logger = require('./Logger')
 const SectionDB = require('../DB_Module/DB_Connection_Storage').SectionDB
+const PostDB = require("../DB_Module/DB_Connection_Storage").PostDB;
 const filteredDataDB = require("../DB_Module/DB_Connection_Storage").filteredDataDB;
 
 module.exports = app => {
@@ -122,7 +135,71 @@ module.exports = app => {
 
     app.get("/api/section/filteredData", (req, res) => {
         filteredDataDB.selectData(null).then((data) => {
-            res.send(data);
+            if (data.length === 0) {
+                res.send("Nope");
+                logger.sendDebug("[SECMAN][GET /api/section/filteredData] FAILED!");
+            } else {
+                res.send(data);
+                logger.sendDebug("[SECMAN][GET /api/section/filteredData] Someone called this!");
+            }
         });
-    })
+    });
+
+    app.get("/api/tags", (req, res) => {
+        const distinct = (value, index, self) => {
+            return self.indexOf(value) === index;
+        };
+        PostDB.selectData({}).then((postData) => {
+            SectionDB.selectData({}).then((sectionData) => {
+                let postDataTags = undefined;
+                let firstTime = true;
+                if (postData.length > 0) {
+                    postData.forEach((element) => {
+                        if (firstTime) {
+                            postDataTags = element["tags"];
+                            firstTime = !firstTime;
+                        } else
+                            postDataTags = postDataTags.concat(element["tags"]);
+                    });
+                    if (sectionData.length > 0) {
+                        let sectionDataTags = undefined;
+                        firstTime = !firstTime;
+                        sectionData.forEach((element) => {
+                            if (firstTime) {
+                                sectionDataTags = element["relevant_tags"];
+                                firstTime = !firstTime;
+                            } else
+                                sectionDataTags = sectionDataTags.concat(element["relevant_tags"]);
+                        });
+
+                        let unfilteredTags = postDataTags.concat(sectionDataTags);
+                        let filteredTags = unfilteredTags.filter(distinct);
+                        res.send(filteredTags);
+                        logger.sendDebug("[SECMAN][GET /api/tags] Someone got all tags!");
+                    } else {
+                        logger.sendDebug("[SECMAN][GET /api/tags] sectionData is empty but PostData not!");
+                        res.send(postDataTags.filter(distinct));
+                    }
+                } else {
+                    if (sectionData.length > 0) {
+                        let sectionDataTags = undefined;
+                        firstTime = !firstTime;
+                        sectionData.forEach((element) => {
+                            if (firstTime) {
+                                sectionDataTags = element["relevant_tags"];
+                                firstTime = !firstTime;
+                            } else
+                                sectionDataTags = sectionDataTags.concat(element["relevant_tags"]);
+                        });
+                        res.send(sectionDataTags.filter(distinct));
+                        logger.sendDebug("[SECMAN][GET /api/tags] postData is empty but sectionData not!");
+                    } else {
+                        res.send("Nope");
+                        logger.sendDebug("[SECMAN][GET /api/tags] There are no Tags!");
+
+                    }
+                }
+            });
+        });
+    });
 }
