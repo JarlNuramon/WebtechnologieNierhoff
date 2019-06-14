@@ -8,6 +8,11 @@
   align-content: center;
   width: 75%;
 }
+
+.FeedScrollView {
+  scrollbar-width: none;
+}
+
 .result {
   max-width: 1100px;
 }

@@ -6,6 +6,7 @@
 
 .TagScrollView {
   min-height: 44px;
+  scrollbar-width: none;
 }
 
 .TagScrollView .normalButton {
