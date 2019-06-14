@@ -1,3 +1,20 @@
+.Modal {
+  width: 50vw;
+  min-height: 550.8px;
+  padding: 10px;
+  background-color: #212121;
+  transform: translate(50%, 15%);
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .react-tabs {
   -webkit-tap-highlight-color: transparent;
 }
