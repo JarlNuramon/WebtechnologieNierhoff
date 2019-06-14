@@ -86,10 +86,12 @@ module.exports = app => {
         if (req.body.name !== undefined && req.body.pass !== undefined) {
             validateLogin(req.body.name, req.body.pass).then(userName => {
                 if (userName) {
-                    let token = generateToken(Config.TOKEN_LENGTH)
-                    loginUser(userName, token)
-                    res.send(token)
-                    logger.sendDebug('[UMS][POST /api/user/login] Login form User: "' + req.body.name + '".')
+                    UserDB.selectData({name: userName}).then(user => {
+                        let token = generateToken(Config.TOKEN_LENGTH)
+                        loginUser(userName, token)
+                        res.send({ group: user[0].group, token: token })
+                        logger.sendDebug('[UMS][POST /api/user/login] Login form User: "' + req.body.name + '".')
+                    })
                 } else {
                     res.send("Nope")
                     logger.sendDebug('[UMS][POST /api/user/login] Login FAILD with Username: "' + req.body.name + '".')
