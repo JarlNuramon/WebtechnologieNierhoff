@@ -7,29 +7,58 @@ import ListItemText from "@material-ui/core/ListItemText";
 import StarBorder from "@material-ui/icons/StarBorder";
 import "./CheeseburgerMenue.css";
 
+const restServer = "http://localhost:300"; //die url des rest servers
+
 export class Menue extends React.Component {
-  constructor(props) {
-    super(props);
-    //TODO integration SECTIONS
-    let json = require("/src/Section.json");
-    this.root = this.getRootSections(json);
-    this.menue = [];
-    this.search = props.search;
-    this.searchFav = props.searchFav;
-    this.handleClick = props.handleClick;
+  async getSection() {
+    return fetch(restServer + "/api/section", {
+      method: "GET",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin"
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(response => {
+        if (response !== undefined) {
+          return response;
+        } else {
+          console.log("Error, no sections");
+        }
+      });
+  }
+
+  async lel() {
+    this.json = await this.getSection();
+    this.root = this.getRootSections(this.json);
     for (var i = 0; i < this.root.length; i++) {
       var x = this.root[i];
       this.menue.push(
         <MenueItem
           name={x.name}
-          id={x.id}
-          child={this.getChildSections(x.id, json)}
-          key={x.id}
+          id={x._id}
+          child={this.getChildSections(x._id, this.json)}
+          key={x._id}
           onclick={this.handleClick}
         />
       );
     }
   }
+
+  constructor(props) {
+    super(props);
+    //TODO integration SECTIONS
+
+    this.loading = true;
+
+    this.menue = [];
+    this.search = props.search;
+    this.searchFav = props.searchFav;
+    this.handleClick = props.handleClick;
+    this.lel();
+  }
+
   render() {
     return (
       <div>
@@ -51,23 +80,23 @@ export class Menue extends React.Component {
   }
   getRootSections(json) {
     var root = [];
-    for (var i = 0; i < json.Section.length; i++) {
-      if (json.Section[i].parent_id === null) {
-        root.push(json.Section[i]);
+    for (var i = 0; i < json.length; i++) {
+      if (json[i].parent_id === null) {
+        root.push(json[i]);
       }
     }
     return root;
   }
   getChildSections(id, json) {
     var child = [];
-    for (var i = 0; i < json.Section.length; i++) {
-      if (json.Section[i].parent_id === id)
+    for (var i = 0; i < json.length; i++) {
+      if (json[i].parent_id === id)
         child.push(
           <MenueItem
-            name={json.Section[i].name}
-            id={json.Section[i].id}
-            key={json.Section[i].id}
-            child={this.getChildSections(json.Section[i].id, json)}
+            name={json[i].name}
+            id={json[i]._id}
+            key={json[i]._id}
+            child={this.getChildSections(json[i]._id, json)}
             onclick={this.handleClick}
           />
         );

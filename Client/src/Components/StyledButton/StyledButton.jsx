@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import ShareIcon from "/public/Pictures/share.png";
-import LogoIcon from "/public/Pictures/Logo.png";
+import ShareIcon from "./../../Pictures/share.png";
+import LogoIcon from "./../../Pictures/Logo.png";
 import StarBorder from "@material-ui/icons/StarBorder";
 import "./StyledButton.css";
 
@@ -17,6 +17,23 @@ export function NormalButton(props) {
     </Button>
   );
 }
+
+export class TreeButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.id = props.id;
+    this.onClick = props.onClick;
+    this.text = props.text;
+  }
+  render() {
+    return (
+      <Button onClick={e => this.onClick(this.id)} className="normalButton">
+        {this.text}
+      </Button>
+    );
+  }
+}
+
 /**
  * Gives you the standardlayout of PidVid exit buttons
  * @param onClick Has onClick for the onClick exit function

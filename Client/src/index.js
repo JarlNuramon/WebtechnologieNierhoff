@@ -6,17 +6,19 @@ import "./styles.css";
 import { Feed } from "./Components/Feed/Feed";
 import Header from "./Components/Header/Header";
 import { Search } from "./Components/Search/Search";
-import { Thread } from "./Thread";
+import { Thread } from "./Components/Thread/Thread.jsx";
 import { FeedThread } from "./Components/Feed/FeedThread";
-import LogoIcon from "/public/Pictures/Logo.png";
-import { FullPageLogin } from "./Components/Login.jsx";
+import LogoIcon from "./Pictures/Logo.png";
+import { Login } from "./Components/Login/Login.jsx";
 import { NormalButton } from "./Components/StyledButton/StyledButton.jsx";
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 import TagManager from "./Components/TagManager/TagManager.jsx";
+import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
 
 ReactModal.setAppElement("#root");
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -68,8 +70,8 @@ class App extends React.Component {
     this.setState({ page: "login" });
     this.render();
   }
-  searchStarted = searchValue => {
-    this.setState({ search: searchValue, page: "thread" });
+    searchStarted = searchValue => {
+    this.setState({ search: searchValue, showFilter: false, page: "thread" });
     this.render();
   };
   returnToStartPage() {
@@ -109,6 +111,7 @@ class App extends React.Component {
             <Filter searchAction={this.searchStarted} />
           </Collapse>
           {this.state.showPostModal ? this.postPopUp : ""}
+          {this.state.isOpenTreeModal ? this.tree : ""}
           <div id="main">
             <img src={LogoIcon} className="logoInMain" alt="logo" width="40%" />
             <Search action={this.searchStarted} filter={this.switchFilter} />
@@ -131,18 +134,7 @@ class App extends React.Component {
           </Collapse>
           <div id="main">
             {this.state.showPostModal ? this.postPopUp : ""}
-
-            <LearningTree
-              id={1}
-              openThread={this.treeClick}
-              showModal={this}
-              close={this.closeTree}
-            />
-            <NormalButton
-              text="Tree"
-              className="Treemaker"
-              onClick={e => this.setState({ isOpenTreeModal: true })}
-            />
+            {this.state.isOpenTreeModal ? this.tree : ""}
             <FeedThread
               key="Search"
               search={this.state.search}
@@ -152,16 +144,53 @@ class App extends React.Component {
         </div>
       );
     if (this.state.page === "login") {
-      return <FullPageLogin />;
+      return <Login actionToStart={this.returnToStartPage}/>;
     }
   }
-  proceedClick(id) {
+
+  checkIfisPartOfTree(id) {
+    let json = require("./LearningStack.json");
+    let treeIds = [];
+    for (var i = 0; i < json.Stack.length; i++) {
+      if (json.Stack[i].video_id === id) treeIds.push(json.Stack[i].id);
+    }
+    if (treeIds.length >= 1) return treeIds;
+    return [-1];
+  }
+  treeProccessing = id => {
     console.log(id);
+    this.tree = (
+      <LearningTree
+        id={id}
+        openThread={this.treeClick}
+        showModal={this}
+        close={this.closeTree}
+      />
+    );
+    this.setState({ showPostModal: false });
+    this.forceUpdate();
+    this.setState({ isOpenTreeModal: true });
+  };
+  proceedClick(id) {
+    let tree = this.checkIfisPartOfTree(id);
+    console.log(tree);
+    if (tree[0] !== -1) {
+      var treeComponent = tree.map(element => (
+        <TreeButton
+          text="Tree"
+          key={element}
+          id={element}
+          className="Treemaker"
+          onClick={this.treeProccessing}
+        />
+      ));
+    }
     this.postPopUp = (
       <Thread
         id={id}
         showModal={this}
         handleCloseModal={this.handleClosePostModal}
+        tree={treeComponent}
       />
     );
     this.setState({ showPostModal: true });

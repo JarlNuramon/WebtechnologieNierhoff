@@ -6,7 +6,7 @@ import "./Feed.css";
 export class Feed extends React.Component {
   constructor(props) {
     super(props);
-    let json = require("/src/Post.json");
+    let json = require("./../../Post.json");
     this.feedPictures = [];
     for (var i = 0; i < json.Posts.length; i++) {
       var x = json.Posts[i];
@@ -31,7 +31,7 @@ export class Feed extends React.Component {
     return (
       <div id="feedRoot">
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {this.feedPictures.map(feedPicture => feedPicture)}
+          {this.feedPictures}
         </ScrollView>
       </div>
     );

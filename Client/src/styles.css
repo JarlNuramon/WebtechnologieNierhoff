@@ -2,6 +2,10 @@
   margin: 0%;
   padding: 0%;
   text-align: center;
+  font-family: "Roboto", Helvetica;
+}
+body {
+  background-color: rgba(39, 57, 61, 1);
 }
 .Feed {
   height: 50%;
@@ -51,43 +55,7 @@
   margin: auto;
   padding-top: 6px;
 }
-.twoColumn {
-  flex: 50%;
-}
-.SearchResult > .twoColumn {
-  padding: 0px;
-  background-color: #131c1e;
-  box-sizing: border-box;
-  border: 1px solid #131c1e;
-  max-height: 25vh;
-  float: left;
-  overflow: hidden;
-}
-#desc {
-  color: white;
-}
-.twoColumnSearch {
-  display: flex;
-  width: 100%;
-  align-items: center;
-}
-.twoColumn img {
-  max-width: 100%;
-  height: -webkit-fill-available;
-}
-.SearchResult {
-  float: left;
-  padding: 10px;
-  max-height: 25vh;
-  min-height: 35vh;
-  display: flex;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  width: 75%;
-  overflow: hidden;
-  white-space: pre-line;
-  word-wrap: break-word;
-}
+
 .Cheeseburger {
   background-color: rgba(39, 57, 61, 1);
 }
