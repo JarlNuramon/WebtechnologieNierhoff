@@ -8,6 +8,7 @@ import {
 import DataInput from "../StyledInput/StyledInput";
 import FormControl from "@material-ui/core/FormControl";
 import "./Header.css";
+import TagManager from "../TagManager/TagManager.jsx";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { TreeWrite } from "./TreeWrite.jsx";
 const restServer = "http://localhost:300"; //die url des rest servers
@@ -25,7 +26,7 @@ export class WritePopUp extends React.Component {
       title: "",
       link: "",
       text: "",
-      tags: "",
+      tags: [],
       ort: ""
     };
   }
@@ -57,7 +58,7 @@ export class WritePopUp extends React.Component {
     console.log(this.state.link);
     console.log(this.state.text);
     console.log(new Date());
-    console.log( this.state.tags.split(","));
+    console.log(this.state.tags);
     console.log(cookieList[" user"]);
 
 
@@ -76,7 +77,7 @@ export class WritePopUp extends React.Component {
         link: this.state.link,
         text: this.state.text,
         post_date: new Date(),
-        tags: this.state.tags.split(","),
+        tags: this.state.tags,
         author: cookieList[" user"],
         section: "5d013a9d41716443303d37fc",
         token: cookieList[" token"]
@@ -84,6 +85,10 @@ export class WritePopUp extends React.Component {
     });
   }
 
+  updateTags = tags => {
+    console.log(`Added new Tags ${tags}`);
+    this.setState({ tags: tags });
+  };
   render() {
     return (
       <div>
@@ -138,11 +143,7 @@ export class WritePopUp extends React.Component {
                 <br />
                 <b id="formText">Tags</b>
                 <br />
-                <DataInput
-                  name="tags"
-                  placeholder="Tag1, Tag2 ..."
-                  onChange={this.updateInput}
-                />
+                <TagManager onFinish={this.updateTags} />
                 <br />
               </FormControl>
               <br />
@@ -162,7 +163,6 @@ export class WritePopUp extends React.Component {
       </div>
     );
   }
-
 
   //TODO: Entfernen
   /*
