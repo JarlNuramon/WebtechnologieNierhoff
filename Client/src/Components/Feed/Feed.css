@@ -45,6 +45,7 @@
 .twoColumn img {
   max-width: 100%;
   height: -webkit-fill-available;
+  height: -moz-available;
 }
 .SearchResult {
   float: left;

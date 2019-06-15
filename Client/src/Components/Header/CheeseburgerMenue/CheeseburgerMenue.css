@@ -12,3 +12,6 @@
 .CheeseburgerMenueRoot {
   flex-grow: 1;
 }
+.cheeseburger-menu-inner {
+  scrollbar-width: none
+}
