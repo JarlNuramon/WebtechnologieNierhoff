@@ -3,10 +3,10 @@ import "./Login.css";
 import { NormalButton } from "./../StyledButton/StyledButton";
 import LogoIcon from "../../Pictures/Logo.png";
 import SearchBar from "../StyledInput/StyledInput.jsx";
-import { login } from "../../server";
+import { domain, login } from "../../server";
 
 //Settings
-const thisDomain = ".localhost"; //die domain des clients mit führendem " "."
+const thisDomain = "." + domain; //die domain des clients mit führendem " "."
 
 /*
 The Login Component can be used everywhere on the Page.
@@ -42,25 +42,25 @@ export class Login extends React.Component {
       referrer: "no-referrer",
       body: JSON.stringify({ name: this.state.user, pass: this.state.pass })
     })
-        .then(response => {
-          return response.text();
-        })
-        .then(response => {
-          if (response !== "Nope") {
-            document.cookie = "token=" + JSON.parse(response).token + ";";
-            document.cookie = "path=/;";
-            document.cookie = "domain=" + thisDomain + ";"
-            document.cookie = "user=" + this.state.user + ";";
-            document.cookie = "group=" + JSON.parse(response).group +";";
-            this.setState({
-              status: "loading"
-            });
-          } else {
-            this.setState({
-              status: "false"
-            });
-          }
-        });
+      .then(response => {
+        return response.text();
+      })
+      .then(response => {
+        if (response !== "Nope") {
+          document.cookie = "token=" + JSON.parse(response).token + ";";
+          document.cookie = "path=/;";
+          document.cookie = "domain=" + thisDomain + ";";
+          document.cookie = "user=" + this.state.user + ";";
+          document.cookie = "group=" + JSON.parse(response).group + ";";
+          this.setState({
+            status: "loading"
+          });
+        } else {
+          this.setState({
+            status: "false"
+          });
+        }
+      });
     this.getAll();
   };
 

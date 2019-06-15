@@ -6,5 +6,6 @@ const section = server_adress + "/api/section";
 const post = server_adress + "/api/post";
 const login = server_adress + "/api/user/login";
 const favorite = server_adress + "/api/favorite";
+const newest = server_adress + "/api/post/newest";
 
-export { server_adress, section, post, login, favorite };
+export { domain, server_adress, section, post, login, favorite, newest };
