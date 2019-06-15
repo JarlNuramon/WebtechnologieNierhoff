@@ -27,13 +27,20 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Return:
             Jep or Nope
 
-    GET /api/treeids
+    GET /api/trees
         Return:
-            Array with all Tree id's
+            Array with all Tree id's and names
 
-    GET /api/tree/:treeid
+    GET /api/tree/:tree
         Return:
             Tree or Nope
+
+        Tip:
+            :tree can be name or id
+
+    GET /api/treenodes/:treename
+        Return:
+            Array of TreeNodes
 
  */
 const Logger = require("./Logger")
@@ -94,33 +101,49 @@ module.exports = app => {
         }
     })
 
-    app.get("/api/treeids", (req, res) => {
+    app.get("/api/trees", (req, res) => {
         TreeDB.selectData({}).then(trees => {
             let result = []
             trees.forEach(ele => {
-                result.push(ele._id)
+                result.push({_id: ele._id, name: ele.name })
             })
             res.send(result)
         })
     })
 
-    app.get("/api/tree/:treeid", (req, res) => {
-        if(req.params.treeid !== undefined) {
-            if(ff.checkObjectIdFormat(req.params.treeid)) {
-                TreeDB.selectData({_id: req.params.treeid}).then(tree => {
+    app.get("/api/tree/:tree", (req, res) => {
+        if(req.params.tree !== undefined) {
+            if(ff.checkObjectIdFormat(req.params.tree)) {
+                TreeDB.selectData({_id: req.params.tree}).then(tree => {
                     if (tree.length === 1) {
                         res.send(tree[0])
                     } else {
                         res.send("Nope")
+                        Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] FAILD tree was not found.")
                     }
                 })
             } else {
-                res.send("Nope")
-                Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] FAILD treeid has a wrong format.")
+                TreeDB.selectData({name: req.params.tree}).then(tree => {
+                    if(tree.length === 1) {
+                        res.send(tree[0])
+                    } else {
+                        res.send("Nope")
+                        Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] FAILD tree was not found.")
+                    }
+                })
             }
         } else {
             Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] called without required parameters.")
         }
     })
 
+    app.get("/api/treenodes/:treename", (req, res) => {
+        if(req.params.treename !== undefined) {
+            TreeNodesDB.selectData({tree_name: req.params.treename}).then(treeNodes => {
+                res.send(treeNodes)
+            })
+        } else {
+            Logger.sendDebug("[TREEMAN][GET /api/treenodes/:treename] called without required parameters.")
+        }
+    })
 }
