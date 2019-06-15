@@ -10,7 +10,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Return:
             Jep or Nope
 
-    GET /api/favorite
+    POST /api/favorite/get
         Input Parameter:
             user -> String
             token -> String
@@ -64,7 +64,7 @@ module.exports = app => {
         }
     })
 
-    app.get("/api/favorite", (req, res) => {
+    app.post("/api/favorite/get", (req, res) => {
         if(req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateSession(req.body.user, req.body.token).then(user => {
                 if(user) {
