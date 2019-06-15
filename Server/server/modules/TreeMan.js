@@ -27,6 +27,14 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Return:
             Jep or Nope
 
+    GET /api/treeids
+        Return:
+            Array with all Tree id's
+
+    GET /api/tree/:treeid
+        Return:
+            Tree or Nope
+
  */
 const Logger = require("./Logger")
 const ff = require("./FunnyFunctions")
@@ -83,6 +91,35 @@ module.exports = app => {
             })
         } else {
             Logger.sendDebug("[TREEMAN][POST /api/treenode] called without required parameters.")
+        }
+    })
+
+    app.get("/api/treeids", (req, res) => {
+        TreeDB.selectData({}).then(trees => {
+            let result = []
+            trees.forEach(ele => {
+                result.push(ele._id)
+            })
+            res.send(result)
+        })
+    })
+
+    app.get("/api/tree/:treeid", (req, res) => {
+        if(req.params.treeid !== undefined) {
+            if(ff.checkObjectIdFormat(req.params.treeid)) {
+                TreeDB.selectData({_id: req.params.treeid}).then(tree => {
+                    if (tree.length === 1) {
+                        res.send(tree[0])
+                    } else {
+                        res.send("Nope")
+                    }
+                })
+            } else {
+                res.send("Nope")
+                Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] FAILD treeid has a wrong format.")
+            }
+        } else {
+            Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] called without required parameters.")
         }
     })
 
