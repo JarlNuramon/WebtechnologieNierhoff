@@ -42,6 +42,14 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Return:
             Array of TreeNodes
 
+    DELETE /api/treenode
+        Input Parameter:
+            id -> ObjectID
+            user -> String //dozent or higer
+            token -> String
+        Return:
+            Jep or Nope
+
  */
 const Logger = require("./Logger")
 const ff = require("./FunnyFunctions")
@@ -144,6 +152,27 @@ module.exports = app => {
             })
         } else {
             Logger.sendDebug("[TREEMAN][GET /api/treenodes/:treename] called without required parameters.")
+        }
+    })
+
+    app.delete("/api/treenode", (req, res) => {
+        if(req.body.id !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateDozentSession(req.body.user, req.body.token).then(user => {
+                if(user) {
+                    if(ff.checkObjectIdFormat(req.body.id)) {
+                        TreeNodesDB.delData({_id: req.body.id})
+                        res.send("Jep")
+                    } else {
+                        res.send("Nope")
+                        Logger.sendDebug("[TREEMAN][DELETE /api/treenode] FAILD id is not valid.")
+                    }
+                } else {
+                    res.send("Nope")
+                    Logger.sendDebug("[TREEMAN][DELETE /api/treenode] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            Logger.sendDebug("[TREEMAN][DELETE /api/treenode] called without required parameters.")
         }
     })
 }
