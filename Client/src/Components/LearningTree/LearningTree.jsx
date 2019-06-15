@@ -5,21 +5,6 @@ import ReactModal from "react-modal";
 import { ExitButton } from "../StyledButton/StyledButton";
 import "./LearningTree.css";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    backgroundColor: "#212121",
-    transform: "translate(-50%, -50%)",
-    color: "white",
-    width: "50vw",
-    minHeight: "75vh",
-    overflowY: "auto"
-  }
-};
 export default class LearningTree extends React.Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
@@ -65,7 +50,8 @@ export default class LearningTree extends React.Component {
         <ReactModal
           isOpen={this.showModal.state.isOpenTreeModal}
           contentLabel="Learning Tree"
-          style={customStyles}
+          className="Modal"
+          overlayClassName="Overlay"
           onRequestClose={this.close}
         >
           <ExitButton onClick={this.close} />

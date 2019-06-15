@@ -1,4 +1,4 @@
-const domain = "localhost";
+const domain = "zweipluseins.de";
 const port = "300";
 
 const server_adress = "http://" + domain + ":" + port;
@@ -8,6 +8,7 @@ const login = server_adress + "/api/user/login";
 const favorite = server_adress + "/api/favorite";
 const newest = server_adress + "/api/post/newest";
 const search = server_adress + "/api/post/search/";
+const filteredData = section + "/filteredData";
 
 export {
   domain,
@@ -17,5 +18,6 @@ export {
   login,
   favorite,
   newest,
-  search
+  search,
+  filteredData
 };
