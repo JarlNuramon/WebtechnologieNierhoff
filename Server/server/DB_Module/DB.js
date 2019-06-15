@@ -60,6 +60,12 @@ class DB {
         }).deleteOne().exec();
     }
 
+    delManyData(data) {
+        this.post.find(data, (err, selected) => {
+            if (err) log.sendError("Could not delete from DB");
+        }).deleteMany().exec();
+    }
+
     /*
     * Bitte übergabeparameter als JSON übergeben
     * Datenbank elemente werde hier aktualisiert/verändert
