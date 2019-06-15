@@ -120,7 +120,6 @@ module.exports = app => {
 
     app.get("/api/post/newest", (req, res) => {
         PostDB.selectData({}).then(posts => {
-            console.log(posts)
             posts.sort((a, b) => {
                 return new Date(a.post_date) - new Date(b.post_date)
             })
