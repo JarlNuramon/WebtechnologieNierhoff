@@ -10,12 +10,24 @@ export default class TreeLevel extends React.Component {
       nodes: []
     };
     this.onClick = props.onClick;
+    this.level = props.level;
   }
   createNode = () => {
-    console.log("Creating node");
+    console.log("creating node for this level");
+    this.setState((state, props) => ({
+      nodes: state.nodes.concat([
+        <TreeAdd createNodeForLevel={this.createNode} />
+      ])
+    }));
+  };
+
+  createLevel = () => {
+    console.log("Creating new level");
     this.setState((state, props) => ({
       active: true,
-      nodes: state.nodes.concat([<TreeAdd />])
+      nodes: state.nodes.concat([
+        <TreeAdd createNodeForLevel={this.createNode} />
+      ])
     }));
     this.onClick();
     console.table(this.state);
@@ -28,7 +40,7 @@ export default class TreeLevel extends React.Component {
             <NormalButton
               text="Add Level"
               className="rootNode"
-              onClick={this.createNode}
+              onClick={this.createLevel}
             />
           ) : (
             this.state.nodes

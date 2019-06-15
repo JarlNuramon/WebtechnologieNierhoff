@@ -1,5 +1,6 @@
 import React from "react";
 import "./Feed.css";
+import VideoThumbnail from "react-video-thumbnail";
 /**
  * Returns you the thumbnail of a Youtube video as an img.
  * @param onclick Has onclick which will be applied to the Thumbnail
@@ -15,6 +16,19 @@ export class FeedPicture extends React.Component {
         "https://img.youtube.com/vi/"
       )
       .concat("/0.jpg");
+    if (this.picure.includes("&")) {
+      this.picture = this.picture.slice(
+        this.picture.indexOf("&"),
+        this.picture.lastIndexOf("/")
+      );
+    }
+    if (this.picure.includes("%")) {
+      this.picture = this.picture.slice(
+        this.picture.indexOf("%"),
+        this.picture.lastIndexOf("/")
+      );
+    }
+    this.thumbnail = props.videoId;
     this.onclick = props.onclick;
     this.id = props.id;
   }
