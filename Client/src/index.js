@@ -15,7 +15,7 @@ import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
-import { favorite } from "./server"
+import {favorite,favoriteget, login} from "./server"
 
 ReactModal.setAppElement("#root");
 
@@ -74,6 +74,7 @@ class App extends React.Component {
     this.render();
   }
     searchStarted = searchValue => {
+
     this.setState({ search: searchValue, showFilter: false, page: "thread" });
     this.render();
   };
@@ -111,10 +112,32 @@ class App extends React.Component {
     //TODO: Server soll hier alle fav. Videos zurück geben.
     var cookieValue = await this.getCookie();
     console.log("bin in return favorite")
-    try {
+
       console.log(cookieValue[" user"])
       console.log(cookieValue[" token"])
-      /*axios({
+    console.log(favoriteget)
+      fetch(favoriteget, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+        body: JSON.stringify({
+          user: cookieValue[" user"],
+          token: cookieValue[" token"]
+        })
+      }).then(response => {
+          return response.text();
+        }).then(response => {
+          console.log(response)
+        })
+
+      /*try{
+      axios({
         method: "get",
         url: restServer+"/api/favorite",
         headers:{"Content-Type": "application/json"},
@@ -124,12 +147,14 @@ class App extends React.Component {
         }
       }
     )
-    }*/
+    }
+      console.log(cookieValue[" user"]);
+      console.log(cookieValue[" token"]);
       await axios.get(favorite,
           {headers:{
           "Content-Type": "application/json"
         }},{
-        data: {
+        body: {
           user: cookieValue[" user"],
           token: cookieValue[" token"]
         }}
@@ -139,8 +164,9 @@ class App extends React.Component {
     }
       catch(error){
       console.log(error);
-    }
+    }*/
   }
+
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
   };
