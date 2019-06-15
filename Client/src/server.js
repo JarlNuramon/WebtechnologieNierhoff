@@ -7,5 +7,15 @@ const post = server_adress + "/api/post";
 const login = server_adress + "/api/user/login";
 const favorite = server_adress + "/api/favorite";
 const newest = server_adress + "/api/post/newest";
+const search = server_adress + "/api/post/search/";
 
-export { domain, server_adress, section, post, login, favorite, newest };
+export {
+  domain,
+  server_adress,
+  section,
+  post,
+  login,
+  favorite,
+  newest,
+  search
+};
