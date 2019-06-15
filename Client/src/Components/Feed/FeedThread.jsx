@@ -2,13 +2,19 @@ import { FeedPicture } from "./FeedPicture.jsx";
 import React from "react";
 import "./Feed.css";
 
+const axios = require('axios');
+const restServer = "http://localhost:300"; //die url des rest servers
+
+
 //TODO: Warning beheben: Warning: Each child in a list should have a unique "key" prop.
 export class FeedThread extends React.Component {
-  state = {
-    search: ""
-  };
+
   constructor(props) {
     super(props);
+    this.state = {
+      search: "",
+      json: []
+    };
     this.state.search = props.search;
     this.onclick = props.onclick.bind(this);
   }
@@ -20,22 +26,38 @@ export class FeedThread extends React.Component {
     this.setState({ isOpenTreeModal: false });
   };
 
+  searchForTag(search) {
+    var json;
+    console.log("search");
+
+    axios.get(restServer+"/api/post/search/"+search).then(avc => {
+      console.log(avc.data)
+      this.setState({
+            json: avc.data
+          }
+      );
+    });
+    console.log(this.state.json);
+  }
+  componentDidMount() {
+    this.searchForTag(this.state.search);
+  }
+
   render() {
-    var x = searchForTag(this.state.search);
     this.SearchPictures = [];
-    for (var i = 0; i < x.length; i++) {
+    for (var i = 0; i < this.state.json.length; i++) {
       this.SearchPictures.push(
         <div className="SearchResult">
           <div className="twoColumn">
             <FeedPicture
-              videoId={x[i].link}
-              id={x[i].id}
+              videoId={this.state.json[i].link}
+              id={this.state.json[i].id}
               onclick={this.onclick}
             />
           </div>
           <div className="twoColumn" id="desc">
-            <h4>{x[i].title}</h4> <br />
-            {x[i].text}
+            <h4>{this.state.json[i].title}</h4> <br />
+            {this.state.json[i].text}
           </div>
         </div>
       );
@@ -65,23 +87,9 @@ export class FeedThread extends React.Component {
       </center>
     );
   }
+
+
+
+
 }
 
-
-//TODO INTEGRATION tag search
-//  Serverseittig nur suche nach Title möglich
-function searchForTag(search) {
-  let json = require("./../../Post.json");
-  console.log(search);
-
-
-
-  var x = [];
-  for (var i = 0; i < json.Posts.length; i++) {
-    if (json.Posts[i].tags.includes(search)) {
-      x.push(json.Posts[i]);
-      console.log(json.Posts[i]);
-    }
-  }
-  return x;
-}
