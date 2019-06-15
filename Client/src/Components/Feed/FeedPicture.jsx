@@ -16,13 +16,13 @@ export class FeedPicture extends React.Component {
         "https://img.youtube.com/vi/"
       )
       .concat("/0.jpg");
-    if (this.picure.includes("&")) {
+    if (this.picture.includes("&")) {
       this.picture = this.picture.slice(
         this.picture.indexOf("&"),
         this.picture.lastIndexOf("/")
       );
     }
-    if (this.picure.includes("%")) {
+    if (this.picture.includes("%")) {
       this.picture = this.picture.slice(
         this.picture.indexOf("%"),
         this.picture.lastIndexOf("/")
