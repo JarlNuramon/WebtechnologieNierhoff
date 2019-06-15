@@ -15,3 +15,22 @@
 #parent {
   margin: 5px;
 }
+
+.Modal {
+  width: 50vw;
+  min-height: 75vh;
+  padding: 10px;
+  color: white;
+  background-color: #212121;
+  overflow-y: auto;
+  transform: translate(50%, 15%);
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
