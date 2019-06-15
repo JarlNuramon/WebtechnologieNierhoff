@@ -75,8 +75,6 @@ export default class Header extends React.Component {
     return { onStartPage: props.onStartPage };
   }
 
-
-
   getWritePopUp(){
     var cookieList = this.cockie();
     if(cookieList[" group"]!=="student"){
