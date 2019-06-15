@@ -28,12 +28,14 @@ export default class ThreadPost extends React.Component {
     getPost() {
         console.log(this.id);
         axios.get(restServer+"/api/post/id/"+this.id).then(avc => {
+
             this.setState({json: avc.data});
 
         });
     };
 
     render() {
+        console.log(this.state.json);
         if(this.state.json !== null)
             return (
                 <div>
