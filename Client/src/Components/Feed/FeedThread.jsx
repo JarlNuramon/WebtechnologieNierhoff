@@ -13,31 +13,33 @@ export class FeedThread extends React.Component {
       search: "",
       json: []
     };
-    this.state.search = props.search;
     this.onclick = props.onclick.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ search: nextProps.search });
-  }
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
   };
 
   searchForTag(searchvalue) {
-    var json;
-    console.log("search");
-
     axios.get(search + searchvalue).then(avc => {
-      console.log(avc.data);
       this.setState({
         json: avc.data
-      });
+      })
     });
-    console.log(this.state.json);
   }
+
   componentDidMount() {
-    this.searchForTag(this.state.search);
+    this.setState({
+      search: this.props.search
+    })
+    this.searchForTag(this.props.search);
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props.search !== prevProps.search)
+    {
+      this.searchForTag(this.props.search);
+    }
   }
 
   render() {

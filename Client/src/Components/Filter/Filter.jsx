@@ -14,14 +14,11 @@ export class Filter extends React.Component {
   }
 
   async getPost() {
-    await axios.get(filteredData).then( response => { this.t = (response.data[0]) } );
+    await axios.get(filteredData).then( response => this.t = (response.data[0]) );
     await this.filterItem();
   }
 
   filterItem() {
-    console.log(this.t);
-    let json = require("./../../data.json");
-    //this.t = json.Filter;
 
     this.datum = ["Letzte Stunde", "Heute", "Diese Woche", "Dieses Jahr"];
 
