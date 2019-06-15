@@ -10,7 +10,7 @@ const favoriteget = server_adress + "/api/favoriteget";
 const newest = server_adress + "/api/post/newest";
 const search = server_adress + "/api/post/search/";
 const theID = server_adress + "/api/post/id/";
-
+const filteredData = section + "/filteredData";
 
 export {
   domain,
@@ -23,4 +23,5 @@ export {
   search,
   theID,
   favoriteget
+  filteredData
 };

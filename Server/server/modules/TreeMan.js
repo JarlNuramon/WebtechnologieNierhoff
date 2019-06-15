@@ -60,6 +60,10 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Return:
             Jep or Nope
 
+    GET /api/tree/video/:video_id
+        Return:
+            Array of Tree Names (Strings) that contains that video
+
  */
 const Logger = require("./Logger")
 const ff = require("./FunnyFunctions")
@@ -201,6 +205,25 @@ module.exports = app => {
             })
         } else {
             Logger.sendDebug("[TREEMAN][DELETE /api/tree] called without required parameters.")
+        }
+    })
+
+    app.get("/api/tree/video/:video_id", (req, res) => {
+        if(req.params.video_id !== undefined) {
+            if(ff.checkObjectIdFormat(req.params.video_id)) {
+                TreeNodesDB.selectData({video_id: req.params.video_id}).then(nodes => {
+                    let result = []
+                    nodes.forEach(ele => {
+                        result.push(ele.tree_name)
+                    })
+                    res.send(result)
+                })
+            } else {
+                res.send("Nope")
+                Logger.sendDebug("[TREEMAN][GET /api/tree/video/:video_id] FAILD because invalid video_id.")
+            }
+        } else {
+            Logger.sendDebug("[TREEMAN][GET /api/tree/video/:video_id] called without required parameters.")
         }
     })
 }

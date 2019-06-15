@@ -73,8 +73,7 @@ class App extends React.Component {
     this.setState({ page: "login" });
     this.render();
   }
-    searchStarted = searchValue => {
-
+  searchStarted = searchValue => {
     this.setState({ search: searchValue, showFilter: false, page: "thread" });
     this.render();
   };
@@ -88,7 +87,6 @@ class App extends React.Component {
     this.setState({
       showFilter: !this.state.showFilter
     });
-    console.log("bin in switchFilter");
   }
   getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
@@ -135,36 +133,6 @@ class App extends React.Component {
         }).then(response => {
           console.log(response)
         })
-
-      /*try{
-      axios({
-        method: "get",
-        url: restServer+"/api/favorite",
-        headers:{"Content-Type": "application/json"},
-        data: {
-          user: cookieValue[" user"],
-          token: cookieValue[" token"]
-        }
-      }
-    )
-    }
-      console.log(cookieValue[" user"]);
-      console.log(cookieValue[" token"]);
-      await axios.get(favorite,
-          {headers:{
-          "Content-Type": "application/json"
-        }},{
-        body: {
-          user: cookieValue[" user"],
-          token: cookieValue[" token"]
-        }}
-        ).then(response => {
-        console.log(response);
-      });
-    }
-      catch(error){
-      console.log(error);
-    }*/
   }
 
   closeTree = () => {
