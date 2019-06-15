@@ -11,7 +11,7 @@ import "./Header.css";
 import TagManager from "../TagManager/TagManager.jsx";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import { TreeWrite } from "./TreeWrite.jsx";
-const restServer = "http://localhost:300"; //die url des rest servers
+import { post } from "../../server";
 
 export class WritePopUp extends React.Component {
   constructor(props) {
@@ -61,7 +61,7 @@ export class WritePopUp extends React.Component {
     console.log(this.state.tags);
     console.log(cookieList[" user"]);
 
-    fetch(restServer + "/api/post", {
+    fetch(post, {
       method: "POST",
       mode: "cors",
       cache: "no-cache",

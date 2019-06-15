@@ -4,9 +4,9 @@ import ThreadPost from "./ThreadPost";
 import { ExitButton } from "./../StyledButton/StyledButton";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 import "./Thread.css";
+import { favorite } from "../../server";
 
 const axios = require("axios");
-const restServer = "http://localhost:300"; //die url des rest servers
 
 export class Thread extends React.Component {
   constructor(props) {
@@ -67,7 +67,7 @@ export class Thread extends React.Component {
   async setFav() {
     try {
       var cookieList = await this.getCookie();
-      await axios.post(restServer + "/api/favorite", {
+      await axios.post(favorite, {
         post_id: this.id,
         user: cookieList[" user"],
         token: cookieList[" token"]
