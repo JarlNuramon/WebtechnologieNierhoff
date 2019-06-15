@@ -33,6 +33,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
     GET /api/post/newest
         Return:
             Newest videos as JSON Array.
+
 */
 const ff = require('./FunnyFunctions')
 const Config = require('../config')
@@ -105,8 +106,12 @@ module.exports = app => {
 
     app.get("/api/post/search/:search", (req, res) => {
         if(req.params.search !== undefined) {
-            PostDB.selectData({title: new RegExp(req.params.search, 'i')}).then(result => {
-                res.send(result)
+            PostDB.selectData({title: new RegExp(req.params.search, 'i')}).then(postsTitle => {
+                PostDB.selectData({tags: req.params.search}).then(postsTag => {
+                    let response = postsTitle.concat(postsTag)
+                    response = filterDouble(response)
+                    res.send(response)
+                })
             })
         } else {
             logger.sendDebug("[POSTMAN][GET /api/post/search/:search] called without required parameter.")
@@ -179,4 +184,31 @@ module.exports = app => {
         }
     })
 
+}
+
+function filterDouble(array) {
+    let counter = 0
+
+    for(let i1 = 0; i1<array.length; i1++) {
+        for(let i2 = 0; i2<array.length; i2++) {
+            if(array[i1]._id.toString() === array[i2]._id.toString()) {
+                counter++
+            }
+            if(counter >= 2) {
+                array[i2].text = "---------MarkForDelete---------"
+                counter--
+            }
+        }
+        counter = 0
+    }
+
+    array = array.filter((ele) => {
+        if(ele.text === "---------MarkForDelete---------") {
+            return false
+        } else {
+            return true
+        }
+    })
+
+    return array
 }
