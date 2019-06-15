@@ -15,11 +15,11 @@ import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
+import { favorite } from "./server"
 
 ReactModal.setAppElement("#root");
 
 const axios = require('axios');
-const restServer = "http://localhost:300"; //die url des rest servers
 
 class App extends React.Component {
   constructor(props) {
@@ -125,7 +125,7 @@ class App extends React.Component {
       }
     )
     }*/
-      await axios.get(restServer+"/api/favorite",
+      await axios.get(favorite,
           {headers:{
           "Content-Type": "application/json"
         }},{
