@@ -1,14 +1,12 @@
 import { FeedPicture } from "./FeedPicture.jsx";
 import React from "react";
 import "./Feed.css";
+import { search } from "../../server";
 
-const axios = require('axios');
-const restServer = "http://localhost:300"; //die url des rest servers
-
+const axios = require("axios");
 
 //TODO: Warning beheben: Warning: Each child in a list should have a unique "key" prop.
 export class FeedThread extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -26,16 +24,15 @@ export class FeedThread extends React.Component {
     this.setState({ isOpenTreeModal: false });
   };
 
-  searchForTag(search) {
+  searchForTag(searchvalue) {
     var json;
     console.log("search");
 
-    axios.get(restServer+"/api/post/search/"+search).then(avc => {
-      console.log(avc.data)
+    axios.get(search + searchvalue).then(avc => {
+      console.log(avc.data);
       this.setState({
-            json: avc.data
-          }
-      );
+        json: avc.data
+      });
     });
     console.log(this.state.json);
   }
@@ -87,9 +84,4 @@ export class FeedThread extends React.Component {
       </center>
     );
   }
-
-
-
-
 }
-

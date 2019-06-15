@@ -2,9 +2,9 @@ import React from "react";
 import { FeedPicture } from "./FeedPicture.jsx";
 import { Text, View, ScrollView } from "react-native";
 import "./Feed.css";
+import { newest } from "../../server";
 
 const axios = require("axios");
-const restServer = "http://localhost:300"; //die url des rest servers
 
 export class Feed extends React.Component {
   constructor(props) {
@@ -45,7 +45,7 @@ export class Feed extends React.Component {
   }
 
   async getPost() {
-    await axios.get(restServer + "/api/post/newest").then(response => {
+    await axios.get(newest).then(response => {
       this.setState({ json: response.data });
     });
     await this.jsonToHTML();
