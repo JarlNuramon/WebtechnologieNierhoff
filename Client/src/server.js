@@ -1,4 +1,4 @@
-const domain = "localhost";
+const domain = "zweipluseins.de";
 const port = "300";
 
 const server_adress = "http://" + domain + ":" + port;
