@@ -15,7 +15,7 @@ import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
-import { favorite } from "./server"
+import {favorite,favoriteget, login} from "./server"
 
 ReactModal.setAppElement("#root");
 
@@ -110,36 +110,31 @@ class App extends React.Component {
     //TODO: Server soll hier alle fav. Videos zurück geben.
     var cookieValue = await this.getCookie();
     console.log("bin in return favorite")
-    try {
+
       console.log(cookieValue[" user"])
       console.log(cookieValue[" token"])
-      /*axios({
-        method: "get",
-        url: restServer+"/api/favorite",
-        headers:{"Content-Type": "application/json"},
-        data: {
-          user: cookieValue[" user"],
-          token: cookieValue[" token"]
-        }
-      }
-    )
-    }*/
-      await axios.get(favorite,
-          {headers:{
+    console.log(favoriteget)
+      fetch(favoriteget, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
           "Content-Type": "application/json"
-        }},{
-        data: {
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+        body: JSON.stringify({
           user: cookieValue[" user"],
           token: cookieValue[" token"]
-        }}
-        ).then(response => {
-        console.log(response);
-      });
-    }
-      catch(error){
-      console.log(error);
-    }
+        })
+      }).then(response => {
+          return response.text();
+        }).then(response => {
+          console.log(response)
+        })
   }
+
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
   };
