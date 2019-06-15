@@ -45,8 +45,18 @@ Diese Datei stellt folgende REST api's zur verfügung:
     DELETE /api/treenode
         Input Parameter:
             id -> ObjectID
-            user -> String //dozent or higer
+            user -> String //dozent or higher
             token -> String
+
+        Return:
+            Jep or Nope
+
+    DELETE /api/tree
+        Input Parameter:
+            tree_name -> String
+            user -> String //dozent or higher
+            token -> String
+
         Return:
             Jep or Nope
 
@@ -173,6 +183,24 @@ module.exports = app => {
             })
         } else {
             Logger.sendDebug("[TREEMAN][DELETE /api/treenode] called without required parameters.")
+        }
+    })
+
+    app.delete("/api/tree", (req, res) => {
+        if(req.body.tree_name !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateDozentSession(req.body.user, req.body.token).then(user => {
+                if(user) {
+                    TreeNodesDB.delManyData({tree_name: req.body.tree_name})
+                    TreeDB.delData({name: req.body.tree_name})
+                    res.send("Jep")
+                    Logger.sendDebug('[TREEMAN][DELETE /api/tree] Tree: "' + req.body.tree_name + '" was deleted by "' + req.body.user + '".')
+                } else {
+                    res.send("Nope")
+                    Logger.sendDebug("[TREEMAN][DELETE /api/tree] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            Logger.sendDebug("[TREEMAN][DELETE /api/tree] called without required parameters.")
         }
     })
 }
