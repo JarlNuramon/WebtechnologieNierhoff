@@ -54,14 +54,6 @@ export class WritePopUp extends React.Component {
   //TODO: Aufräumen
   async post() {
     var cookieList = await this.getCookie();
-    console.log(this.state.title);
-    console.log(this.state.link);
-    console.log(this.state.text);
-    console.log(new Date());
-    console.log(this.state.tags);
-    console.log(cookieList[" user"]);
-    console.log(cookieList[" token"]);
-
     fetch(post, {
       method: "POST",
       mode: "cors",
@@ -163,49 +155,6 @@ export class WritePopUp extends React.Component {
       </div>
     );
   }
-
-  //TODO: Entfernen
-  /*
-    post() {
-      let json = require("./../../Post.json");
-      var post = {
-        id: Math.random()
-          .toString(16)
-          .replace("0.", ""),
-        title: this.state.title,
-        link: this.state.link,
-        text: this.state.text,
-        post_date: new Date(),
-        tags: this.state.tags.split(","),
-        author: "Jan Nierhoff",
-        author_id: this.lookForAuthorId("Jan Nierhoff"),
-        section_id: this.lookForSectionId(this.state.ort),
-        section: this.state.ort
-      };
-
-      console.log(post);
-      json.Posts.push(post);
-      this.handleCloseModal();
-    }
-
-
-    lookForAuthorId(str){
-      let json = require("./Author.json");
-      for (var i = 0; i < json.Author.length; i++) {
-        if (json.Author[i].name === str) {
-          return json.Author[i].id;
-        }
-      }
-    }
-    lookForSectionId(str){
-      let json = require("./../../Section.json");
-      for (var i = 0; i < json.Section.length; i++) {
-        if (json.Section[i].name === str) {
-          return json.Section[i].id;
-        }
-      }
-    }
-  */
 
   updateInput(e) {
     const target = e.target;

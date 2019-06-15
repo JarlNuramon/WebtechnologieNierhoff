@@ -20,11 +20,13 @@ export class FeedThread extends React.Component {
     this.setState({ isOpenTreeModal: false });
   };
 
-  searchForTag(searchvalue) {
-    axios.get(search + searchvalue).then(avc => {
+  async searchForTag(searchvalue) {
+    await axios.get(search + searchvalue).then(avc => {
+      console.log(avc.data);
       this.setState({
         json: avc.data
       })
+      console.log(this.state.json);
     });
   }
 
@@ -50,7 +52,7 @@ export class FeedThread extends React.Component {
           <div className="twoColumn">
             <FeedPicture
               videoId={this.state.json[i].link}
-              id={this.state.json[i].id}
+              id={this.state.json[i]._id}
               onclick={this.onclick}
             />
           </div>
