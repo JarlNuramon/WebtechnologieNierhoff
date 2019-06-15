@@ -26,7 +26,7 @@ export default class CheeseburgerMenue extends React.Component {
 
   render() {
     return (
-      <div className="CheeseburgerMenueRoot">
+      <div className="CheeseburgerMenueRoot" >
         <Menu
           isOpen={this.state.menuIsOpen}
           closeCallback={this.closeMenu}

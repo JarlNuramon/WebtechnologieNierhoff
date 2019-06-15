@@ -15,7 +15,7 @@ import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
-import {favorite,favoriteget, login} from "./server"
+import {favorite, favoriteget, login} from "./server"
 
 ReactModal.setAppElement("#root");
 

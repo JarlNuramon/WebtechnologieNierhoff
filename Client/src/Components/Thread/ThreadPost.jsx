@@ -3,10 +3,9 @@ import YouTube from "react-youtube";
 import { AddButton } from "./../StyledButton/StyledButton";
 import PropTypes from "prop-types";
 import "./Thread.css";
-import { server_adress } from "../../server";
+import { theID } from "../../server";
 
 const axios = require("axios");
-const restServer = server_adress; //die url des rest servers
 
 export default class ThreadPost extends React.Component {
     constructor(props){
@@ -26,11 +25,8 @@ export default class ThreadPost extends React.Component {
     //TODO: HARDCODE MIT DER ID ENTFERNEN
     //      5d028fbc9f18f61f440c5247 durch this.id ersetzen
     getPost() {
-        console.log(this.id);
-        axios.get(restServer+"/api/post/id/"+this.id).then(avc => {
-
+        axios.get(theID(this.id)).then(avc => {
             this.setState({json: avc.data});
-
         });
     };
 
