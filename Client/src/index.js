@@ -15,8 +15,11 @@ import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
+import { favorite } from "./server"
 
 ReactModal.setAppElement("#root");
+
+const axios = require('axios');
 
 class App extends React.Component {
   constructor(props) {
@@ -38,6 +41,7 @@ class App extends React.Component {
     this.searchStarted = this.searchStarted.bind(this);
     this.switchFilter = this.switchFilter.bind(this);
     this.returnFavorite = this.returnFavorite.bind(this);
+    this.cookie = this.getCookie.bind(this);
   }
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
@@ -85,8 +89,57 @@ class App extends React.Component {
     });
     console.log("bin in switchFilter");
   }
-  returnFavorite() {
+  getCookie() {
+    var cookieList = document.cookie ? document.cookie.split(";") : [];
+    var cookieValues = {};
+    for (var i = 0, n = cookieList.length; i !== n; ++i) {
+      var cookie = cookieList[i];
+      var f = cookie.indexOf("=");
+      if (f >= 0) {
+        var cookieName = cookie.substring(0, f);
+        var cookieValue = cookie.substring(f + 1);
+        if (!cookieValues.hasOwnProperty(cookieName)) {
+          cookieValues[cookieName] = cookieValue;
+        }
+      }
+    }
+    return cookieValues;
+  }
+
+
+  async returnFavorite() {
     //TODO: Server soll hier alle fav. Videos zurück geben.
+    var cookieValue = await this.getCookie();
+    console.log("bin in return favorite")
+    try {
+      console.log(cookieValue[" user"])
+      console.log(cookieValue[" token"])
+      /*axios({
+        method: "get",
+        url: restServer+"/api/favorite",
+        headers:{"Content-Type": "application/json"},
+        data: {
+          user: cookieValue[" user"],
+          token: cookieValue[" token"]
+        }
+      }
+    )
+    }*/
+      await axios.get(favorite,
+          {headers:{
+          "Content-Type": "application/json"
+        }},{
+        data: {
+          user: cookieValue[" user"],
+          token: cookieValue[" token"]
+        }}
+        ).then(response => {
+        console.log(response);
+      });
+    }
+      catch(error){
+      console.log(error);
+    }
   }
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
@@ -105,6 +158,7 @@ class App extends React.Component {
             filter={this.switchFilter}
             searchFav={this.returnFavorite}
             toLogin={this.setLogin}
+            cookie = {this.getCookie}
             aria-label="Collapse"
           />
           <Collapse in={this.state.showFilter}>
