@@ -205,7 +205,6 @@ class App extends React.Component {
     return [-1];
   }
   treeProccessing = id => {
-    console.log(id);
     this.tree = (
       <LearningTree
         id={id}
