@@ -32,6 +32,7 @@ export default class Header extends React.Component {
     this.toLogin = props.toLogin.bind(this);
     this.switchFilter = props.filter;
     this.searchFav = props.searchFav;
+    this.cockie = props.cookie;
   }
 
   returnOpenModal() {
@@ -74,26 +75,10 @@ export default class Header extends React.Component {
     return { onStartPage: props.onStartPage };
   }
 
-  getCookie() {
-    var cookieList = document.cookie ? document.cookie.split(";") : [];
-    var cookieValues = {};
-    for (var i = 0, n = cookieList.length; i !== n; ++i) {
-      var cookie = cookieList[i];
-      var f = cookie.indexOf("=");
-      if (f >= 0) {
-        var cookieName = cookie.substring(0, f);
-        var cookieValue = cookie.substring(f + 1);
 
-        if (!cookieValues.hasOwnProperty(cookieName)) {
-          cookieValues[cookieName] = cookieValue;
-        }
-      }
-    }
-    return cookieValues;
-  }
 
   getWritePopUp(){
-    var cookieList = this.getCookie();
+    var cookieList = this.cockie();
     if(cookieList[" group"]!=="student"){
       return (<WritePopUp
           className="SharePopUp"
