@@ -25,6 +25,9 @@ const SecMan = require("./modules/SecMan")
 //include FavoriteManager API
 const FavMan = require("./modules/FavMan")
 
+//include TreeManager API
+const TreeMan = require("./modules/TreeMan")
+
 app.use(express.json())
 
 //Set default header
@@ -50,6 +53,9 @@ SecMan(app)
 
 //connect FavoriteManager with app
 FavMan(app)
+
+//connect TreeManager with app
+TreeMan(app)
 
 //start server
 app.listen(Config.PORT, () => console.log("Server started on " + Config.PORT))
