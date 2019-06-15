@@ -13,15 +13,15 @@ export class FeedThread extends React.Component {
       search: "",
       json: []
     };
-    this.onclick = props.onclick.bind(this);
+    this.onclick = props.onclick;
   }
 
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
   };
 
-  searchForTag(searchvalue) {
-    axios.get(search + searchvalue).then(avc => {
+  async searchForTag(searchvalue) {
+    await axios.get(search + searchvalue).then(avc => {
       this.setState({
         json: avc.data
       })
@@ -45,12 +45,13 @@ export class FeedThread extends React.Component {
   render() {
     this.SearchPictures = [];
     for (var i = 0; i < this.state.json.length; i++) {
+      //console.log("ID "+this.state.json)
       this.SearchPictures.push(
         <div className="SearchResult">
           <div className="twoColumn">
             <FeedPicture
               videoId={this.state.json[i].link}
-              id={this.state.json[i].id}
+              id={this.state.json[i]._id}
               onclick={this.onclick}
             />
           </div>
