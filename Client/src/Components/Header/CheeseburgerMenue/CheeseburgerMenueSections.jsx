@@ -16,47 +16,46 @@ export class Menue extends React.Component {
       cache: "no-cache",
       credentials: "same-origin"
     })
-      .then(response => {
-        return response.json();
-      })
-      .then(response => {
-        if (response !== undefined) {
-          return response;
-        } else {
-          console.log("Error, no sections");
-        }
-      });
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          if (response !== undefined) {
+            return response
+          } else {
+            console.log("Error, no sections")
+          }
+        })
   }
 
   async lel() {
     this.json = await this.getSection();
-    this.root = this.getRootSections(this.json);
+    this.root = this.getRootSections(this.json)
     for (var i = 0; i < this.root.length; i++) {
       var x = this.root[i];
       this.menue.push(
-        <MenueItem
-          name={x.name}
-          id={x._id}
-          child={this.getChildSections(x._id, this.json)}
-          key={x._id}
-          onclick={this.handleClick}
-        />
+          <MenueItem
+              name={x.name}
+              id={x._id}
+              child={this.getChildSections(x._id, this.json)}
+              key={x._id}
+              onclick={this.handleClick}
+          />
       );
     }
   }
 
   constructor(props) {
     super(props);
-    //TODO integration SECTIONS
-
-    this.loading = true;
-
+    this.loading =true;
     this.menue = [];
     this.search = props.search;
     this.searchFav = props.searchFav;
     this.handleClick = props.handleClick;
     this.lel();
   }
+
+
 
   render() {
     return (
@@ -77,6 +76,7 @@ export class Menue extends React.Component {
       </div>
     );
   }
+
   getRootSections(json) {
     var root = [];
     for (var i = 0; i < json.length; i++) {
@@ -86,6 +86,7 @@ export class Menue extends React.Component {
     }
     return root;
   }
+
   getChildSections(id, json) {
     var child = [];
     for (var i = 0; i < json.length; i++) {

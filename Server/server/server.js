@@ -2,6 +2,7 @@
 TODO:
     User Registration verifikation (mail verifikation)
     Nach Debug ausgaben suchen und entfernen
+    Nach falscher verwendung von delData suchen
 */
 
 const express = require('express')
@@ -24,6 +25,9 @@ const SecMan = require("./modules/SecMan")
 
 //include FavoriteManager API
 const FavMan = require("./modules/FavMan")
+
+//include TreeManager API
+const TreeMan = require("./modules/TreeMan")
 
 app.use(express.json())
 
@@ -50,6 +54,9 @@ SecMan(app)
 
 //connect FavoriteManager with app
 FavMan(app)
+
+//connect TreeManager with app
+TreeMan(app)
 
 //start server
 app.listen(Config.PORT, () => console.log("Server started on " + Config.PORT))

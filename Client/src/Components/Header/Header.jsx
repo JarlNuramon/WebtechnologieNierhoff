@@ -29,7 +29,7 @@ export default class Header extends React.Component {
     this.handleOpenPostModal = this.handleOpenPostModal.bind(this);
     this.returnOpenModal = this.returnOpenModal.bind(this);
     this.handleClick = props.handleClick;
-
+    this.toLogin = props.toLogin.bind(this);
     this.switchFilter = props.filter;
     this.searchFav = props.searchFav;
   }
@@ -63,8 +63,45 @@ export default class Header extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+
+  handleLogOut = () => {
+    //TODO REQUEST OF LOG OUT
+    this.toLogin();
+    this.setState({ anchorEl: null });
+
+  };
   static getDerivedStateFromProps(props) {
     return { onStartPage: props.onStartPage };
+  }
+
+  getCookie() {
+    var cookieList = document.cookie ? document.cookie.split(";") : [];
+    var cookieValues = {};
+    for (var i = 0, n = cookieList.length; i !== n; ++i) {
+      var cookie = cookieList[i];
+      var f = cookie.indexOf("=");
+      if (f >= 0) {
+        var cookieName = cookie.substring(0, f);
+        var cookieValue = cookie.substring(f + 1);
+
+        if (!cookieValues.hasOwnProperty(cookieName)) {
+          cookieValues[cookieName] = cookieValue;
+        }
+      }
+    }
+    return cookieValues;
+  }
+
+  getWritePopUp(){
+    var cookieList = this.getCookie();
+    if(cookieList[" group"]!=="student"){
+      return (<WritePopUp
+          className="SharePopUp"
+          showModal={this}
+          handleCloseModal={this.handleCloseModal}
+          handleOpenModal={this.handleOpenModal}
+      />)
+    }
   }
 
   render() {
@@ -99,12 +136,7 @@ export default class Header extends React.Component {
             <ul id="grow">{search}</ul>
             <ul id="toolUl">
               <li id="toolLi">
-                <WritePopUp
-                  className="SharePopUp"
-                  showModal={this}
-                  handleCloseModal={this.handleCloseModal}
-                  handleOpenModal={this.handleOpenModal}
-                />
+                {this.getWritePopUp()}
               </li>
               <li id="toolLi">
                 {auth && (
@@ -137,6 +169,9 @@ export default class Header extends React.Component {
                       </MenuItem>
                       <MenuItem color="inherit" onClick={this.handleClose}>
                         My account
+                      </MenuItem>
+                      <MenuItem color="inherit" onClick={this.handleLogOut}>
+                        Log out
                       </MenuItem>
                     </Menu>
                   </div>

@@ -11,6 +11,7 @@ export default class TagManager extends React.Component {
       tags: [],
       searchValue: ""
     };
+
     let json = require("./TagManager.json");
     var x = json.Tags.map(element => {
       return {

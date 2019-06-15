@@ -60,6 +60,7 @@ export class WritePopUp extends React.Component {
     console.log(new Date());
     console.log(this.state.tags);
     console.log(cookieList[" user"]);
+    console.log(cookieList[" token"]);
 
     fetch(post, {
       method: "POST",
