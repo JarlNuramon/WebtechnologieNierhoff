@@ -27,13 +27,38 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Return:
             Jep or Nope
 
-    GET /api/treeids
+    GET /api/trees
         Return:
-            Array with all Tree id's
+            Array with all Tree id's and names
 
-    GET /api/tree/:treeid
+    GET /api/tree/:tree
         Return:
             Tree or Nope
+
+        Tip:
+            :tree can be name or id
+
+    GET /api/treenodes/:treename
+        Return:
+            Array of TreeNodes
+
+    DELETE /api/treenode
+        Input Parameter:
+            id -> ObjectID
+            user -> String //dozent or higher
+            token -> String
+
+        Return:
+            Jep or Nope
+
+    DELETE /api/tree
+        Input Parameter:
+            tree_name -> String
+            user -> String //dozent or higher
+            token -> String
+
+        Return:
+            Jep or Nope
 
  */
 const Logger = require("./Logger")
@@ -94,33 +119,88 @@ module.exports = app => {
         }
     })
 
-    app.get("/api/treeids", (req, res) => {
+    app.get("/api/trees", (req, res) => {
         TreeDB.selectData({}).then(trees => {
             let result = []
             trees.forEach(ele => {
-                result.push(ele._id)
+                result.push({_id: ele._id, name: ele.name })
             })
             res.send(result)
         })
     })
 
-    app.get("/api/tree/:treeid", (req, res) => {
-        if(req.params.treeid !== undefined) {
-            if(ff.checkObjectIdFormat(req.params.treeid)) {
-                TreeDB.selectData({_id: req.params.treeid}).then(tree => {
+    app.get("/api/tree/:tree", (req, res) => {
+        if(req.params.tree !== undefined) {
+            if(ff.checkObjectIdFormat(req.params.tree)) {
+                TreeDB.selectData({_id: req.params.tree}).then(tree => {
                     if (tree.length === 1) {
                         res.send(tree[0])
                     } else {
                         res.send("Nope")
+                        Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] FAILD tree was not found.")
                     }
                 })
             } else {
-                res.send("Nope")
-                Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] FAILD treeid has a wrong format.")
+                TreeDB.selectData({name: req.params.tree}).then(tree => {
+                    if(tree.length === 1) {
+                        res.send(tree[0])
+                    } else {
+                        res.send("Nope")
+                        Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] FAILD tree was not found.")
+                    }
+                })
             }
         } else {
             Logger.sendDebug("[TREEMAN][GET /api/tree/:treeid] called without required parameters.")
         }
     })
 
+    app.get("/api/treenodes/:treename", (req, res) => {
+        if(req.params.treename !== undefined) {
+            TreeNodesDB.selectData({tree_name: req.params.treename}).then(treeNodes => {
+                res.send(treeNodes)
+            })
+        } else {
+            Logger.sendDebug("[TREEMAN][GET /api/treenodes/:treename] called without required parameters.")
+        }
+    })
+
+    app.delete("/api/treenode", (req, res) => {
+        if(req.body.id !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateDozentSession(req.body.user, req.body.token).then(user => {
+                if(user) {
+                    if(ff.checkObjectIdFormat(req.body.id)) {
+                        TreeNodesDB.delData({_id: req.body.id})
+                        res.send("Jep")
+                    } else {
+                        res.send("Nope")
+                        Logger.sendDebug("[TREEMAN][DELETE /api/treenode] FAILD id is not valid.")
+                    }
+                } else {
+                    res.send("Nope")
+                    Logger.sendDebug("[TREEMAN][DELETE /api/treenode] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            Logger.sendDebug("[TREEMAN][DELETE /api/treenode] called without required parameters.")
+        }
+    })
+
+    app.delete("/api/tree", (req, res) => {
+        if(req.body.tree_name !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
+            ff.validateDozentSession(req.body.user, req.body.token).then(user => {
+                if(user) {
+                    TreeNodesDB.delManyData({tree_name: req.body.tree_name})
+                    TreeDB.delData({name: req.body.tree_name})
+                    res.send("Jep")
+                    Logger.sendDebug('[TREEMAN][DELETE /api/tree] Tree: "' + req.body.tree_name + '" was deleted by "' + req.body.user + '".')
+                } else {
+                    res.send("Nope")
+                    Logger.sendDebug("[TREEMAN][DELETE /api/tree] FAILD because Invalid user/token.")
+                }
+            })
+        } else {
+            Logger.sendDebug("[TREEMAN][DELETE /api/tree] called without required parameters.")
+        }
+    })
 }

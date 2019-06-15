@@ -1,6 +1,7 @@
 import React from "react";
 import { NormalButton } from "../StyledButton/StyledButton";
 import { AutoComplete } from "@progress/kendo-react-dropdowns";
+
 export default class TreeAdd extends React.Component {
   constructor(props) {
     super(props);
@@ -11,31 +12,43 @@ export default class TreeAdd extends React.Component {
       id: -1,
       search: ""
     };
+    this.onClick = props.createNodeForLevel;
   }
-  createNode = () => {};
+  createNode = () => {
+    if (this.state.search !== null)
+      this.setState((state, props) => ({
+        active: true,
+        title: state.search,
+        id: require("../../Post.json").Posts.filter(
+          e => state.search === e.title
+        )[0].id
+      }));
+    this.onClick();
+  };
   render() {
     console.log(this.state.search);
+    if (!this.state.active)
+      return (
+        <td>
+          <center>
+            <AutoComplete
+              data={this.state.suggestions.filter(s =>
+                s.includes(this.state.search)
+              )}
+              placeholder="e.g. React"
+              onChange={e => this.setState({ search: e.target.value })}
+            />
+            <NormalButton
+              text="Add Node"
+              className="rootNode"
+              onClick={this.createNode}
+            />
+          </center>
+        </td>
+      );
     return (
       <td>
-        <center>
-          <AutoComplete
-            data={this.state.suggestions.filter(s =>
-              s.includes(this.state.search)
-            )}
-            placeholder="e.g. React"
-            onChange={e => this.setState({ search: e.target.value })}
-          />
-          <NormalButton
-            text="Take"
-            className="rootNode"
-            onClick={this.createNode}
-          />
-          <NormalButton
-            text="Add Node"
-            className="rootNode"
-            onClick={this.createNode}
-          />
-        </center>
+        <center>{this.state.title}</center>
       </td>
     );
   }

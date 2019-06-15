@@ -2,6 +2,7 @@
 TODO:
     User Registration verifikation (mail verifikation)
     Nach Debug ausgaben suchen und entfernen
+    Nach falscher verwendung von delData suchen
 */
 
 const express = require('express')
