@@ -49,7 +49,6 @@ export class Thread extends React.Component {
    * und das Datum beim erstellen.
    */
   fav = () => {
-    this.id = this.post.id;
     this.setFav();
   };
 
