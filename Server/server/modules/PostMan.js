@@ -20,7 +20,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
 
     GET /api/post/search/:search
         Return:
-            Arrey of Posts
+            Array of Posts
 
     DELETE /api/post
         Input Parameter:

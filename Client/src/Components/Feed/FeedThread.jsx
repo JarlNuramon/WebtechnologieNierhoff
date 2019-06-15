@@ -40,6 +40,7 @@ export class FeedThread extends React.Component {
         </div>
       );
     }
+
     var rows = [];
     for (var j = 0; j < this.SearchPictures.length; j += 2) {
       if (!(j + 1 < this.SearchPictures.length))
@@ -65,10 +66,16 @@ export class FeedThread extends React.Component {
     );
   }
 }
+
+
 //TODO INTEGRATION tag search
+//  Serverseittig nur suche nach Title möglich
 function searchForTag(search) {
   let json = require("./../../Post.json");
   console.log(search);
+
+
+
   var x = [];
   for (var i = 0; i < json.Posts.length; i++) {
     if (json.Posts[i].tags.includes(search)) {

@@ -24,8 +24,7 @@ export class FeedPicture extends React.Component {
         alt=""
         src={this.picture}
         onClick={() => this.onclick(this.id)}
-        width="100%"
-        height="auto"
+        className="FeedPicture"
       />
     );
   }

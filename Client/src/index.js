@@ -104,6 +104,7 @@ class App extends React.Component {
             handleClick={this.searchStarted}
             filter={this.switchFilter}
             searchFav={this.returnFavorite}
+            toLogin={this.setLogin}
             aria-label="Collapse"
           />
           <Collapse in={this.state.showFilter}>

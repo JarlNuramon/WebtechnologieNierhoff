@@ -2,11 +2,11 @@
   "Tags": [
     {
       "id": 1,
-      "name": "Java"
+      "name": "Moderne Webtechnologien 2"
     },
     {
       "id": 2,
-      "name": "React"
+      "name": "Java"
     },
     {
       "id": 3,
@@ -14,14 +14,42 @@
     },
     {
       "id": 4,
-      "name": "Mathe"
+      "name": "REACT"
     },
     {
       "id": 5,
-      "name": "Pokemon"
+      "name": "TylerMcGinnis"
     },
     {
       "id": 6,
+      "name": "Webtech"
+    },
+    {
+      "id": 555,
+      "name": "Webtechnologie"
+    },
+    {
+      "id": 7,
+      "name": "Java"
+    },
+    {
+      "id": 8,
+      "name": "React"
+    },
+    {
+      "id": 9,
+      "name": "JavaScript"
+    },
+    {
+      "id": 10,
+      "name": "Mathe"
+    },
+    {
+      "id": 11,
+      "name": "Pokemon"
+    },
+    {
+      "id": 12,
       "name": "Klausuren"
     },
     {
