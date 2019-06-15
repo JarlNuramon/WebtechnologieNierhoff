@@ -6,8 +6,10 @@ const section = server_adress + "/api/section";
 const post = server_adress + "/api/post";
 const login = server_adress + "/api/user/login";
 const favorite = server_adress + "/api/favorite";
+const favoriteget = server_adress + "/api/favoriteget";
 const newest = server_adress + "/api/post/newest";
 const search = server_adress + "/api/post/search/";
+const theID = server_adress + "/api/post/id/";
 const filteredData = section + "/filteredData";
 
 export {
@@ -19,5 +21,7 @@ export {
   favorite,
   newest,
   search,
+  theID,
+  favoriteget
   filteredData
 };

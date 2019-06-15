@@ -41,8 +41,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Jep oder Nope
 
 /api/user
-    GET CALL
-
+    POST CALL
     Input Parameter:
         user, token //user must be of group "admin"
     Return:
@@ -193,7 +192,7 @@ module.exports = app => {
         }
     })
 
-    app.get("/api/user", (req, res) => {
+    app.post("/api/user", (req, res) => {
         if (req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateAdminSession(req.body.user, req.body.token).then(adminUser=> {
                 if (adminUser) {
@@ -207,14 +206,14 @@ module.exports = app => {
                             })
                         });
                         res.send(filteredResult);
-                        logger.sendDebug('[UMS][GET /api/user] User "' + req.body.user + '" got all Users!"');
+                        logger.sendDebug('[UMS][POST /api/user] User "' + req.body.user + '" got all Users!"');
                     });
                 } else {
-                    logger.sendDebug("[UMS][GET /api/user] User " + req.body.user + " wanted to see all Users but he is not an Admin-User or wrong login!");
+                    logger.sendDebug("[UMS][POST /api/user] User " + req.body.user + " wanted to see all Users but he is not an Admin-User or wrong login!");
                 }
             });
         } else {
-            logger.sendDebug('[UMS][GET /api/user] FAILED because missing username and / or token.');
+            logger.sendDebug('[UMS][POST /api/user] FAILED because missing username and / or token.');
         }
     });
 
