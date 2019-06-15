@@ -3,9 +3,10 @@ import YouTube from "react-youtube";
 import { AddButton } from "./../StyledButton/StyledButton";
 import PropTypes from "prop-types";
 import "./Thread.css";
+import { server_adress } from "../../server";
 
 const axios = require("axios");
-const restServer = "http://localhost:300"; //die url des rest servers
+const restServer = server_adress; //die url des rest servers
 
 export default class ThreadPost extends React.Component {
   constructor(props) {

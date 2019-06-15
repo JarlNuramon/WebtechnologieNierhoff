@@ -3,9 +3,9 @@ import "./Login.css";
 import { NormalButton } from "./../StyledButton/StyledButton";
 import LogoIcon from "../../Pictures/Logo.png";
 import SearchBar from "../StyledInput/StyledInput.jsx";
+import { login } from "../../server";
 
 //Settings
-const restServer = "http://localhost:300"; //die url des rest servers
 const thisDomain = ".localhost"; //die domain des clients mit führendem " "."
 
 /*
@@ -30,7 +30,7 @@ export class Login extends React.Component {
   }
 
   submit = () => {
-    fetch(restServer + "/api/user/login", {
+    fetch(login, {
       method: "POST",
       mode: "cors",
       cache: "no-cache",

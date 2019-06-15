@@ -6,12 +6,11 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import StarBorder from "@material-ui/icons/StarBorder";
 import "./CheeseburgerMenue.css";
-
-const restServer = "http://localhost:300"; //die url des rest servers
+import { section } from "../../../server.js";
 
 export class Menue extends React.Component {
   async getSection() {
-    return fetch(restServer + "/api/section", {
+    return fetch(section, {
       method: "GET",
       mode: "cors",
       cache: "no-cache",
