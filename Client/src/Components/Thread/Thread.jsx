@@ -111,16 +111,4 @@ export class Thread extends React.Component {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
-
-  //TODO: Entfernen?
-
-  /*getPost = id => {
-    let json = require("./../../Post.json");
-    for (var i = 0; i < json.Posts.length; i++) {
-      if (json.Posts[i].id === id) {
-        return json.Posts[i];
-      }
-    }
-    return;
-  };*/
 }

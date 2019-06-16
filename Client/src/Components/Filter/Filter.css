@@ -8,9 +8,11 @@
   padding: 20px;
 }
 .style th {
+  text-decoration-color: white;
   color: rgba(25, 157, 116, 1);
   text-align: left;
 }
+
 
 /* FilterItem */
 td {
