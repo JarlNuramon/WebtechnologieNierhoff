@@ -120,7 +120,7 @@ class App extends React.Component {
         cache: "no-cache",
         credentials: "same-origin",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "applicastion/json"
         },
         redirect: "follow",
         referrer: "no-referrer",

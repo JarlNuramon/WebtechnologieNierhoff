@@ -9,6 +9,7 @@ const favorite = server_adress + "/api/favorite";
 const favoriteget = favorite + "/get";
 const newest = server_adress + "/api/post/newest";
 const filteredData = section + "/filteredData";
+const searchTags = server_adress + "/api/tags";
 const search = val => server_adress + "/api/post/search/" + val;
 const theID = val => server_adress + "/api/post/id/" + val;
 
@@ -23,5 +24,6 @@ export {
   search,
   theID,
   favoriteget,
-  filteredData
+  filteredData,
+  searchTags
 };

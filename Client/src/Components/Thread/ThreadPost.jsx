@@ -22,8 +22,6 @@ export default class ThreadPost extends React.Component {
         this.getPost();
     }
 
-    //TODO: HARDCODE MIT DER ID ENTFERNEN
-    //      5d028fbc9f18f61f440c5247 durch this.id ersetzen
     getPost() {
         axios.get(theID(this.id)).then(avc => {
             this.setState({json: avc.data});
