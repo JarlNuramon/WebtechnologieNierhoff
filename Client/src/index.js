@@ -25,7 +25,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: "login",
+      page: "start",
       id: null,
       showWriteModal: false,
       showPostModal: false,
