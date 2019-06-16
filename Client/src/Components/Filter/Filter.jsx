@@ -43,7 +43,7 @@ export class Filter extends React.Component {
     for (var i = 0; i < this.max; i++) {
       this.menue.push(
         <tr>
-          <FilterItem name={this.datum[i]} searchAction={this.searchAction} />
+          <FilterItem className="topic" name={this.datum[i]} searchAction={this.searchAction} />
           <FilterItem
             name={this.fachbereich[i].name}
             searchAction={this.searchAction}

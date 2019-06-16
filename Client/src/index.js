@@ -165,11 +165,6 @@ class App extends React.Component {
             <Search action={this.searchStarted} filter={this.switchFilter} />
             <Feed onclick={this.proceedClick} />
           </div>
-          <NormalButton
-            text="Login"
-            className="Login"
-            onClick={e => this.setLogin()}
-          />
         </div>
       );
     if (this.state.page === "thread")
