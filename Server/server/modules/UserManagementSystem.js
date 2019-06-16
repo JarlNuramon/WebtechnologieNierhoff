@@ -65,6 +65,10 @@ Diese Datei stellt folgende REST api's zur verfügung:
     Return:
         Jep oder Nope
 
+GET /api/user/:userid
+    Return:
+        Nope or User Name
+
 Die Input Parameter müssen als JSON formatiert seien z.B.:
 {
     "name": "karl",
@@ -292,6 +296,26 @@ module.exports = app => {
             })
         } else {
             logger.sendDebug("[UMS][POST /api/user/unadmin] called without required parameters.")
+        }
+    })
+
+    app.get("/api/user/:userid", (req, res) => {
+        if(req.params.userid !== undefined) {
+            if(ff.checkObjectIdFormat(req.params.userid)) {
+                UserDB.selectData({_id: req.params.userid}).then(user => {
+                    if (user.length === 1) {
+                        res.send(user[0].name)
+                    } else {
+                        res.send("Nope")
+                        logger.sendDebug("[UMS][GET /api/user/:userid] FAILD user id was not found.")
+                    }
+                })
+            } else {
+                res.send("Nope")
+                logger.sendDebug("[UMS][GET /api/user/:userid] FAILD invalid user id.")
+            }
+        } else {
+            logger.sendDebug("[UMS][GET /api/user/:userid] called without required parameters.")
         }
     })
 }
