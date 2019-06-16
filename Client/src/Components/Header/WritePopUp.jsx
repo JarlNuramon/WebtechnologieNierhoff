@@ -10,7 +10,7 @@ import FormControl from "@material-ui/core/FormControl";
 import "./Header.css";
 import TagManager from "../TagManager/TagManager.jsx";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
-import { TreeWrite } from "./TreeWrite.jsx";
+import  TreeWrite  from "./TreeWrite.jsx";
 import { post } from "../../server";
 
 export class WritePopUp extends React.Component {
