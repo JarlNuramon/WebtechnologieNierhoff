@@ -64,7 +64,7 @@
   border-width: 1px;
   background-color: #212121;
   margin: 3px;
-  width: 160px;
+  width: 200px;
   height: 200px;
   text-align: left;
 }
@@ -79,7 +79,7 @@
   width: 90%;
   text-overflow: ellipsis;
   line-height: 0px;
-  margin-top: -30px;
+  margin-top: -37px;
   background-color: #212121;
   width: auto;
   height: inherit;
@@ -99,5 +99,5 @@
 .FeedPicture {
   width: 100%;
   height: 100%;
-  object-position: 0px -15px;
+  object-position: 0px -19px;
 }
