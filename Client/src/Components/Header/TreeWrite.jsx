@@ -6,7 +6,7 @@ export default class TreeWrite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      levels: [{ parent: "non", limit: false, nodes: [] }]
+      levels: [{ parent: null, limit: false, nodes: [] }]
     };
   }
 
@@ -42,9 +42,9 @@ export default class TreeWrite extends React.Component {
   }
 
 
-  post = () => {
+  post = async () => {
     var cookie = this.getCookie();
-    fetch(postTree, {
+    await fetch(postTree, {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
@@ -55,7 +55,7 @@ export default class TreeWrite extends React.Component {
       redirect: "follow",
       referrer: "no-referrer",
       body: JSON.stringify({
-        "name": "baum",
+        "name": "baum3",
         "user":cookie[" user"],
         "token": cookie[" token"]
       })
@@ -63,8 +63,10 @@ export default class TreeWrite extends React.Component {
 
     for(let level of this.state.levels)
     {
-      console.log("level"+level);
-      fetch(postNode, {
+      console.log(`Level:`);
+      for(let node of level.nodes){
+        console.log(level.nodes)
+      await fetch(postNode, {
         method: "POST",
         mode: "cors",
         cache: "no-cache",
@@ -80,15 +82,15 @@ export default class TreeWrite extends React.Component {
           "parent_id":
           level.parent,
           "tree_name":
-              "baum",
+              "baum3",
           "video_id":
-          level.id,
+          node,
           "user":
               cookie[" user"],
           "token":
               cookie[" token"]
         })
-    })
+    })}
     }
   }
   render() {
