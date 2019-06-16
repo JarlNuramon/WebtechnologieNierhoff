@@ -75,6 +75,13 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.k-Input::after {
+  border-bottom-color: rgba(25, 157, 116, 1) !important;
+}
+.k-Input {
+  min-width: -webkit-fill-available;
+  min-width: -moz-available;
+}
 .event-log {
   margin: 0;
   padding: 0;

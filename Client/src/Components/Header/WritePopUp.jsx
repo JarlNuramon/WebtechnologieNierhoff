@@ -10,8 +10,9 @@ import FormControl from "@material-ui/core/FormControl";
 import "./Header.css";
 import TagManager from "../TagManager/TagManager.jsx";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
-import  TreeWrite  from "./TreeWrite.jsx";
+import TreeWrite from "./TreeWrite.jsx";
 import { post } from "../../server";
+import { AutoComplete } from "@progress/kendo-react-dropdowns";
 
 export class WritePopUp extends React.Component {
   constructor(props) {
@@ -27,9 +28,11 @@ export class WritePopUp extends React.Component {
       link: "",
       text: "",
       tags: [],
-      ort: ""
+      ort: "",
+      suggestions: ["Ort"]
     };
   }
+  getAllSections() {}
   async getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
     var cookieValues = {};
@@ -127,11 +130,19 @@ export class WritePopUp extends React.Component {
                 <br />
                 <b id="formText">Section</b>
                 <br />
-                <DataInput
-                  placeholder="Ort"
-                  name="ort"
-                  onChange={this.updateInput}
-                />
+                <div id="Input">
+                  {" "}
+                  <AutoComplete
+                    data={this.state.suggestions.filter(s =>
+                      s.includes(this.state.ort)
+                    )}
+                    placeholder="Ort"
+                    name="ort"
+                    onChange={this.updateInput}
+                    id="Input"
+                    className="k-Input"
+                  />
+                </div>
                 <br />
                 <b id="formText">Tags</b>
                 <br />
