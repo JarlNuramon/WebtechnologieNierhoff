@@ -104,7 +104,7 @@ export class WritePopUp extends React.Component {
                 <b id="formText">Titel</b>
                 <br />
                 <DataInput
-                  placeholder="title"
+                  placeholder="Title"
                   name="title"
                   onChange={this.updateInput}
                 />
@@ -112,7 +112,7 @@ export class WritePopUp extends React.Component {
                 <b id="formText">Beschreibung</b>
                 <br />
                 <DataInput
-                  placeholder="text"
+                  placeholder="Text"
                   name="text"
                   onChange={this.updateInput}
                 />
