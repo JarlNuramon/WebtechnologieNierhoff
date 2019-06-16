@@ -16,10 +16,10 @@ export default class TreeLevel extends React.Component {
     this.limit = props.limit;
     this.onClick = props.onClick;
     this.parent = props.parent;
+    this.onNodeCreated = props.onNodeCreated;
   }
-  createNode = () => {
-    console.log("creating node for this level");
-    if (this.limit)
+  createNode = id => {
+    if (this.limit) {
       this.setState((state, props) => ({
         nodes: state.nodes.concat([
           <TreeAdd
@@ -28,6 +28,8 @@ export default class TreeLevel extends React.Component {
           />
         ])
       }));
+    }
+    this.onNodeCreated(this.parent, id);
   };
 
   createLevel = node_id => {
@@ -36,7 +38,6 @@ export default class TreeLevel extends React.Component {
       active: true
     }));
     this.onClick(node_id);
-    console.table(this.state);
   };
   render() {
     return (
