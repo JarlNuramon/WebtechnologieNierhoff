@@ -17,18 +17,19 @@ export default class TreeAdd extends React.Component {
     this.addChild = props.addChild;
   }
   createNode = () => {
+    let id = require("../../Post.json").Posts.filter(
+      e => this.state.search === e.title
+    )[0].id;
     if (this.state.search !== null)
       this.setState((state, props) => ({
         active: true,
         title: state.search,
-        id: require("../../Post.json").Posts.filter(
-          e => state.search === e.title
-        )[0].id
+        id: id
       }));
-    this.onClick();
+    console.log(id);
+    this.onClick(id);
   };
   render() {
-    console.log(this.state.search);
     if (!this.state.active)
       return (
         <td>
