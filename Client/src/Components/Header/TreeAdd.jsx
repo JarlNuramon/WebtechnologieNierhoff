@@ -7,12 +7,14 @@ export default class TreeAdd extends React.Component {
     super(props);
     this.state = {
       active: false,
+      hasLevel: false,
       suggestions: require("../../Post.json").Posts.map(e => e.title),
       title: "",
       id: -1,
       search: ""
     };
     this.onClick = props.createNodeForLevel;
+    this.addChild = props.addChild;
   }
   createNode = () => {
     if (this.state.search !== null)
@@ -49,6 +51,18 @@ export default class TreeAdd extends React.Component {
     return (
       <td>
         <center>{this.state.title}</center>
+        {!this.state.hasLevel ? (
+          <NormalButton
+            text="Add Level"
+            className="rootNode"
+            onClick={() => {
+              this.setState({ hasLevel: true });
+              this.addChild(this.state.id);
+            }}
+          />
+        ) : (
+          ""
+        )}
       </td>
     );
   }

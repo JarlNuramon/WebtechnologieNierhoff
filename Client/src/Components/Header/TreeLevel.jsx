@@ -1,5 +1,4 @@
 import React from "react";
-import { NormalButton } from "../StyledButton/StyledButton";
 import TreeAdd from "./TreeAdd";
 
 export default class TreeLevel extends React.Component {
@@ -7,44 +6,52 @@ export default class TreeLevel extends React.Component {
     super(props);
     this.state = {
       active: false,
-      nodes: []
+      nodes: [
+        <TreeAdd
+          createNodeForLevel={this.createNode}
+          addChild={this.createLevel}
+        />
+      ]
     };
+    this.limit = props.limit;
     this.onClick = props.onClick;
-    this.level = props.level;
+    this.parent = props.parent;
   }
   createNode = () => {
     console.log("creating node for this level");
-    this.setState((state, props) => ({
-      nodes: state.nodes.concat([
-        <TreeAdd createNodeForLevel={this.createNode} />
-      ])
-    }));
+    if (this.limit)
+      this.setState((state, props) => ({
+        nodes: state.nodes.concat([
+          <TreeAdd
+            createNodeForLevel={this.createNode}
+            addChild={this.createLevel}
+          />
+        ])
+      }));
   };
 
-  createLevel = () => {
-    console.log("Creating new level");
+  createLevel = node_id => {
+    console.log(`Creating new level for ${node_id}`);
     this.setState((state, props) => ({
-      active: true,
-      nodes: state.nodes.concat([
-        <TreeAdd createNodeForLevel={this.createNode} />
-      ])
+      active: true
     }));
-    this.onClick();
+    this.onClick(node_id);
     console.table(this.state);
   };
   render() {
     return (
       <tr>
         <center>
-          {this.state.nodes.length < 1 ? (
-            <NormalButton
-              text="Add Level"
-              className="rootNode"
-              onClick={this.createLevel}
-            />
-          ) : (
+          {
+            //this.state.nodes.length < 1 ? (
+            //<NormalButton
+            //text="Add Level"
+            //className="rootNode"
+            //onClick={() => this.createLevel(this.parent)}
+            //>
+            //) : (
             this.state.nodes
-          )}
+          }
         </center>
       </tr>
     );
