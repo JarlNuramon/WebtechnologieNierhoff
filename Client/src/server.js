@@ -12,6 +12,9 @@ const filteredData = section + "/filteredData";
 const searchTags = server_adress + "/api/tags";
 const search = val => server_adress + "/api/post/search/" + val;
 const theID = val => server_adress + "/api/post/id/" + val;
+const postTree = server_adress + "/api/tree";
+const postNode = server_adress + "/api/treenode";
+const postAll = server_adress + "/api/posts"
 
 export {
   domain,
@@ -25,5 +28,8 @@ export {
   theID,
   favoriteget,
   filteredData,
-  searchTags
+  searchTags,
+  postTree,
+  postNode,
+    postAll
 };
