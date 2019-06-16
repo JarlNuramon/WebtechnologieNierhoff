@@ -71,7 +71,6 @@ export default class TagManager extends React.Component {
           })
         };
       });
-    console.log(this.state.tags);
   };
 
   updateTagBar = e => {

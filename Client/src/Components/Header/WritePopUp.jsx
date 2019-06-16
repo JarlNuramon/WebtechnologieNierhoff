@@ -33,7 +33,7 @@ export class WritePopUp extends React.Component {
     };
   }
   getAllSections() {}
-  async getCookie() {
+  getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
     var cookieValues = {};
     for (var i = 0, n = cookieList.length; i !== n; ++i) {

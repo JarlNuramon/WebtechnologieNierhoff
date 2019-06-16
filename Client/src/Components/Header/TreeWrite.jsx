@@ -1,6 +1,7 @@
 import React from "react";
 import { NormalButton } from "../StyledButton/StyledButton";
 import TreeLevel from "./TreeLevel";
+import {postTree,postNode} from "../../server.js";
 export default class TreeWrite extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +10,7 @@ export default class TreeWrite extends React.Component {
     };
   }
 
+  treeRender = ()=>this.forceUpdate();
   addNodeIdToLevel = (parent, id) => {
     let level = this.state.levels.filter(e => e.parent === parent)[0];
     level.nodes.push(id);
@@ -22,7 +24,73 @@ export default class TreeWrite extends React.Component {
       levels: state.levels.concat([{ parent: parent, limit: true, nodes: [] }])
     }));
   };
-  post = () => {};
+  getCookie() {
+    var cookieList = document.cookie ? document.cookie.split(";") : [];
+    var cookieValues = {};
+    for (var i = 0, n = cookieList.length; i !== n; ++i) {
+      var cookie = cookieList[i];
+      var f = cookie.indexOf("=");
+      if (f >= 0) {
+        var cookieName = cookie.substring(0, f);
+        var cookieValue = cookie.substring(f + 1);
+        if (!cookieValues.hasOwnProperty(cookieName)) {
+          cookieValues[cookieName] = cookieValue;
+        }
+      }
+    }
+    return cookieValues;
+  }
+
+
+  post = () => {
+    var cookie = this.getCookie();
+    fetch(postTree, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify({
+        "name": "baum",
+        "user":cookie[" user"],
+        "token": cookie[" token"]
+      })
+    })
+
+    for(let level of this.state.levels)
+    {
+      console.log("level"+level);
+      fetch(postNode, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+        body: JSON.stringify({
+          "title":
+              "node",
+          "parent_id":
+          level.parent,
+          "tree_name":
+              "baum",
+          "video_id":
+          level.id,
+          "user":
+              cookie[" user"],
+          "token":
+              cookie[" token"]
+        })
+    })
+    }
+  }
   render() {
     console.info("I am in render of write ");
     console.info(this.state.levels);
@@ -32,6 +100,7 @@ export default class TreeWrite extends React.Component {
         onNodeCreated={this.addNodeIdToLevel}
         parent={level.parent}
         limit={level.limit}
+        treeRender={this.treeRender}
       />
     ));
     return (

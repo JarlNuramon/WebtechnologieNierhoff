@@ -1,6 +1,10 @@
 import React from "react";
 import { NormalButton } from "../StyledButton/StyledButton";
 import { AutoComplete } from "@progress/kendo-react-dropdowns";
+import {postAll} from "../../server";
+
+const axios = require("axios");
+
 
 export default class TreeAdd extends React.Component {
   constructor(props) {
@@ -8,18 +12,34 @@ export default class TreeAdd extends React.Component {
     this.state = {
       active: false,
       hasLevel: false,
-      suggestions: require("../../Post.json").Posts.map(e => e.title),
+      suggestions: [],
       title: "",
       id: -1,
-      search: ""
+      search: "",
+      posts:[]
     };
     this.onClick = props.createNodeForLevel;
     this.addChild = props.addChild;
+    this.treeRender = props.treeRender;
   }
+
+  componentDidMount() {
+    this.getPost()
+
+  }
+  async getPost() {
+    console.log("I am in a get post function")
+    await axios.get(postAll).then(avc => {
+      console.log(`GetPost ${avc.data}`);
+      this.setState({suggestions: avc.data.map(e => e.title),posts:avc.data});
+    });
+    this.treeRender()
+  };
+
   createNode = () => {
-    let id = require("../../Post.json").Posts.filter(
+    let id = this.state.posts.filter(
       e => this.state.search === e.title
-    )[0].id;
+    )[0]._id;
     if (this.state.search !== null)
       this.setState((state, props) => ({
         active: true,
@@ -30,6 +50,8 @@ export default class TreeAdd extends React.Component {
     this.onClick(id);
   };
   render() {
+    console.log("my suggs"+this.state.suggestions);
+    console.log("my posts"+this.state.posts);
     if (!this.state.active)
       return (
         <td>

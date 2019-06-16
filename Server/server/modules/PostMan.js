@@ -142,6 +142,22 @@ module.exports = app => {
         })
     })
 
+    app.get("/api/posts", (req, res) => {
+        PostDB.selectData({}).then(posts => {
+            posts.sort((a, b) => {
+                return new Date(a.post_date) - new Date(b.post_date)
+            })
+            let newestPosts = posts.slice(0, 9001)
+            let pro = []
+            newestPosts.forEach(ele => {
+                pro.push(appendAuthorToPost(ele))
+            })
+            Promise.all(pro).then(newestPostsWithAuthor => {
+                res.send(newestPostsWithAuthor)
+            })
+        })
+    })
+
     app.delete("/api/post", (req, res) => {
         if(req.body.postid !== undefined && req.body.user !== undefined && req.body.token !== undefined) {
             if(ff.checkObjectIdFormat(req.body.postid)) {
