@@ -15,7 +15,7 @@ import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
-import {favorite, favoriteget, login} from "./server"
+import {favorite, favoriteget, login, videoInTree} from "./server"
 
 ReactModal.setAppElement("#root");
 
@@ -31,7 +31,8 @@ class App extends React.Component {
       showPostModal: false,
       search: "",
       showFilter: false,
-      isOpenTreeModal: false
+      isOpenTreeModal: false,
+      treeButtons:[]
     };
     this.setLogin = this.setLogin.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
@@ -190,16 +191,8 @@ class App extends React.Component {
     }
   }
 
-  checkIfisPartOfTree(id) {
-    let json = require("./LearningStack.json");
-    let treeIds = [];
-    for (var i = 0; i < json.Stack.length; i++) {
-      if (json.Stack[i].video_id === id) treeIds.push(json.Stack[i].id);
-    }
-    if (treeIds.length >= 1) return treeIds;
-    return [-1];
-  }
-  treeProccessing = id => {
+
+  treeProcessing = id => {
     this.tree = (
       <LearningTree
         id={id}
@@ -212,30 +205,18 @@ class App extends React.Component {
     this.forceUpdate();
     this.setState({ isOpenTreeModal: true });
   };
-  proceedClick(id) {
-    let tree = this.checkIfisPartOfTree(id);
-    console.log(tree);
-    if (tree[0] !== -1) {
-      var treeComponent = tree.map(element => (
-        <TreeButton
-          text="Tree"
-          key={element}
-          id={element}
-          className="Treemaker"
-          onClick={this.treeProccessing}
-        />
-      ));
-    }
+   proceedClick(id) {
     this.postPopUp = (
       <Thread
         id={id}
         showModal={this}
         handleCloseModal={this.handleClosePostModal}
-        tree={treeComponent}
+        treeProcessing={this.treeProcessing}
       />
     );
     this.setState({ showPostModal: true });
   }
+
 }
 
 const rootElement = document.getElementById("root");

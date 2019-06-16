@@ -22,7 +22,7 @@ export class FeedThread extends React.Component {
 
   async searchForTag(searchvalue) {
 
-    await axios.get(search(searchvalue)).then(avc => {
+    await axios.get(search+searchvalue).then(avc => {
       this.setState({
         json: avc.data
       })

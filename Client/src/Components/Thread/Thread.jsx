@@ -1,10 +1,10 @@
 import React from "react";
 import ReactModal from "react-modal";
 import ThreadPost from "./ThreadPost";
-import { ExitButton } from "./../StyledButton/StyledButton";
-import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
+import {ExitButton, TreeButton} from "./../StyledButton/StyledButton";
+import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import "./Thread.css";
-import { favorite } from "../../server";
+import {favorite, videoInTree} from "../../server";
 
 const axios = require("axios");
 
@@ -14,17 +14,50 @@ export class Thread extends React.Component {
     this.state = {
       key: "Post",
       fav: false,
-      id: 1337,
-      json: []
+      id: -1,
+      json: [],
+      tree:[],
+      treeButton:[]
     };
     this.id = props.id;
     this.main = props.showModal;
     this.onclick = props.handleCloseModal;
     this.handleCloseModal = props.handleCloseModal;
     this.handleOpenModal = props.handleOpenModal;
-    this.tree = props.tree;
+    this.treeProcessing = props.treeProcessing;
   }
 
+
+  componentDidMount() {
+    this.checkIfisPartOfTree(this.id);
+
+  }
+
+  async generateButton()
+  {
+    if (this.state.tree.length>0) {
+
+       this.setState({treeButton:this.state.tree.map(element => (
+          <TreeButton
+              text={element}
+              key={element}
+              id={element}
+              className="Treemaker"
+              onClick={this.treeProcessing}
+          />
+      ))})};
+  }
+  async checkIfisPartOfTree(id) {
+    try{
+    await axios.get(videoInTree+id).then(avc => {
+      this.setState({tree:avc.data})
+    });}catch (error) {
+        console.log(error);
+      }
+    await this.generateButton();
+
+
+  }
   async getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
     var cookieValues = {};
@@ -34,7 +67,6 @@ export class Thread extends React.Component {
       if (f >= 0) {
         var cookieName = cookie.substring(0, f);
         var cookieValue = cookie.substring(f + 1);
-        //console.log("cookieName=" + cookieName + " cookieValue=" + cookieValue);
         if (!cookieValues.hasOwnProperty(cookieName)) {
           cookieValues[cookieName] = cookieValue;
         }
@@ -76,6 +108,7 @@ export class Thread extends React.Component {
   }
 
   render() {
+    console.log(this.state.tree);
     return (
       <div class="Post">
         <ReactModal
@@ -95,13 +128,13 @@ export class Thread extends React.Component {
             </TabList>
             <TabPanel>
               <ThreadPost
-                onclick={this.onclick}
-                fav={this.fav}
-                _onReady={this._onReady}
-                postid={this.id}
+                  onclick={this.onclick}
+                  fav={this.fav}
+                  _onReady={this._onReady}
+                  postid={this.id}
               />
             </TabPanel>
-            <TabPanel>{this.tree}</TabPanel>
+            <TabPanel>{this.state.treeButton}</TabPanel>
           </Tabs>
         </ReactModal>
       </div>
