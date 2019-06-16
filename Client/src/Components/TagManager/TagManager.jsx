@@ -3,30 +3,48 @@ import { ScrollView } from "react-native";
 import { NormalButton } from "../StyledButton/StyledButton.jsx";
 import SearchBar from "../StyledInput/StyledInput.jsx";
 import "./TagManager.css";
+import { searchTags } from "../../server";
+const axios = require("axios");
 
 export default class TagManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      tagsBefore: [],
       tags: [],
       searchValue: ""
     };
+    this.onFinish = props.onFinish;
+  }
 
-    let json = require("./TagManager.json");
-    var x = json.Tags.map(element => {
+  async componentDidMount() {
+    await this.getTags();
+  }
+
+  async getTags(){
+    await axios.get("http://zweipluseins.de:300/api/tags").then(avc => {
+      this.setState({tagsBefore: avc.data});
+    });
+    await this.verarbeiteTags();
+  }
+
+  async verarbeiteTags(){
+    var x = this.state.tagsBefore.map(element => {
+      console.log(element);
       return {
-        name: element.name,
+        name: element,
         button: (
-          <NormalButton
-            text={element.name}
-            onClick={() => this.addTagProcess(element.name)}
-          />
+            <NormalButton
+                text={element}
+                onClick={() => this.addTagProcess(element)}
+            />
         ),
         isClicked: false
       };
     });
-    this.onFinish = props.onFinish;
-    this.state.tags = x;
+    this.setState({
+      tags: x
+    })
   }
 
   addTag = text => {
@@ -42,12 +60,12 @@ export default class TagManager extends React.Component {
       this.setState(prevState => {
         return {
           tags: prevState.tags.concat({
-            name: input,
-            button: (
-              <NormalButton
-                text={input}
-                onClick={() => this.addTagProcess(input)}
-              />
+          name: input,
+          button: (
+             <NormalButton
+               text={input}
+               nClick={() => this.addTagProcess(input)}
+             />
             ),
             isClicked: true
           })

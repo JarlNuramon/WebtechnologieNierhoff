@@ -11,7 +11,7 @@ const newest = server_adress + "/api/post/newest";
 const search = server_adress + "/api/post/search/";
 const theID = server_adress + "/api/post/id/";
 const filteredData = section + "/filteredData";
-
+const searchTags = server_adress + "/api/tags";
 export {
   domain,
   server_adress,
@@ -23,5 +23,6 @@ export {
   search,
   theID,
   favoriteget,
-  filteredData
+  filteredData,
+  searchTags
 };

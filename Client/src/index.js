@@ -25,7 +25,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: "start",
+      page: "login",
       id: null,
       showWriteModal: false,
       showPostModal: false,
@@ -120,7 +120,7 @@ class App extends React.Component {
         cache: "no-cache",
         credentials: "same-origin",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "applicastion/json"
         },
         redirect: "follow",
         referrer: "no-referrer",
