@@ -7,26 +7,29 @@ export default class TreeAdd extends React.Component {
     super(props);
     this.state = {
       active: false,
+      hasLevel: false,
       suggestions: require("../../Post.json").Posts.map(e => e.title),
       title: "",
       id: -1,
       search: ""
     };
     this.onClick = props.createNodeForLevel;
+    this.addChild = props.addChild;
   }
   createNode = () => {
+    let id = require("../../Post.json").Posts.filter(
+      e => this.state.search === e.title
+    )[0].id;
     if (this.state.search !== null)
       this.setState((state, props) => ({
         active: true,
         title: state.search,
-        id: require("../../Post.json").Posts.filter(
-          e => state.search === e.title
-        )[0].id
+        id: id
       }));
-    this.onClick();
+    console.log(id);
+    this.onClick(id);
   };
   render() {
-    console.log(this.state.search);
     if (!this.state.active)
       return (
         <td>
@@ -49,6 +52,18 @@ export default class TreeAdd extends React.Component {
     return (
       <td>
         <center>{this.state.title}</center>
+        {!this.state.hasLevel ? (
+          <NormalButton
+            text="Add Level"
+            className="rootNode"
+            onClick={() => {
+              this.setState({ hasLevel: true });
+              this.addChild(this.state.id);
+            }}
+          />
+        ) : (
+          ""
+        )}
       </td>
     );
   }

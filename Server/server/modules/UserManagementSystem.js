@@ -41,8 +41,7 @@ Diese Datei stellt folgende REST api's zur verfügung:
         Jep oder Nope
 
 /api/user
-    GET CALL
-
+    POST CALL
     Input Parameter:
         user, token //user must be of group "admin"
     Return:
@@ -65,6 +64,10 @@ Diese Datei stellt folgende REST api's zur verfügung:
         unAdminUser, user, token  //user must be of group "admin"
     Return:
         Jep oder Nope
+
+GET /api/user/:userid
+    Return:
+        Nope or User Name
 
 Die Input Parameter müssen als JSON formatiert seien z.B.:
 {
@@ -193,7 +196,7 @@ module.exports = app => {
         }
     })
 
-    app.get("/api/user", (req, res) => {
+    app.post("/api/user", (req, res) => {
         if (req.body.user !== undefined && req.body.token !== undefined) {
             ff.validateAdminSession(req.body.user, req.body.token).then(adminUser=> {
                 if (adminUser) {
@@ -207,14 +210,14 @@ module.exports = app => {
                             })
                         });
                         res.send(filteredResult);
-                        logger.sendDebug('[UMS][GET /api/user] User "' + req.body.user + '" got all Users!"');
+                        logger.sendDebug('[UMS][POST /api/user] User "' + req.body.user + '" got all Users!"');
                     });
                 } else {
-                    logger.sendDebug("[UMS][GET /api/user] User " + req.body.user + " wanted to see all Users but he is not an Admin-User or wrong login!");
+                    logger.sendDebug("[UMS][POST /api/user] User " + req.body.user + " wanted to see all Users but he is not an Admin-User or wrong login!");
                 }
             });
         } else {
-            logger.sendDebug('[UMS][GET /api/user] FAILED because missing username and / or token.');
+            logger.sendDebug('[UMS][POST /api/user] FAILED because missing username and / or token.');
         }
     });
 
@@ -293,6 +296,26 @@ module.exports = app => {
             })
         } else {
             logger.sendDebug("[UMS][POST /api/user/unadmin] called without required parameters.")
+        }
+    })
+
+    app.get("/api/user/:userid", (req, res) => {
+        if(req.params.userid !== undefined) {
+            if(ff.checkObjectIdFormat(req.params.userid)) {
+                UserDB.selectData({_id: req.params.userid}).then(user => {
+                    if (user.length === 1) {
+                        res.send(user[0].name)
+                    } else {
+                        res.send("Nope")
+                        logger.sendDebug("[UMS][GET /api/user/:userid] FAILD user id was not found.")
+                    }
+                })
+            } else {
+                res.send("Nope")
+                logger.sendDebug("[UMS][GET /api/user/:userid] FAILD invalid user id.")
+            }
+        } else {
+            logger.sendDebug("[UMS][GET /api/user/:userid] called without required parameters.")
         }
     })
 }

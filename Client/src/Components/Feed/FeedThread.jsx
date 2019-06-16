@@ -13,7 +13,7 @@ export class FeedThread extends React.Component {
       search: "",
       json: []
     };
-    this.onclick = props.onclick.bind(this);
+    this.onclick = props.onclick;
   }
 
   closeTree = () => {
@@ -21,8 +21,8 @@ export class FeedThread extends React.Component {
   };
 
   async searchForTag(searchvalue) {
-    await axios.get(search + searchvalue).then(avc => {
-      console.log(avc.data);
+
+    await axios.get(search(searchvalue)).then(avc => {
       this.setState({
         json: avc.data
       })
@@ -47,6 +47,7 @@ export class FeedThread extends React.Component {
   render() {
     this.SearchPictures = [];
     for (var i = 0; i < this.state.json.length; i++) {
+      //console.log("ID "+this.state.json)
       this.SearchPictures.push(
         <div className="SearchResult">
           <div className="twoColumn">

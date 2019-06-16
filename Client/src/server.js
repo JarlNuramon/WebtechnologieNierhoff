@@ -6,12 +6,13 @@ const section = server_adress + "/api/section";
 const post = server_adress + "/api/post";
 const login = server_adress + "/api/user/login";
 const favorite = server_adress + "/api/favorite";
-const favoriteget = server_adress + "/api/favorite/get";
+const favoriteget = favorite + "/get";
 const newest = server_adress + "/api/post/newest";
-const search = server_adress + "/api/post/search/";
-const theID = server_adress + "/api/post/id/";
 const filteredData = section + "/filteredData";
 const searchTags = server_adress + "/api/tags";
+const search = val => server_adress + "/api/post/search/" + val;
+const theID = val => server_adress + "/api/post/id/" + val;
+
 export {
   domain,
   server_adress,

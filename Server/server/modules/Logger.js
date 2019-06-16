@@ -6,6 +6,7 @@
             If debugging to log is enabled it sends the debugMessage to the debug log
             If debugging to console is enabled it sends the debug message to the console
         Both methods keep track of the max log size
+
  */
 const fs = require("fs")
 const Config = require("../config")
