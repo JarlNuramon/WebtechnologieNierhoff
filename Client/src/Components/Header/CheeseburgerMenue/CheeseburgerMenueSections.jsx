@@ -9,6 +9,7 @@ import "./CheeseburgerMenue.css";
 import { section } from "../../../server.js";
 
 export class Menue extends React.Component {
+
   async getSection() {
     return fetch(section, {
       method: "GET",
@@ -28,7 +29,7 @@ export class Menue extends React.Component {
         })
   }
 
-  async lel() {
+  async returnSections() {
     this.json = await this.getSection();
     this.root = this.getRootSections(this.json)
     for (var i = 0; i < this.root.length; i++) {
@@ -50,9 +51,8 @@ export class Menue extends React.Component {
     this.loading =true;
     this.menue = [];
     this.search = props.search;
-    this.searchFav = props.searchFav;
     this.handleClick = props.handleClick;
-    this.lel();
+    this.returnSections();
   }
 
 
@@ -61,13 +61,13 @@ export class Menue extends React.Component {
     return (
       <div>
         <List>
-          <ListItem onClick={() => this.searchFav()} button>
+          <ListItem onClick={() => this.handleClick("Favoriten")} button>
             <ListItemIcon>
               <div className="starIconInMenue">
                 <StarBorder />
               </div>
             </ListItemIcon>
-            <ListItemText>
+            <ListItemText >
               <div className="textInMenue">Favoriten</div>
             </ListItemText>
           </ListItem>

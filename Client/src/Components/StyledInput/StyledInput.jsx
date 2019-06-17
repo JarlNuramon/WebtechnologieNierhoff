@@ -12,6 +12,7 @@ export default function Searchbar(props) {
       type="text"
       name={props.name}
       placeholder={props.placeholder}
+      value={props.value}
       onChange={props.onChange}
       onKeyDown={props.onKeyDown}
       inputProps={props.inputProps}
