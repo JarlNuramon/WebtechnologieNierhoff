@@ -32,7 +32,7 @@ export default class CheeseburgerMenue extends React.Component {
           closeCallback={this.closeMenu}
           backgroundColor="#131c1e"
         >
-          <Menue handleClick={this.handleClick} searchFav={this.searchFav} />
+          <Menue handleClick={this.handleClick} />
         </Menu>
 
         <IconButton
