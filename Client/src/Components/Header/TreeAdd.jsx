@@ -20,20 +20,16 @@ export default class TreeAdd extends React.Component {
     };
     this.onClick = props.createNodeForLevel;
     this.addChild = props.addChild;
-    this.treeRender = props.treeRender;
-  }
+    }
 
   componentDidMount() {
     this.getPost()
 
   }
   async getPost() {
-    console.log("I am in a get post function")
     await axios.get(postAll).then(avc => {
-      console.log(`GetPost ${avc.data}`);
       this.setState({suggestions: avc.data.map(e => e.title),posts:avc.data});
     });
-    this.treeRender()
   };
 
   createNode = () => {
@@ -47,11 +43,10 @@ export default class TreeAdd extends React.Component {
         id: id
       }));
     console.log(id);
-    this.onClick(id);
+    this.onClick({"id":id,"title":this.state.search});
   };
   render() {
-    console.log("my suggs"+this.state.suggestions);
-    console.log("my posts"+this.state.posts);
+	  
     if (!this.state.active)
       return (
         <td>
