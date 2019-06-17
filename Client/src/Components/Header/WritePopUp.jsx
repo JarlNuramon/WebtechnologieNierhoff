@@ -14,6 +14,8 @@ import TreeWrite from "./TreeWrite.jsx";
 import { post, section } from "../../server";
 import { AutoComplete } from "@progress/kendo-react-dropdowns";
 
+
+const axios = require("axios");
 export class WritePopUp extends React.Component {
   constructor(props) {
     super(props);
@@ -32,17 +34,13 @@ export class WritePopUp extends React.Component {
     this.post = this.post.bind(this);
   }
   componentDidMount() {
-//    this.getAllSections();
+	this.getAllSections();
   }
   async getAllSections() {
-    await fetch(section, {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin"
-    }).then(response => {
-      this.setState({ suggestions: response.json() });
-    });
+	  await axios.get(section).then(avc=>{
+      this.setState({suggestions: avc.data})
+
+   });
   }
   getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
