@@ -89,7 +89,9 @@ module.exports = app => {
             if(ff.checkObjectIdFormat(req.params.postid)) {
                 PostDB.selectData({_id: req.params.postid}).then(post => {
                     if (post.length == 1) {
-                        res.send(post[0])
+                        appendAuthorToPost(post[0]).then(result => {
+                            res.send(result)
+                        })
                     } else {
                         res.send("Nope")
                         logger.sendDebug('[POSTMAN][GET /api/post/id/:postid] FAILD to find post with id "' + req.params.postid + '".')
@@ -110,7 +112,13 @@ module.exports = app => {
                 PostDB.selectData({tags: req.params.search}).then(postsTag => {
                     let response = postsTitle.concat(postsTag)
                     response = filterDouble(response)
-                    res.send(response)
+                    let pro = []
+                    response.forEach(ele => {
+                        pro.push(appendAuthorToPost(ele))
+                    })
+                    Promise.all(pro).then(result => {
+                        res.send(result)
+                    })
                 })
             })
         } else {
@@ -123,7 +131,30 @@ module.exports = app => {
             posts.sort((a, b) => {
                 return new Date(a.post_date) - new Date(b.post_date)
             })
-            res.send(posts.slice(0, Config.FEED_LENGTH))
+            let newestPosts = posts.slice(0, Config.FEED_LENGTH)
+            let pro = []
+            newestPosts.forEach(ele => {
+                pro.push(appendAuthorToPost(ele))
+            })
+            Promise.all(pro).then(newestPostsWithAuthor => {
+                res.send(newestPostsWithAuthor)
+            })
+        })
+    })
+
+    app.get("/api/posts", (req, res) => {
+        PostDB.selectData({}).then(posts => {
+            posts.sort((a, b) => {
+                return new Date(a.post_date) - new Date(b.post_date)
+            })
+            let newestPosts = posts.slice(0, 9001)
+            let pro = []
+            newestPosts.forEach(ele => {
+                pro.push(appendAuthorToPost(ele))
+            })
+            Promise.all(pro).then(newestPostsWithAuthor => {
+                res.send(newestPostsWithAuthor)
+            })
         })
     })
 
@@ -185,7 +216,7 @@ module.exports = app => {
 
 }
 
-function filterDouble(array) {
+let filterDouble = (array) => {
     let counter = 0
 
     for(let i1 = 0; i1<array.length; i1++) {
@@ -210,4 +241,17 @@ function filterDouble(array) {
     })
 
     return array
+}
+
+let appendAuthorToPost = (post) => {
+    return UserDB.selectData({_id: post.author_id}).then(author => {
+        let result = JSON.parse(JSON.stringify(post))
+        if(author.length === 1) {
+            result.author_name = author[0].name
+            return result
+        } else {
+            result.author_name = "Unknown"
+            return result
+        }
+    })
 }

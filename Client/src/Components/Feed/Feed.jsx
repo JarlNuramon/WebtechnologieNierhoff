@@ -22,6 +22,7 @@ export class Feed extends React.Component {
 
   jsonToHTML() {
     for (var i = this.state.json.length - 1; i >= 0; --i) {
+      console.log(this.state.json[i]);
       var x = this.state.json[i];
       this.setState(prevState => {
         return {
@@ -34,7 +35,7 @@ export class Feed extends React.Component {
               />
               <Text id="text" className="text">
                 <h4>{x["title"]}</h4>
-                <font size="1">by: {x["author_id"]}</font>
+                <font size="1">by: {x["author_name"]}</font>
                 <p className="FeedP">{x["text"]}</p>
               </Text>
             </View>

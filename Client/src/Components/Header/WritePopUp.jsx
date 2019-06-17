@@ -10,27 +10,39 @@ import FormControl from "@material-ui/core/FormControl";
 import "./Header.css";
 import TagManager from "../TagManager/TagManager.jsx";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
-import { TreeWrite } from "./TreeWrite.jsx";
-import { post } from "../../server";
+import TreeWrite from "./TreeWrite.jsx";
+import { post, section } from "../../server";
+import { AutoComplete } from "@progress/kendo-react-dropdowns";
 
+
+const axios = require("axios");
 export class WritePopUp extends React.Component {
   constructor(props) {
     super(props);
-    this.main = props.showModal;
-    this.handleCloseModal = props.handleCloseModal;
-    this.handleOpenModal = props.handleOpenModal;
-    this.updateInput = this.updateInput.bind(this);
-    this.post = this.post.bind(this);
-
     this.state = {
       title: "",
       link: "",
       text: "",
       tags: [],
-      ort: ""
+      ort: "",
+      suggestions: [{ name: "Ort", _id: null }]
     };
+    this.main = props.showModal;
+    this.handleCloseModal = props.handleCloseModal;
+    this.handleOpenModal = props.handleOpenModal;
+    this.updateInput = this.updateInput.bind(this);
+    this.post = this.post.bind(this);
   }
-  async getCookie() {
+  componentDidMount() {
+	this.getAllSections();
+  }
+  async getAllSections() {
+	  await axios.get(section).then(avc=>{
+      this.setState({suggestions: avc.data})
+
+   });
+  }
+  getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
     var cookieValues = {};
     for (var i = 0, n = cookieList.length; i !== n; ++i) {
@@ -50,18 +62,9 @@ export class WritePopUp extends React.Component {
     return cookieValues;
   }
 
-  //TODO: section hardcode entfernen
   //TODO: Aufräumen
   async post() {
     var cookieList = await this.getCookie();
-    console.log(this.state.title);
-    console.log(this.state.link);
-    console.log(this.state.text);
-    console.log(new Date());
-    console.log(this.state.tags);
-    console.log(cookieList[" user"]);
-    console.log(cookieList[" token"]);
-
     fetch(post, {
       method: "POST",
       mode: "cors",
@@ -79,7 +82,8 @@ export class WritePopUp extends React.Component {
         post_date: new Date(),
         tags: this.state.tags,
         author: cookieList[" user"],
-        section: "5d013a9d41716443303d37fc",
+        section: this.state.suggestions.find(e => e.name === this.state.ort)
+          ._id,
         token: cookieList[" token"]
       })
     });
@@ -112,7 +116,7 @@ export class WritePopUp extends React.Component {
                 <b id="formText">Titel</b>
                 <br />
                 <DataInput
-                  placeholder="title"
+                  placeholder="Title"
                   name="title"
                   onChange={this.updateInput}
                 />
@@ -120,7 +124,7 @@ export class WritePopUp extends React.Component {
                 <b id="formText">Beschreibung</b>
                 <br />
                 <DataInput
-                  placeholder="text"
+                  placeholder="Text"
                   name="text"
                   onChange={this.updateInput}
                 />
@@ -135,11 +139,19 @@ export class WritePopUp extends React.Component {
                 <br />
                 <b id="formText">Section</b>
                 <br />
-                <DataInput
-                  placeholder="Ort"
-                  name="ort"
-                  onChange={this.updateInput}
-                />
+                <div id="Input">
+                  {" "}
+                  <AutoComplete
+                    data={this.state.suggestions
+                      .map(s => s.name)
+                      .filter(s => s.includes(this.state.ort))}
+                    placeholder="Ort"
+                    name="ort"
+                    onChange={this.updateInput}
+                    id="Input"
+                    className="k-Input"
+                  />
+                </div>
                 <br />
                 <b id="formText">Tags</b>
                 <br />
@@ -156,56 +168,13 @@ export class WritePopUp extends React.Component {
               </div>
             </TabPanel>
             <TabPanel>
-              <TreeWrite />
+              <TreeWrite close={this.handleCloseModal} />
             </TabPanel>
           </Tabs>
         </ReactModal>
       </div>
     );
   }
-
-  //TODO: Entfernen
-  /*
-    post() {
-      let json = require("./../../Post.json");
-      var post = {
-        id: Math.random()
-          .toString(16)
-          .replace("0.", ""),
-        title: this.state.title,
-        link: this.state.link,
-        text: this.state.text,
-        post_date: new Date(),
-        tags: this.state.tags.split(","),
-        author: "Jan Nierhoff",
-        author_id: this.lookForAuthorId("Jan Nierhoff"),
-        section_id: this.lookForSectionId(this.state.ort),
-        section: this.state.ort
-      };
-
-      console.log(post);
-      json.Posts.push(post);
-      this.handleCloseModal();
-    }
-
-
-    lookForAuthorId(str){
-      let json = require("./Author.json");
-      for (var i = 0; i < json.Author.length; i++) {
-        if (json.Author[i].name === str) {
-          return json.Author[i].id;
-        }
-      }
-    }
-    lookForSectionId(str){
-      let json = require("./../../Section.json");
-      for (var i = 0; i < json.Section.length; i++) {
-        if (json.Section[i].name === str) {
-          return json.Section[i].id;
-        }
-      }
-    }
-  */
 
   updateInput(e) {
     const target = e.target;
