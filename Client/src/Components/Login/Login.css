@@ -20,7 +20,7 @@
 }
 
 .Login #Input {
-  background-color: rgb(226, 224, 224);
+  background-color: rgb(226, 224, 224) !important;
 }
 
 .LoginInner {
