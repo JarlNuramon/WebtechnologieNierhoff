@@ -10,7 +10,6 @@ import { Thread } from "./Components/Thread/Thread.jsx";
 import { FeedThread } from "./Components/Feed/FeedThread";
 import LogoIcon from "./Pictures/Logo.png";
 import { Login } from "./Components/Login/Login.jsx";
-
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
@@ -41,8 +40,8 @@ class App extends React.Component {
     this.postPopUp = null;
     this.searchStarted = this.searchStarted.bind(this);
     this.switchFilter = this.switchFilter.bind(this);
-    this.returnFavorite = this.returnFavorite.bind(this);
-    this.cookie = this.getCookie.bind(this);
+    //this.returnFavorite = this.returnFavorite.bind(this);
+    this.getCookie = this.getCookie.bind(this);
   }
   closeTree = () => {
     this.setState({ isOpenTreeModal: false });
@@ -89,6 +88,11 @@ class App extends React.Component {
       showFilter: !this.state.showFilter
     });
   }
+
+  closeTree = () => {
+    this.setState({ isOpenTreeModal: false });
+  };
+
   getCookie() {
     var cookieList = document.cookie ? document.cookie.split(";") : [];
     var cookieValues = {};
@@ -104,37 +108,6 @@ class App extends React.Component {
       }
     }
     return cookieValues;
-  }
-
-  async returnFavorite() {
-    //TODO: Server soll hier alle fav. Videos zurück geben.
-    var cookieValue = await this.getCookie();
-    console.log("bin in return favorite");
-
-    console.log(cookieValue[" user"]);
-    console.log(cookieValue[" token"]);
-    console.log(favoriteget);
-    fetch(favoriteget, {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "applicastion/json"
-      },
-      redirect: "follow",
-      referrer: "no-referrer",
-      body: JSON.stringify({
-        user: cookieValue[" user"],
-        token: cookieValue[" token"]
-      })
-    })
-      .then(response => {
-        return response.text();
-      })
-      .then(response => {
-        console.log(response);
-      });
   }
 
   closeTree = () => {
@@ -172,7 +145,7 @@ class App extends React.Component {
     if (this.state.page === "thread")
       return (
         <div className="App">
-          <Header onStartPage={false} handleFav={this.returnFavorite} />
+          <Header onStartPage={false} />
           <Collapse in={this.state.showFilter}>
             <Filter searchAction={this.searchStarted} />
           </Collapse>
@@ -183,6 +156,7 @@ class App extends React.Component {
               key="Search"
               search={this.state.search}
               onclick={this.proceedClick}
+              cookie={this.getCookie}
             />
           </div>
         </div>

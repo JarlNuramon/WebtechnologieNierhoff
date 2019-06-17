@@ -10,7 +10,7 @@
 }
 
 .FeedScrollView {
-  scrollbar-width: none;
+  scrollbar-width: thin;
 }
 
 .result {

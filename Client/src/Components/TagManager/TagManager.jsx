@@ -22,7 +22,7 @@ export default class TagManager extends React.Component {
   }
 
   async getTags(){
-    await axios.get("http://zweipluseins.de:300/api/tags").then(avc => {
+    await axios.get(searchTags).then(avc => {
       this.setState({tagsBefore: avc.data});
     });
     await this.verarbeiteTags();
@@ -30,7 +30,6 @@ export default class TagManager extends React.Component {
 
   async verarbeiteTags(){
     var x = this.state.tagsBefore.map(element => {
-      console.log(element);
       return {
         name: element,
         button: (
@@ -56,7 +55,7 @@ export default class TagManager extends React.Component {
   };
 
   addNewTag = input => {
-    if (input !== "")
+    if (input.trim() !== "")
       this.setState(prevState => {
         return {
           tags: prevState.tags.concat({
@@ -64,7 +63,7 @@ export default class TagManager extends React.Component {
           button: (
              <NormalButton
                text={input}
-               nClick={() => this.addTagProcess(input)}
+               onClick={() => this.addTagProcess(input)}
              />
             ),
             isClicked: true
@@ -131,8 +130,8 @@ export default class TagManager extends React.Component {
           {this.state.tags
             .filter(
               tag =>
-                (this.state.searchValue === "" && tag.isClicked === false) ||
-                (this.state.searchValue !== "" &&
+                (this.state.searchValue.trim() === "" && tag.isClicked === false) ||
+                (this.state.searchValue.trim() !== "" &&
                   tag.isClicked === false &&
                   tag.name.toUpperCase() ===
                     this.state.searchValue.toUpperCase())
