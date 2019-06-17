@@ -8,9 +8,10 @@ export default class TreeWrite extends React.Component {
     this.state = {
       levels: [{ parent: null, limit: false, nodes: [] }]
     };
+	this.close = props.close;
+	this.name="Baumxxx";
   }
 
-  treeRender = ()=>this.forceUpdate();
   addNodeIdToLevel = (parent, id) => {
     let level = this.state.levels.filter(e => e.parent === parent)[0];
     level.nodes.push(id);
@@ -43,6 +44,8 @@ export default class TreeWrite extends React.Component {
 
 
   post = async () => {
+	  console.log("Post "+this.name+" for following started");
+	 console.log(this.state.levels);
     var cookie = this.getCookie();
     await fetch(postTree, {
       method: "POST",
@@ -55,15 +58,15 @@ export default class TreeWrite extends React.Component {
       redirect: "follow",
       referrer: "no-referrer",
       body: JSON.stringify({
-        "name": "baum3",
+        "name": this.name,
         "user":cookie[" user"],
         "token": cookie[" token"]
       })
     })
-
+	this.forceUpdate();
+	console.log("TreeCreated");
     for(let level of this.state.levels)
     {
-      console.log(`Level:`);
       for(let node of level.nodes){
         console.log(level.nodes)
       await fetch(postNode, {
@@ -78,13 +81,13 @@ export default class TreeWrite extends React.Component {
         referrer: "no-referrer",
         body: JSON.stringify({
           "title":
-              "node",
+              node.title,
           "parent_id":
           level.parent,
           "tree_name":
-              "baum3",
+              this.name,
           "video_id":
-          node,
+          node.id,
           "user":
               cookie[" user"],
           "token":
@@ -92,9 +95,11 @@ export default class TreeWrite extends React.Component {
         })
     })}
     }
+	
+	this.close();
   }
   render() {
-    console.info("I am in render of write ");
+	console.info("Levels");
     console.info(this.state.levels);
     let a = this.state.levels.map(level => (
       <TreeLevel
@@ -102,12 +107,12 @@ export default class TreeWrite extends React.Component {
         onNodeCreated={this.addNodeIdToLevel}
         parent={level.parent}
         limit={level.limit}
-        treeRender={this.treeRender}
       />
     ));
     return (
       <>
         <div id="Write">
+		Name of tree:<input onChange={e=>this.name=e.target.value}/>
           <center>
             <table>
               <tr />

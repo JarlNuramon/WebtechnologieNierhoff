@@ -10,15 +10,14 @@ export default class TreeLevel extends React.Component {
         <TreeAdd
           createNodeForLevel={this.createNode}
           addChild={this.createLevel}
-          treeRender={this.treeRender}
-        />
+          
+		  />
       ]
     };
     this.limit = props.limit;
     this.onClick = props.onClick;
     this.parent = props.parent;
     this.onNodeCreated = props.onNodeCreated;
-    this.treeRender = props.treeRender;
   }
   createNode = id => {
     if (this.limit) {
@@ -27,7 +26,6 @@ export default class TreeLevel extends React.Component {
           <TreeAdd
             createNodeForLevel={this.createNode}
             addChild={this.createLevel}
-            treeRender={this.treeRender}
           />
         ])
       }));

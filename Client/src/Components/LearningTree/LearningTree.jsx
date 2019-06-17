@@ -9,7 +9,7 @@ import {treeNode} from "../../server";
 const axios = require("axios");
 export default class LearningTree extends React.Component {
   static propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     openThread: PropTypes.func.isRequired,
     showModal: PropTypes.object.isRequired,
     close: PropTypes.func.isRequired

@@ -12,6 +12,9 @@
 .CheeseburgerMenueRoot {
   flex-grow: 1;
 }
+.cheeseburger-menu-outer {
+  min-width: 33.3%;
+}
 .cheeseburger-menu-inner {
   scrollbar-width: none
 }
