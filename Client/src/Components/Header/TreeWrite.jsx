@@ -1,15 +1,16 @@
 import React from "react";
 import { NormalButton } from "../StyledButton/StyledButton";
 import TreeLevel from "./TreeLevel";
-import {postTree,postNode} from "../../server.js";
+import { postTree, postNode } from "../../server.js";
+import DataInput from "../StyledInput/StyledInput.jsx";
 export default class TreeWrite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       levels: [{ parent: null, limit: false, nodes: [] }]
     };
-	this.close = props.close;
-	this.name="Baumxxx";
+    this.close = props.close;
+    this.name = "Baumxxx";
   }
 
   addNodeIdToLevel = (parent, id) => {
@@ -42,10 +43,9 @@ export default class TreeWrite extends React.Component {
     return cookieValues;
   }
 
-
   post = async () => {
-	  console.log("Post "+this.name+" for following started");
-	 console.log(this.state.levels);
+    console.log("Post " + this.name + " for following started");
+    console.log(this.state.levels);
     var cookie = this.getCookie();
     await fetch(postTree, {
       method: "POST",
@@ -58,48 +58,42 @@ export default class TreeWrite extends React.Component {
       redirect: "follow",
       referrer: "no-referrer",
       body: JSON.stringify({
-        "name": this.name,
-        "user":cookie[" user"],
-        "token": cookie[" token"]
+        name: this.name,
+        user: cookie[" user"],
+        token: cookie[" token"]
       })
-    })
-	this.forceUpdate();
-	console.log("TreeCreated");
-    for(let level of this.state.levels)
-    {
-      for(let node of level.nodes){
-        console.log(level.nodes)
-      await fetch(postNode, {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        redirect: "follow",
-        referrer: "no-referrer",
-        body: JSON.stringify({
-          "title":
-              node.title,
-          "parent_id":
-          level.parent,
-          "tree_name":
-              this.name,
-          "video_id":
-          node.id,
-          "user":
-              cookie[" user"],
-          "token":
-              cookie[" token"]
-        })
-    })}
+    });
+    this.forceUpdate();
+    console.log("TreeCreated");
+    for (let level of this.state.levels) {
+      for (let node of level.nodes) {
+        console.log(level.nodes);
+        await fetch(postNode, {
+          method: "POST",
+          mode: "cors",
+          cache: "no-cache",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          redirect: "follow",
+          referrer: "no-referrer",
+          body: JSON.stringify({
+            title: node.title,
+            parent_id: level.parent,
+            tree_name: this.name,
+            video_id: node.id,
+            user: cookie[" user"],
+            token: cookie[" token"]
+          })
+        });
+      }
     }
-	
-	this.close();
-  }
+
+    this.close();
+  };
   render() {
-	console.info("Levels");
+    console.info("Levels");
     console.info(this.state.levels);
     let a = this.state.levels.map(level => (
       <TreeLevel
@@ -112,7 +106,8 @@ export default class TreeWrite extends React.Component {
     return (
       <>
         <div id="Write">
-		Name of tree:<input onChange={e=>this.name=e.target.value}/>
+          Name of tree:
+          <DataInput onChange={e => (this.name = e.target.value)} />
           <center>
             <table>
               <tr />
