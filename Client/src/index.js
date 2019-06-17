@@ -10,16 +10,16 @@ import { Thread } from "./Components/Thread/Thread.jsx";
 import { FeedThread } from "./Components/Feed/FeedThread";
 import LogoIcon from "./Pictures/Logo.png";
 import { Login } from "./Components/Login/Login.jsx";
-import { NormalButton } from "./Components/StyledButton/StyledButton.jsx";
+
 import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
-import {TreeButton} from "./Components/StyledButton/StyledButton.jsx";
-import {favorite, favoriteget, login, videoInTree} from "./server"
+
+import { favoriteget } from "./server";
 
 ReactModal.setAppElement("#root");
 
-const axios = require('axios');
+const axios = require("axios");
 
 class App extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class App extends React.Component {
       search: "",
       showFilter: false,
       isOpenTreeModal: false,
-      treeButtons:[]
+      treeButtons: []
     };
     this.setLogin = this.setLogin.bind(this);
     this.handleClosePostModal = this.handleClosePostModal.bind(this);
@@ -106,34 +106,35 @@ class App extends React.Component {
     return cookieValues;
   }
 
-
   async returnFavorite() {
     //TODO: Server soll hier alle fav. Videos zurück geben.
     var cookieValue = await this.getCookie();
-    console.log("bin in return favorite")
+    console.log("bin in return favorite");
 
-      console.log(cookieValue[" user"])
-      console.log(cookieValue[" token"])
-    console.log(favoriteget)
-      fetch(favoriteget, {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "applicastion/json"
-        },
-        redirect: "follow",
-        referrer: "no-referrer",
-        body: JSON.stringify({
-          user: cookieValue[" user"],
-          token: cookieValue[" token"]
-        })
-      }).then(response => {
-          return response.text();
-        }).then(response => {
-          console.log(response)
-        })
+    console.log(cookieValue[" user"]);
+    console.log(cookieValue[" token"]);
+    console.log(favoriteget);
+    fetch(favoriteget, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "applicastion/json"
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify({
+        user: cookieValue[" user"],
+        token: cookieValue[" token"]
+      })
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(response => {
+        console.log(response);
+      });
   }
 
   closeTree = () => {
@@ -153,7 +154,7 @@ class App extends React.Component {
             filter={this.switchFilter}
             searchFav={this.returnFavorite}
             toLogin={this.setLogin}
-            cookie = {this.getCookie}
+            cookie={this.getCookie}
             aria-label="Collapse"
           />
           <Collapse in={this.state.showFilter}>
@@ -187,10 +188,9 @@ class App extends React.Component {
         </div>
       );
     if (this.state.page === "login") {
-      return <Login actionToStart={this.returnToStartPage}/>;
+      return <Login actionToStart={this.returnToStartPage} />;
     }
   }
-
 
   treeProcessing = id => {
     this.tree = (
@@ -205,7 +205,7 @@ class App extends React.Component {
     this.forceUpdate();
     this.setState({ isOpenTreeModal: true });
   };
-   proceedClick(id) {
+  proceedClick(id) {
     this.postPopUp = (
       <Thread
         id={id}
@@ -216,7 +216,6 @@ class App extends React.Component {
     );
     this.setState({ showPostModal: true });
   }
-
 }
 
 const rootElement = document.getElementById("root");
