@@ -9,7 +9,6 @@ export default class TreeWrite extends React.Component {
       levels: [{ parent: null, limit: false, nodes: [] }]
     };
 	this.close = props.close;
-	this.name="Baumxxx";
   }
 
   addNodeIdToLevel = (parent, id) => {
@@ -101,7 +100,7 @@ export default class TreeWrite extends React.Component {
   render() {
 	console.info("Levels");
     console.info(this.state.levels);
-    let a = this.state.levels.map(level => (
+    let treelevels = this.state.levels.map(level => (
       <TreeLevel
         onClick={this.createLevel}
         onNodeCreated={this.addNodeIdToLevel}
@@ -116,7 +115,7 @@ export default class TreeWrite extends React.Component {
           <center>
             <table>
               <tr />
-              <center>{a}</center>
+              <center>{treelevels}</center>
             </table>
           </center>
         </div>

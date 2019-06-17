@@ -26,7 +26,6 @@ export class FeedThread extends React.Component {
       this.setState({
         json: avc.data
       })
-      console.log(this.state.json);
     });
   }
 
@@ -82,7 +81,6 @@ export class FeedThread extends React.Component {
           </div>
         );
     }
-    console.log(rows.length);
     return (
       <center>
         <div className="result">{rows}</div>
