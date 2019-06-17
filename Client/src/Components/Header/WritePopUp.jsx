@@ -32,7 +32,7 @@ export class WritePopUp extends React.Component {
     this.post = this.post.bind(this);
   }
   componentDidMount() {
-    this.getAllSections();
+//    this.getAllSections();
   }
   async getAllSections() {
     await fetch(section, {
