@@ -46,7 +46,6 @@ export class FeedThread extends React.Component {
   }
 
   async returnFavorite() {
-    //TODO: Server soll hier alle fav. Videos zurück geben.
     var cookieValue = await this.getCookie();
     fetch(favoriteget, {
       method: "POST",
