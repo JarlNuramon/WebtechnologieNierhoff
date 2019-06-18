@@ -73,7 +73,6 @@ export class FeedThread extends React.Component {
   render() {
     this.SearchPictures = [];
     for (var i = 0; i < this.state.json.length; i++) {
-      //console.log("ID "+this.state.json)
       this.SearchPictures.push(
         <div className="SearchResult">
           <div className="twoColumn">
