@@ -53,10 +53,11 @@ export default class TreeAdd extends React.Component {
           <center>
             <AutoComplete
               data={this.state.suggestions.filter(s =>
-                s.includes(this.state.search)
+                s.toLowerCase().includes(this.state.search.toLowerCase())
               )}
               placeholder="e.g. React"
               onChange={e => this.setState({ search: e.target.value })}
+			  className="TreeAdd"
             />
             <NormalButton
               text="Add Node"

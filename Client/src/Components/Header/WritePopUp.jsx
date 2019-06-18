@@ -139,19 +139,16 @@ export class WritePopUp extends React.Component {
                 <br />
                 <b id="formText">Section</b>
                 <br />
-                <div id="Input">
-                  {" "}
                   <AutoComplete
                     data={this.state.suggestions
                       .map(s => s.name)
-                      .filter(s => s.includes(this.state.ort))}
+                      .filter(s => s.toLowerCase().includes(this.state.ort.toLowerCase()))}
                     placeholder="Ort"
                     name="ort"
                     onChange={this.updateInput}
                     id="Input"
-                    className="k-Input"
-                  />
-                </div>
+                    className="k-Input"/>
+             
                 <br />
                 <b id="formText">Tags</b>
                 <br />

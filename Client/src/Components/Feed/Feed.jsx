@@ -23,7 +23,6 @@ export class Feed extends React.Component {
 
   jsonToHTML() {
     for (var i = 0 ; i < this.state.json.length; i++) {
-      console.log(this.state.json[i]);
       var x = this.state.json[i];
       this.setState(prevState => {
         return {
