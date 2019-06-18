@@ -14,6 +14,7 @@ export class Feed extends React.Component {
       feedPictures: []
     };
     this.onClick = props.onclick;
+    this.serarchFav = props.serarchFav;
   }
 
   componentDidMount() {

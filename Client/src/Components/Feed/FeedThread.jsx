@@ -1,11 +1,10 @@
 import { FeedPicture } from "./FeedPicture.jsx";
 import React from "react";
 import "./Feed.css";
-import { search } from "../../server";
+import { search, favoriteget } from "../../server";
 
 const axios = require("axios");
 
-//TODO: Warning beheben: Warning: Each child in a list should have a unique "key" prop.
 export class FeedThread extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +13,7 @@ export class FeedThread extends React.Component {
       json: []
     };
     this.onclick = props.onclick;
+    this.getCookie = props.cookie
   }
 
   closeTree = () => {
@@ -21,7 +21,9 @@ export class FeedThread extends React.Component {
   };
 
   async searchForTag(searchvalue) {
-
+    if(searchvalue === "Favoriten"){
+      this.returnFavorite();
+    } else
     await axios.get(search+searchvalue).then(avc => {
       this.setState({
         json: avc.data
@@ -41,6 +43,32 @@ export class FeedThread extends React.Component {
     {
       this.searchForTag(this.props.search);
     }
+  }
+
+  async returnFavorite() {
+    //TODO: Server soll hier alle fav. Videos zurück geben.
+    var cookieValue = await this.getCookie();
+    fetch(favoriteget, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify({
+        user: cookieValue[" user"],
+        token: cookieValue[" token"]
+      })
+    }).then(response => {
+      return response.json();
+    }).then(response => {
+      this.setState({
+        json: response
+      })
+    })
   }
 
   render() {

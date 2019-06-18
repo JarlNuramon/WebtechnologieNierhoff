@@ -6,12 +6,13 @@ import "./StyledInput.css";
  * Gives you the standardlayout of PidVid Searchbar
  * @param onChange Has onChange for the onChange function of the Input
  */
-export default function Searchbar(props) {
+export default function DefaultInput(props) {
   return (
     <Input
       type="text"
       name={props.name}
       placeholder={props.placeholder}
+      value={props.value}
       onChange={props.onChange}
       onKeyDown={props.onKeyDown}
       inputProps={props.inputProps}
