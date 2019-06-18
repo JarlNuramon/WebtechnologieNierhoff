@@ -14,8 +14,6 @@ import { Filter } from "./Components/Filter/Filter";
 import Collapse from "@material-ui/core/Collapse";
 import LearningTree from "./Components/LearningTree/LearningTree.jsx";
 
-import { favoriteget } from "./server";
-
 ReactModal.setAppElement("#root");
 
 const axios = require("axios");
@@ -40,7 +38,6 @@ class App extends React.Component {
     this.postPopUp = null;
     this.searchStarted = this.searchStarted.bind(this);
     this.switchFilter = this.switchFilter.bind(this);
-    //this.returnFavorite = this.returnFavorite.bind(this);
     this.getCookie = this.getCookie.bind(this);
   }
   closeTree = () => {

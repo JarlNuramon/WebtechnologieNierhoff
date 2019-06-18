@@ -5,7 +5,6 @@ import { search, favoriteget } from "../../server";
 
 const axios = require("axios");
 
-//TODO: Warning beheben: Warning: Each child in a list should have a unique "key" prop.
 export class FeedThread extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +46,6 @@ export class FeedThread extends React.Component {
   }
 
   async returnFavorite() {
-    //TODO: Server soll hier alle fav. Videos zurück geben.
     var cookieValue = await this.getCookie();
     fetch(favoriteget, {
       method: "POST",
@@ -75,7 +73,6 @@ export class FeedThread extends React.Component {
   render() {
     this.SearchPictures = [];
     for (var i = 0; i < this.state.json.length; i++) {
-      //console.log("ID "+this.state.json)
       this.SearchPictures.push(
         <div className="SearchResult">
           <div className="twoColumn">
@@ -110,7 +107,6 @@ export class FeedThread extends React.Component {
           </div>
         );
     }
-    console.log(rows.length);
     return (
       <center>
         <div className="result">{rows}</div>

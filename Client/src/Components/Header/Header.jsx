@@ -66,7 +66,6 @@ export default class Header extends React.Component {
 
 
   handleLogOut = () => {
-    //TODO REQUEST OF LOG OUT
     this.toLogin();
     this.setState({ anchorEl: null });
 
