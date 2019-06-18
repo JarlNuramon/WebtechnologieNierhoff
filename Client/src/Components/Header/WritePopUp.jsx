@@ -142,7 +142,7 @@ export class WritePopUp extends React.Component {
                   <AutoComplete
                     data={this.state.suggestions
                       .map(s => s.name)
-                      .filter(s => s.includes(this.state.ort))}
+                      .filter(s => s.toLowerCase().includes(this.state.ort.toLowerCase()))}
                     placeholder="Ort"
                     name="ort"
                     onChange={this.updateInput}
